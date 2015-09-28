@@ -3,3 +3,5 @@
 .idea
 .ipynb_checkpoints/
 __pycache__
+docs/_build
+docs/colour*.rst

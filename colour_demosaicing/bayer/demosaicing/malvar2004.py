@@ -32,7 +32,7 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
 __status__ = 'Production'
 
-__all__ = ['demosaicing_CFA_Bayer_bilinear']
+__all__ = ['demosaicing_CFA_Bayer_Malvar2004']
 
 
 def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):

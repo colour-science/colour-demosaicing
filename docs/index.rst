@@ -22,7 +22,21 @@ Installation
 Usage
 -----
 
-The main reference for `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`_ is the sphinx API Reference:
+The main reference for `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`_ is the complete sphinx API Reference:
+
+-   :doc:`API Reference <api>`
+
+.. raw:: html
+
+    <div id="hidden-toctree">
+
+.. toctree::
+
+   colour_demosaicing
+
+.. raw:: html
+
+    </div>
 
 Contributing
 ------------
