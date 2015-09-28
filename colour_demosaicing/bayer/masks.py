@@ -31,7 +31,7 @@ def masks_CFA_Bayer(shape, pattern='RGGB'):
     shape : array_like
         Dimensions of the *Bayer* CFA.
     pattern : unicode, optional
-        **{'RGGB', 'BGGR', 'GRBG', GBRG'}**
+        **{'RGGB', 'BGGR', 'GRBG', 'GBRG'}**
         Arrangement of the colour filters on the pixel array.
 
     Returns
