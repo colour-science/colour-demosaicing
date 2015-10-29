@@ -44,25 +44,25 @@ def masks_CFA_Bayer(shape, pattern='RGGB'):
     >>> from pprint import pprint
     >>> shape = (3, 3)
     >>> pprint(masks_CFA_Bayer(shape))
-    (array([[ 1.,  0.,  1.],
-           [ 0.,  0.,  0.],
-           [ 1.,  0.,  1.]]),
-     array([[ 0.,  1.,  0.],
-           [ 1.,  0.,  1.],
-           [ 0.,  1.,  0.]]),
-     array([[ 0.,  0.,  0.],
-           [ 0.,  1.,  0.],
-           [ 0.,  0.,  0.]]))
+    (array([[ True, False,  True],
+           [False, False, False],
+           [ True, False,  True]], dtype=bool),
+     array([[False,  True, False],
+           [ True, False,  True],
+           [False,  True, False]], dtype=bool),
+     array([[False, False, False],
+           [False,  True, False],
+           [False, False, False]], dtype=bool))
     >>> pprint(masks_CFA_Bayer(shape, 'BGGR'))
-    (array([[ 0.,  0.,  0.],
-           [ 0.,  1.,  0.],
-           [ 0.,  0.,  0.]]),
-     array([[ 0.,  1.,  0.],
-           [ 1.,  0.,  1.],
-           [ 0.,  1.,  0.]]),
-     array([[ 1.,  0.,  1.],
-           [ 0.,  0.,  0.],
-           [ 1.,  0.,  1.]]))
+    (array([[False, False, False],
+           [False,  True, False],
+           [False, False, False]], dtype=bool),
+     array([[False,  True, False],
+           [ True, False,  True],
+           [False,  True, False]], dtype=bool),
+     array([[ True, False,  True],
+           [False, False, False],
+           [ True, False,  True]], dtype=bool))
     """
 
     pattern = pattern.upper()
@@ -71,4 +71,4 @@ def masks_CFA_Bayer(shape, pattern='RGGB'):
     for channel, (y, x) in zip(pattern, [(0, 0), (0, 1), (1, 0), (1, 1)]):
         channels[channel][y::2, x::2] = 1
 
-    return tuple(channels[c] for c in 'RGB')
+    return tuple(channels[c].astype(bool) for c in 'RGB')
