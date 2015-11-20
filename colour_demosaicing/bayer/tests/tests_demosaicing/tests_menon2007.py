@@ -31,16 +31,14 @@ RESOURCES_DIRECTORY = os.path.join(
 
 class TestDemosaicing_CFA_Bayer_Menon2007(unittest.TestCase):
     """
-    Defines
-    :func:`colour_demosaicing.bayer.demosaicing.menon2007.demosaicing_CFA_Bayer_Menon2007`  # noqa
-    definition unit tests methods.
+    Defines :func:`colour_demosaicing.bayer.demosaicing.menon2007.\
+demosaicing_CFA_Bayer_Menon2007` definition unit tests methods.
     """
 
     def test_demosaicing_CFA_Bayer_Menon2007(self):
         """
-        Tests
-        :func:`colour_demosaicing.bayer.demosaicing.menon2007.demosaicing_CFA_Bayer_Menon2007`  # noqa
-        definition.
+        Tests :func:`colour_demosaicing.bayer.demosaicing.menon2007.\
+demosaicing_CFA_Bayer_Menon2007` definition.
         """
 
         for pattern in ('RGGB', 'BGGR', 'GRBG', 'GBRG'):
