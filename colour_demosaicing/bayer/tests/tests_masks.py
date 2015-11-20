@@ -9,12 +9,7 @@ from __future__ import division, unicode_literals
 
 import numpy as np
 import os
-import sys
-
-if sys.version_info[:2] <= (2, 6):
-    import unittest2 as unittest
-else:
-    import unittest
+import unittest
 
 import colour
 from colour_demosaicing.bayer import masks_CFA_Bayer
