@@ -26,18 +26,6 @@ The main reference for `Colour - Demosaicing <https://github.com/colour-science/
 
 -   :doc:`API Reference <api>`
 
-.. raw:: html
-
-    <div id="hidden-toctree">
-
-.. toctree::
-
-   colour_demosaicing
-
-.. raw:: html
-
-    </div>
-
 Contributing
 ------------
 
