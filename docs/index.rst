@@ -41,7 +41,7 @@ The main reference for `Colour - Demosaicing <https://github.com/colour-science/
 Contributing
 ------------
 
-If you would like to contribute to `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`_, please refer to the following `Contributing <http://colour-science.org/contributing.php>`_ guide for `Colour <https://github.com/colour-science/colour>`_.
+If you would like to contribute to `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`_, please refer to the following `Contributing <http://colour-science.org/contributing/>`_ guide for `Colour <https://github.com/colour-science/colour>`_.
 
 Bibliography
 ------------
