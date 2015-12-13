@@ -22,7 +22,7 @@ Installation
 Usage
 -----
 
-The main reference for `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`_ is the sphinx API Reference:
+The main reference for `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`_ is the sphinx `API Reference <http://colour-demosaicing.readthedocs.org/en/latest/>`_.
 
 Contributing
 ------------
