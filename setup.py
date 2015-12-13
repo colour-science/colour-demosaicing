@@ -8,6 +8,8 @@ Pypi Setup
 
 from __future__ import unicode_literals
 
+import os
+
 from setuptools import setup
 from setuptools import find_packages
 
@@ -38,6 +40,10 @@ DOCS_REQUIREMENTS = ['sphinx>=1.2.2']
 TESTS_REQUIREMENTS = ['coverage>=3.7.1',
                       'flake8>=2.1.0',
                       'nose>=1.3.4']
+
+if os.environ.get('READTHEDOCS') == 'True':
+    INSTALLATION_REQUIREMENTS = ['colour-science>=0.3.7',
+                                 'mock==1.0.1']
 
 setup(name='colour-demosaicing',
       version='0.1.0',
