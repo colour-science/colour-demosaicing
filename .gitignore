@@ -3,4 +3,6 @@
 .idea
 .ipynb_checkpoints/
 __pycache__
+colour_demosaicing.egg-info
+dist
 docs/_build
