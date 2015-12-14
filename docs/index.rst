@@ -1,6 +1,8 @@
 Colour - Demosaicing
 ====================
 
+..  image:: https://raw.githubusercontent.com/colour-science/colour-demosaicing/master/docs/_static/Demosaicing_001.png
+
 A `Python <https://www.python.org/>`_ package implementing various
 CFA (Colour Filter Array) demosaicing algorithms and related utilities.
 
