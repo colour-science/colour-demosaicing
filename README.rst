@@ -1,9 +1,11 @@
 Colour - Demosaicing
 ====================
 
-A `Python <https://www.python.org/>`_ package implementing various CFA (Colour Filter Array) demosaicing algorithms and related utilities.
+A `Python <https://www.python.org/>`_ package implementing various
+CFA (Colour Filter Array) demosaicing algorithms and related utilities.
 
-It is open source and freely available under the `New BSD License <http://opensource.org/licenses/BSD-3-Clause>`_ terms.
+It is open source and freely available under the
+`New BSD License <http://opensource.org/licenses/BSD-3-Clause>`_ terms.
 
 Features
 --------
@@ -16,6 +18,13 @@ The following CFA (Colour Filter Array) demosaicing algorithms are implemented:
 
 Installation
 ------------
+
+Because of their size, the resources dependencies needed to run the various
+examples and unit tests are not provided within the Pypi package. They are
+separately available as
+`Git Submodules <https://git-scm.com/book/en/v2/Git-Tools-Submodules>`_
+when cloning the
+`repository <https://github.com/colour-science/colour-demosaicing>`_.
 
 Dependencies
 ^^^^^^^^^^^^
@@ -47,17 +56,31 @@ The documentation building dependencies are installed as follows::
 Usage
 -----
 
-The main reference for `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`_ is the sphinx `API Reference <http://colour-demosaicing.readthedocs.org/en/latest/>`_.
+API
+^^^
+
+The main reference for `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`_
+is the Sphinx `API Reference <http://colour-demosaicing.readthedocs.org/en/latest/>`_.
+
+Examples
+^^^^^^^^
+
+Various usage examples are available from the
+`examples directory <https://github.com/colour-science/colour-demosaicing/tree/master/colour_demosaicing/examples>`_.
 
 Contributing
 ------------
 
-If you would like to contribute to `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`_, please refer to the following `Contributing <http://colour-science.org/contributing/>`_ guide for `Colour <https://github.com/colour-science/colour>`_.
+If you would like to contribute to `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`_,
+please refer to the following `Contributing <http://colour-science.org/contributing/>`_
+guide for `Colour <https://github.com/colour-science/colour>`_.
 
 Bibliography
 ------------
 
-The bibliography is available in the repository in either `BibTeX <https://github.com/colour-science/colour-demosaicing/blob/develop/BIBLIOGRAPHY.bib>`_ format or `reStructuredText <https://github.com/colour-science/colour-demosaicing/blob/develop/BIBLIOGRAPHY.rst>`_.
+The bibliography is available in the repository in either
+`BibTeX <https://github.com/colour-science/colour-demosaicing/blob/develop/BIBLIOGRAPHY.bib>`_
+format or `reStructuredText <https://github.com/colour-science/colour-demosaicing/blob/develop/BIBLIOGRAPHY.rst>`_.
 
 About
 -----
