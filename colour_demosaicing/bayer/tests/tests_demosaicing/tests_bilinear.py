@@ -13,6 +13,8 @@ import os
 import unittest
 
 import colour
+
+from colour_demosaicing import TESTS_RESOURCES_DIRECTORY
 from colour_demosaicing.bayer import demosaicing_CFA_Bayer_bilinear
 
 __author__ = 'Colour Developers'
@@ -22,12 +24,11 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
 __status__ = 'Production'
 
-__all__ = ['RESOURCES_DIRECTORY',
+__all__ = ['BAYER_DIRECTORY',
            'TestDemosaicing_CFA_Bayer_bilinear']
 
-RESOURCES_DIRECTORY = os.path.join(
-    os.path.dirname(__file__), '..', 'resources')
-
+BAYER_DIRECTORY = os.path.join(
+    TESTS_RESOURCES_DIRECTORY, 'colour_demosaicing', 'bayer')
 
 class TestDemosaicing_CFA_Bayer_bilinear(unittest.TestCase):
     """
@@ -46,12 +47,12 @@ demosaicing_CFA_Bayer_bilinear` definition.
                 demosaicing_CFA_Bayer_bilinear(
                     colour.read_image(
                         str(os.path.join(
-                            RESOURCES_DIRECTORY,
+                            BAYER_DIRECTORY,
                             'Lighthouse_CFA_{0}.exr'.format(pattern)))),
                     pattern),
                 colour.read_image(
                     str(os.path.join(
-                        RESOURCES_DIRECTORY,
+                        BAYER_DIRECTORY,
                         'Lighthouse_Bilinear_{0}.exr'.format(pattern)))),
                 decimal=7)
 

@@ -12,6 +12,8 @@ import os
 import unittest
 
 import colour
+
+from colour_demosaicing import TESTS_RESOURCES_DIRECTORY
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
 __author__ = 'Colour Developers'
@@ -21,10 +23,11 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
 __status__ = 'Production'
 
-__all__ = ['RESOURCES_DIRECTORY',
+__all__ = ['BAYER_DIRECTORY',
            'TestMasks_CFA_Bayer']
 
-RESOURCES_DIRECTORY = os.path.join(os.path.dirname(__file__), 'resources')
+BAYER_DIRECTORY = os.path.join(
+    TESTS_RESOURCES_DIRECTORY, 'colour_demosaicing', 'bayer')
 
 
 class TestMasks_CFA_Bayer(unittest.TestCase):
@@ -43,7 +46,7 @@ class TestMasks_CFA_Bayer(unittest.TestCase):
             np.testing.assert_almost_equal(
                 colour.tstack(masks_CFA_Bayer((8, 8), pattern)),
                 colour.read_image(
-                    str(os.path.join(RESOURCES_DIRECTORY,
+                    str(os.path.join(BAYER_DIRECTORY,
                                      '{0}_Masks.exr'.format(pattern)))),
                 decimal=7)
 

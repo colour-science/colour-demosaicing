@@ -14,6 +14,8 @@ Subpackages
 
 from __future__ import absolute_import
 
+import os
+
 from .bayer import *  # noqa
 from . import bayer  # noqa
 
@@ -26,6 +28,13 @@ __status__ = 'Production'
 
 __all__ = []
 __all__ += bayer.__all__
+
+RESOURCES_DIRECTORY = os.path.join(
+    os.path.dirname(__file__), 'resources')
+EXAMPLES_RESOURCES_DIRECTORY = os.path.join(
+    RESOURCES_DIRECTORY, 'colour-demosaicing-examples-dataset')
+TESTS_RESOURCES_DIRECTORY = os.path.join(
+    RESOURCES_DIRECTORY, 'colour-demosaicing-tests-dataset')
 
 __application_name__ = 'Colour - Demosaicing'
 

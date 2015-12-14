@@ -22,24 +22,25 @@ Dependencies
 
 **Colour - Demosaicing** requires various dependencies in order to run:
 
-- Python 2.7 or Python 3.5
-- NumPy
-- `OpenImageIO <https://github.com/OpenImageIO/oiio>`_
+-  `Python 2.7 <https://www.python.org/download/releases/>`_ or
+   `Python 3.5 <https://www.python.org/download/releases/>`_
+-  `NumPy <http://www.numpy.org/>`_
+-  `OpenImageIO <https://github.com/OpenImageIO/oiio>`_
 
 Pypi
 ^^^^
 
-With the dependencies satisfied, **Colour - Demosaicing** can be installed from
+Once the dependencies satisfied, **Colour - Demosaicing** can be installed from
 the `Python Package Index <http://pypi.python.org/pypi/colour-demosaicing>`_ by
-issuing this command in a shell:
+issuing this command in a shell::
 
 	pip install colour-demosaicing
 
-The tests suite dependencies are installed as follows:
+The tests suite dependencies are installed as follows::
 
     pip install 'colour-demosaicing[tests]'
 
-The documentation building dependencies are installed as follows:
+The documentation building dependencies are installed as follows::
 
     pip install 'colour-demosaicing[docs]'
 
