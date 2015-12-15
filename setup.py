@@ -23,8 +23,6 @@ __status__ = 'Production'
 __all__ = ['SHORT_DESCRIPTION',
            'LONG_DESCRIPTION',
            'INSTALLATION_REQUIREMENTS',
-           'OPTIONAL_REQUIREMENTS',
-           'PLOTTING_REQUIREMENTS',
            'DOCS_REQUIREMENTS',
            'TESTS_REQUIREMENTS']
 

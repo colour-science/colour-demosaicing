@@ -14,9 +14,9 @@ Features
 
 The following CFA (Colour Filter Array) demosaicing algorithms are implemented:
 
-- Bilinear
-- Malvar (2004)
-- DDFAPD - Menon (2007)
+-   Bilinear
+-   Malvar (2004)
+-   DDFAPD - Menon (2007)
 
 Installation
 ------------
@@ -28,8 +28,8 @@ separately available as
 when cloning the
 `repository <https://github.com/colour-science/colour-demosaicing>`_.
 
-Dependencies
-^^^^^^^^^^^^
+Primary Dependencies
+^^^^^^^^^^^^^^^^^^^^
 
 **Colour - Demosaicing** requires various dependencies in order to run:
 
