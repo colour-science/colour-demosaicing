@@ -1,3 +1,20 @@
+.. image:: https://badge.waffle.io/colour-science/colour-demosaicing.svg?label=ready&title=Ready
+    :target: https://github.com/colour-science/colour-demosaicing/issues
+.. image:: https://img.shields.io/travis/colour-science/colour-demosaicing/develop.svg
+    :target: https://travis-ci.org/colour-science/colour-demosaicing
+.. image:: http://img.shields.io/coveralls/colour-science/colour-demosaicing/develop.svg
+    :target: https://coveralls.io/r/colour-science/colour-demosaicing
+.. image:: https://img.shields.io/scrutinizer/g/colour-science/colour-demosaicing/develop.svg
+    :target: https://scrutinizer-ci.com/g/colour-science/colour-demosaicing/
+.. image:: https://landscape.io/github/colour-science/colour-demosaicing/master/landscape.png
+    :target: https://landscape.io/github/colour-science/colour-demosaicing
+.. image:: https://img.shields.io/gemnasium/colour-science/colour-demosaicing.svg
+    :target: https://gemnasium.com/colour-science/colour-demosaicing
+.. image:: https://badge.fury.io/py/colour-demosaicing.svg
+    :target: https://pypi.python.org/pypi/colour-demosaicing
+.. image:: https://img.shields.io/pypi/dm/colour-demosaicing.svg
+    :target: https://pypi.python.org/pypi/colour-demosaicing
+
 Colour - Demosaicing
 ====================
 
