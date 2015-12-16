@@ -30,6 +30,7 @@ __all__ = ['BAYER_DIRECTORY',
 BAYER_DIRECTORY = os.path.join(
     TESTS_RESOURCES_DIRECTORY, 'colour_demosaicing', 'bayer')
 
+
 class TestDemosaicing_CFA_Bayer_bilinear(unittest.TestCase):
     """
     Defines :func:`colour_demosaicing.bayer.demosaicing.bilinear.\
