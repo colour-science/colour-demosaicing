@@ -38,15 +38,15 @@ before_install:
   - tar -xvf /tmp/OpenImageIO-1.5.21.tar.gz
   - cd oiio-Release-1.5.21
   - make
-  - cd /home/travis/build/KelSolaar/TravisRamblings
+  - cd /home/travis/build/colour-science/colour-demosaicing
 
 install:
   - conda create --yes --quiet -n colour-demosaicing-test ${PACKAGES} pip setuptools nose
   - source activate colour-demosaicing-test
   - pip install colour-science coverage coveralls flake8 mock==1.0.1
-  - sudo cp /home/travis/build/KelSolaar/TravisRamblings/oiio-Release-1.5.21/dist/linux64/bin/* /usr/local/bin/
-  - sudo cp /home/travis/build/KelSolaar/TravisRamblings/oiio-Release-1.5.21/dist/linux64/lib/* /usr/local/lib/
-  - cp /home/travis/build/KelSolaar/TravisRamblings/oiio-Release-1.5.21/dist/linux64/python/OpenImageIO.so /home/travis/miniconda/envs/colour-demosaicing-test/lib/python2.7/site-packages/
+  - sudo cp /home/travis/build/colour-science/colour-demosaicing/oiio-Release-1.5.21/dist/linux64/bin/* /usr/local/bin/
+  - sudo cp /home/travis/build/colour-science/colour-demosaicing/oiio-Release-1.5.21/dist/linux64/lib/* /usr/local/lib/
+  - cp /home/travis/build/colour-science/colour-demosaicing/oiio-Release-1.5.21/dist/linux64/python/OpenImageIO.so /home/travis/miniconda/envs/colour-demosaicing-test/lib/python2.7/site-packages/
 
 script:
   - flake8 colour_demosaicing
