@@ -1,8 +1,11 @@
 include COPYING
 include LICENSE
+include *.bib
 include *.rst
+graft colour_demosaicing/examples
 graft docs/_build
 graft utilities
+prune colour_demosaicing/examples/.ipynb_checkpoints
 global-exclude *.pyc
 global-exclude *.pyo
 global-exclude ._*
