@@ -35,19 +35,21 @@ __all__ = ['demosaicing_CFA_Bayer_Menon2007',
            'demosaicing_CFA_Bayer_DDFAPD',
            'refining_step_Menon2007']
 
-_cnv_h = lambda x, y: convolve1d(x, y, mode='mirror')
-"""
-Helper function for horizontal convolution.
 
-_cnv_h : lambda
-"""
+def _cnv_h(x, y):
+    """
+    Helper function for horizontal convolution.
+    """
 
-_cnv_v = lambda x, y: convolve1d(x, y, mode='mirror', axis=0)
-"""
-Helper function for vertical convolution.
+    return convolve1d(x, y, mode='mirror')
 
-_cnv_v : lambda
-"""
+
+def _cnv_v(x, y):
+    """
+    Helper function for vertical convolution.
+    """
+
+    return convolve1d(x, y, mode='mirror', axis=0)
 
 
 def demosaicing_CFA_Bayer_Menon2007(CFA, pattern='RGGB', refining_step=True):
