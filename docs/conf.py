@@ -359,13 +359,13 @@ autoclass_content = 'both'
 intersphinx_mapping = {'python': ('https://docs.python.org/3.5', None)}
 
 
-# def __autodoc_process_docstring(app,
-#                                 what,
-#                                 name,
-#                                 obj,
-#                                 options,
-#                                 lines,
-#                                 offset=[0]):
+# def _autodoc_process_docstring(app,
+#                                what,
+#                                name,
+#                                obj,
+#                                options,
+#                                lines,
+#                                offset=[0]):
 #     """
 #     Process the docstrings for references counting.
 #     """
@@ -393,12 +393,12 @@ intersphinx_mapping = {'python': ('https://docs.python.org/3.5', None)}
 #     offset[0] += len(references)
 
 
-def __autodoc_process_docstring(app,
-                                what,
-                                name,
-                                obj,
-                                options,
-                                lines):
+def _autodoc_process_docstring(app,
+                               what,
+                               name,
+                               obj,
+                               options,
+                               lines):
     """
     Process the docstrings to remove the *# noqa* *flake8* pragma.
     """
@@ -407,4 +407,4 @@ def __autodoc_process_docstring(app,
 
 
 def setup(app):
-    app.connect('autodoc-process-docstring', __autodoc_process_docstring)
+    app.connect('autodoc-process-docstring', _autodoc_process_docstring)
