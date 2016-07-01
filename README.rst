@@ -79,7 +79,7 @@ API
 ^^^
 
 The main reference for `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`_
-is the Sphinx `API Reference <http://colour-demosaicing.readthedocs.org/en/latest/>`_.
+is the Sphinx `API Reference <http://colour-demosaicing.readthedocs.io/en/latest/>`_.
 
 Examples
 ^^^^^^^^
