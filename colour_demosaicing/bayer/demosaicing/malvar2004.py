@@ -45,7 +45,7 @@ def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
     CFA : array_like
         *Bayer* CFA.
     pattern : unicode, optional
-        **{'RGGB', 'BGGR', 'GRBG', 'GBRG'}**
+        **{'RGGB', 'BGGR', 'GRBG', 'GBRG'}**,
         Arrangement of the colour filters on the pixel array.
 
     Returns
@@ -67,7 +67,7 @@ def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
             [ 0.35318628,  0.38186275,  0.39607844],
             [ 0.3379902 ,  0.36078432,  0.3754902 ],
             [ 0.37769609,  0.39558825,  0.40000001]]])
-    >>> CFA = np.array([[0.3764706, 0.36078432, 0.40784314, 0.3764706],
+    >>> CFA = np.array([[0.3764706, 0.360784320, 0.40784314, 0.3764706],
     ...                 [0.35686275, 0.30980393, 0.36078432, 0.29803923]])
     >>> demosaicing_CFA_Bayer_Malvar2004(CFA, 'BGGR')
     array([[[ 0.35539217,  0.37058825,  0.3764706 ],

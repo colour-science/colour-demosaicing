@@ -62,7 +62,7 @@ def demosaicing_CFA_Bayer_Menon2007(CFA, pattern='RGGB', refining_step=True):
     CFA : array_like
         *Bayer* CFA.
     pattern : unicode, optional
-        **{'RGGB', 'BGGR', 'GRBG', 'GBRG'}**
+        **{'RGGB', 'BGGR', 'GRBG', 'GBRG'}**,
         Arrangement of the colour filters on the pixel array.
     refining_step : bool
         Perform refining step.
@@ -207,11 +207,11 @@ def refining_step_Menon2007(RGB, RGB_m, M):
     >>> RGB = np.array([[[0.30588236, 0.35686275, 0.3764706],
     ...                  [0.30980393, 0.36078432, 0.39411766],
     ...                  [0.29607844, 0.36078432, 0.40784314],
-    ...                  [0.29803923, 0.3764706, 0.42352942]],
+    ...                  [0.29803923, 0.37647060, 0.42352942]],
     ...                 [[0.30588236, 0.35686275, 0.3764706],
     ...                  [0.30980393, 0.36078432, 0.39411766],
     ...                  [0.29607844, 0.36078432, 0.40784314],
-    ...                  [0.29803923, 0.3764706, 0.42352942]]])
+    ...                  [0.29803923, 0.37647060, 0.42352942]]])
     >>> RGB_m = np.array([[[0, 0, 1],
     ...                    [0, 1, 0],
     ...                    [0, 0, 1],
