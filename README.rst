@@ -1,24 +1,42 @@
-.. image:: https://badge.waffle.io/colour-science/colour-demosaicing.svg?label=ready&title=Ready
-    :target: https://github.com/colour-science/colour-demosaicing/issues
-.. image:: https://img.shields.io/travis/colour-science/colour-demosaicing/develop.svg
-    :target: https://travis-ci.org/colour-science/colour-demosaicing
-.. image:: http://img.shields.io/coveralls/colour-science/colour-demosaicing/develop.svg
-    :target: https://coveralls.io/r/colour-science/colour-demosaicing
-.. image:: https://img.shields.io/scrutinizer/g/colour-science/colour-demosaicing/develop.svg
-    :target: https://scrutinizer-ci.com/g/colour-science/colour-demosaicing/
-.. image:: https://landscape.io/github/colour-science/colour-demosaicing/master/landscape.png
-    :target: https://landscape.io/github/colour-science/colour-demosaicing
-.. image:: https://img.shields.io/gemnasium/colour-science/colour-demosaicing.svg
-    :target: https://gemnasium.com/colour-science/colour-demosaicing
-.. image:: https://badge.fury.io/py/colour-demosaicing.svg
-    :target: https://pypi.python.org/pypi/colour-demosaicing
-.. image:: https://img.shields.io/pypi/dm/colour-demosaicing.svg
-    :target: https://pypi.python.org/pypi/colour-demosaicing
-
 Colour - Demosaicing
 ====================
 
 ..  image:: https://raw.githubusercontent.com/colour-science/colour-demosaicing/master/docs/_static/Demosaicing_001.png
+
+.. list-table::
+    :stub-columns: 1
+
+    * - Status
+      - |waffle| |travis| |coveralls| |scrutinizer| |landscape| |gemnasium|
+    * - Package
+      - |version| |downloads|
+
+.. |waffle| image:: https://badge.waffle.io/colour-science/colour-demosaicing.svg?label=ready&title=Ready
+    :target: https://github.com/colour-science/colour-demosaicing/issues
+    :alt: Issues Ready
+.. |travis| image:: https://img.shields.io/travis/colour-science/colour-demosaicing/develop.svg
+    :target: https://travis-ci.org/colour-science/colour-demosaicing
+    :alt: Develop Build Status
+.. |coveralls| image:: http://img.shields.io/coveralls/colour-science/colour-demosaicing/develop.svg
+    :target: https://coveralls.io/r/colour-science/colour-demosaicing
+    :alt: Coverage Status
+.. |scrutinizer| image:: https://img.shields.io/scrutinizer/g/colour-science/colour-demosaicing/develop.svg
+    :target: https://scrutinizer-ci.com/g/colour-science/colour-demosaicing/
+    :alt: Code Quality
+.. |landscape| image:: https://landscape.io/github/colour-science/colour-demosaicing/master/landscape.png
+    :target: https://landscape.io/github/colour-science/colour-demosaicing
+    :alt: Code Quality
+.. |gemnasium| image:: https://img.shields.io/gemnasium/colour-science/colour-demosaicing.svg
+    :target: https://gemnasium.com/colour-science/colour-demosaicing
+    :alt: Dependencies Status
+.. |version| image:: https://badge.fury.io/py/colour-demosaicing.svg
+    :target: https://pypi.python.org/pypi/colour-demosaicing
+    :alt: Package Version
+.. |downloads| image:: https://img.shields.io/pypi/dm/colour-demosaicing.svg
+    :target: https://pypi.python.org/pypi/colour-demosaicing
+    :alt: Package Downloads
+
+.. end-badges
 
 A `Python <https://www.python.org/>`_ package implementing various
 CFA (Colour Filter Array) demosaicing algorithms and related utilities.
