@@ -30,8 +30,7 @@ SHORT_DESCRIPTION = 'Colour - Demosaicing'
 
 LONG_DESCRIPTION = open('README.rst').read()
 
-INSTALLATION_REQUIREMENTS = ['colour-science>=0.3.7',
-                             'scipy>=0.16.0']
+INSTALLATION_REQUIREMENTS = ['colour-science>=0.3.8']
 
 DOCS_REQUIREMENTS = ['sphinx>=1.2.2']
 
@@ -40,11 +39,11 @@ TESTS_REQUIREMENTS = ['coverage>=3.7.1',
                       'nose>=1.3.4']
 
 if os.environ.get('READTHEDOCS') == 'True':
-    INSTALLATION_REQUIREMENTS = ['colour-science>=0.3.7',
+    INSTALLATION_REQUIREMENTS = ['colour-science>=0.3.8',
                                  'mock==1.0.1']
 
 setup(name='colour-demosaicing',
-      version='0.1.0',
+      version='0.1.1',
       author=__author__,
       author_email=__email__,
       include_package_data=True,
