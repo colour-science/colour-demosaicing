@@ -7,8 +7,6 @@ matrix:
   - python: 2.7
     env:
     - PYTHON_VERSION="2.7"
-    - NUMPY_VERSION="1.10.1"
-    - SCIPY_VERSION="0.16.0"
 
 notifications:
   slack: colour-science:Y6lPPcN7y53Js94geqUpqsAP

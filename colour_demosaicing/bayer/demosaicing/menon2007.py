@@ -25,7 +25,7 @@ from colour import tsplit, tstack
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015 - Colour Developers'
+__copyright__ = 'Copyright (C) 2015-2016 - Colour Developers'
 __license__ = 'New BSD License - http://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
@@ -35,19 +35,21 @@ __all__ = ['demosaicing_CFA_Bayer_Menon2007',
            'demosaicing_CFA_Bayer_DDFAPD',
            'refining_step_Menon2007']
 
-_cnv_h = lambda x, y: convolve1d(x, y, mode='mirror')
-"""
-Helper function for horizontal convolution.
 
-_cnv_h : lambda
-"""
+def _cnv_h(x, y):
+    """
+    Helper function for horizontal convolution.
+    """
 
-_cnv_v = lambda x, y: convolve1d(x, y, mode='mirror', axis=0)
-"""
-Helper function for vertical convolution.
+    return convolve1d(x, y, mode='mirror')
 
-_cnv_v : lambda
-"""
+
+def _cnv_v(x, y):
+    """
+    Helper function for vertical convolution.
+    """
+
+    return convolve1d(x, y, mode='mirror', axis=0)
 
 
 def demosaicing_CFA_Bayer_Menon2007(CFA, pattern='RGGB', refining_step=True):
@@ -60,7 +62,7 @@ def demosaicing_CFA_Bayer_Menon2007(CFA, pattern='RGGB', refining_step=True):
     CFA : array_like
         *Bayer* CFA.
     pattern : unicode, optional
-        **{'RGGB', 'BGGR', 'GRBG', 'GBRG'}**
+        **{'RGGB', 'BGGR', 'GRBG', 'GBRG'}**,
         Arrangement of the colour filters on the pixel array.
     refining_step : bool
         Perform refining step.
@@ -205,11 +207,11 @@ def refining_step_Menon2007(RGB, RGB_m, M):
     >>> RGB = np.array([[[0.30588236, 0.35686275, 0.3764706],
     ...                  [0.30980393, 0.36078432, 0.39411766],
     ...                  [0.29607844, 0.36078432, 0.40784314],
-    ...                  [0.29803923, 0.3764706, 0.42352942]],
+    ...                  [0.29803923, 0.37647060, 0.42352942]],
     ...                 [[0.30588236, 0.35686275, 0.3764706],
     ...                  [0.30980393, 0.36078432, 0.39411766],
     ...                  [0.29607844, 0.36078432, 0.40784314],
-    ...                  [0.29803923, 0.3764706, 0.42352942]]])
+    ...                  [0.29803923, 0.37647060, 0.42352942]]])
     >>> RGB_m = np.array([[[0, 0, 1],
     ...                    [0, 1, 0],
     ...                    [0, 0, 1],

@@ -17,7 +17,7 @@ from colour import tsplit
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015 - Colour Developers'
+__copyright__ = 'Copyright (C) 2015-2016 - Colour Developers'
 __license__ = 'New BSD License - http://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
@@ -35,7 +35,7 @@ def mosaicing_CFA_Bayer(RGB, pattern='RGGB'):
     RGB : array_like
         *RGB* colourspace array.
     pattern : unicode, optional
-        **{'RGGB', 'BGGR', 'GRBG', 'GBRG'}**
+        **{'RGGB', 'BGGR', 'GRBG', 'GBRG'}**,
         Arrangement of the colour filters on the pixel array.
 
     Returns

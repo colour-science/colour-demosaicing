@@ -1,13 +1,9 @@
-Contributors
-============
+Colour - Demosaicing - TODO
+===========================
 
-Colour - Demosaicing
---------------------
+TODO
+----
 
--   **Thomas Mansencal**, *Visual Effects Artist @ Weta Digital*
-
-    Project coordination, overall development.
-    
 About
 -----
 
