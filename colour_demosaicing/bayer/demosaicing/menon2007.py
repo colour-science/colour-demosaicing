@@ -110,8 +110,8 @@ def demosaicing_CFA_Bayer_Menon2007(CFA, pattern='RGGB', refining_step=True):
     G = CFA * G_m
     B = CFA * B_m
 
-    G_H = np.where(G == 0, _cnv_h(CFA, h_0) + _cnv_h(CFA, h_1), G)
-    G_V = np.where(G == 0, _cnv_v(CFA, h_0) + _cnv_v(CFA, h_1), G)
+    G_H = np.where(G_m == 0, _cnv_h(CFA, h_0) + _cnv_h(CFA, h_1), G)
+    G_V = np.where(G_m == 0, _cnv_v(CFA, h_0) + _cnv_v(CFA, h_1), G)
 
     C_H = np.where(R_m == 1, R - G_H, 0)
     C_H = np.where(B_m == 1, B - G_H, C_H)
