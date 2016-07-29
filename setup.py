@@ -43,7 +43,7 @@ if os.environ.get('READTHEDOCS') == 'True':
                                  'mock==1.0.1']
 
 setup(name='colour-demosaicing',
-      version='0.1.1',
+      version='0.1.2',
       author=__author__,
       author_email=__email__,
       include_package_data=True,
