@@ -7,7 +7,11 @@ Colour - Demosaicing
 -   **Thomas Mansencal**, *Visual Effects Artist @ Weta Digital*
 
     Project coordination, overall development.
-    
+
+-   **Wayne Prentice**
+
+    Technical support.
+
 About
 -----
 
