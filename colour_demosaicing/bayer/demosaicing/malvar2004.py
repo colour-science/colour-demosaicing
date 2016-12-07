@@ -53,6 +53,15 @@ def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
     ndarray
         *RGB* colourspace array.
 
+    Notes
+    -----
+    -   The definition output is not clipped in range [0, 1] : this allows for
+        direct HDRI / radiance image generation on *Bayer* CFA data and post
+        demosaicing of the high dynamic range data as showcased in this
+        `Jupyter Notebook <https://github.com/colour-science/colour-hdri/blob/
+develop/colour_hdri/examples/
+examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
+
     Examples
     --------
     >>> CFA = np.array([[0.30980393, 0.36078432, 0.30588236, 0.3764706],
