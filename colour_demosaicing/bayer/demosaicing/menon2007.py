@@ -6,7 +6,7 @@
 DDFAPD - Menon (2007) Bayer CFA Demosaicing
 ===========================================
 
-*Bayer* CFA (Colour Filter Array) DDFAPD - Menon (2007) demosaicing.
+*Bayer* CFA (Colour Filter Array) DDFAPD - *Menon (2007)* demosaicing.
 
 References
 ----------
@@ -55,7 +55,7 @@ def _cnv_v(x, y):
 def demosaicing_CFA_Bayer_Menon2007(CFA, pattern='RGGB', refining_step=True):
     """
     Returns the demosaiced *RGB* colourspace array from given *Bayer* CFA using
-    DDFAPD - Menon (2007) demosaicing algorithm.
+    DDFAPD - *Menon (2007)* demosaicing algorithm.
 
     Parameters
     ----------

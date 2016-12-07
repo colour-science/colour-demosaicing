@@ -5,7 +5,7 @@
 Malvar (2004) Bayer CFA Demosaicing
 ===================================
 
-*Bayer* CFA (Colour Filter Array) Malvar (2004) demosaicing.
+*Bayer* CFA (Colour Filter Array) *Malvar (2004)* demosaicing.
 
 References
 ----------
@@ -38,7 +38,7 @@ __all__ = ['demosaicing_CFA_Bayer_Malvar2004']
 def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
     """
     Returns the demosaiced *RGB* colourspace array from given *Bayer* CFA using
-    Malvar (2004) demosaicing algorithm.
+    *Malvar (2004)* demosaicing algorithm.
 
     Parameters
     ----------
