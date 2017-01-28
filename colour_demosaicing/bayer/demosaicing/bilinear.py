@@ -23,7 +23,7 @@ from colour import tstack
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2016 - Colour Developers'
+__copyright__ = 'Copyright (C) 2015-2017 - Colour Developers'
 __license__ = 'New BSD License - http://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
@@ -49,6 +49,15 @@ def demosaicing_CFA_Bayer_bilinear(CFA, pattern='RGGB'):
     -------
     ndarray
         *RGB* colourspace array.
+
+    Notes
+    -----
+    -   The definition output is not clipped in range [0, 1] : this allows for
+        direct HDRI / radiance image generation on *Bayer* CFA data and post
+        demosaicing of the high dynamic range data as showcased in this
+        `Jupyter Notebook <https://github.com/colour-science/colour-hdri/blob/
+develop/colour_hdri/examples/
+examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
 
     Examples
     --------

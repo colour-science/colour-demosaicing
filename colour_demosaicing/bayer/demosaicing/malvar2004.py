@@ -5,7 +5,7 @@
 Malvar (2004) Bayer CFA Demosaicing
 ===================================
 
-*Bayer* CFA (Colour Filter Array) Malvar (2004) demosaicing.
+*Bayer* CFA (Colour Filter Array) *Malvar (2004)* demosaicing.
 
 References
 ----------
@@ -26,7 +26,7 @@ from colour import tstack
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2016 - Colour Developers'
+__copyright__ = 'Copyright (C) 2015-2017 - Colour Developers'
 __license__ = 'New BSD License - http://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
@@ -38,7 +38,7 @@ __all__ = ['demosaicing_CFA_Bayer_Malvar2004']
 def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
     """
     Returns the demosaiced *RGB* colourspace array from given *Bayer* CFA using
-    Malvar (2004) demosaicing algorithm.
+    *Malvar (2004)* demosaicing algorithm.
 
     Parameters
     ----------
@@ -52,6 +52,15 @@ def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
     -------
     ndarray
         *RGB* colourspace array.
+
+    Notes
+    -----
+    -   The definition output is not clipped in range [0, 1] : this allows for
+        direct HDRI / radiance image generation on *Bayer* CFA data and post
+        demosaicing of the high dynamic range data as showcased in this
+        `Jupyter Notebook <https://github.com/colour-science/colour-hdri/blob/
+develop/colour_hdri/examples/
+examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
 
     Examples
     --------
