@@ -9,7 +9,7 @@ Colour - Demosaicing
     * - Status
       - |waffle| |travis| |coveralls| |scrutinizer| |landscape| |gemnasium|
     * - Package
-      - |version| |downloads|
+      - |version|
 
 .. |waffle| image:: https://badge.waffle.io/colour-science/colour-demosaicing.svg?label=ready&title=Ready
     :target: https://github.com/colour-science/colour-demosaicing/issues
@@ -32,9 +32,6 @@ Colour - Demosaicing
 .. |version| image:: https://badge.fury.io/py/colour-demosaicing.svg
     :target: https://pypi.python.org/pypi/colour-demosaicing
     :alt: Package Version
-.. |downloads| image:: https://img.shields.io/pypi/dm/colour-demosaicing.svg
-    :target: https://pypi.python.org/pypi/colour-demosaicing
-    :alt: Package Downloads
 
 .. end-badges
 
