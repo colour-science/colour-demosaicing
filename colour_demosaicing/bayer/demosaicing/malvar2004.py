@@ -5,7 +5,7 @@
 Malvar (2004) Bayer CFA Demosaicing
 ===================================
 
-*Bayer* CFA (Colour Filter Array) Malvar (2004) demosaicing.
+*Bayer* CFA (Colour Filter Array) *Malvar (2004)* demosaicing.
 
 References
 ----------
@@ -26,7 +26,7 @@ from colour import tstack
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2016 - Colour Developers'
+__copyright__ = 'Copyright (C) 2015-2017 - Colour Developers'
 __license__ = 'New BSD License - http://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
@@ -38,7 +38,7 @@ __all__ = ['demosaicing_CFA_Bayer_Malvar2004']
 def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
     """
     Returns the demosaiced *RGB* colourspace array from given *Bayer* CFA using
-    Malvar (2004) demosaicing algorithm.
+    *Malvar (2004)* demosaicing algorithm.
 
     Parameters
     ----------
@@ -52,6 +52,15 @@ def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
     -------
     ndarray
         *RGB* colourspace array.
+
+    Notes
+    -----
+    -   The definition output is not clipped in range [0, 1] : this allows for
+        direct HDRI / radiance image generation on *Bayer* CFA data and post
+        demosaicing of the high dynamic range data as showcased in this
+        `Jupyter Notebook <https://github.com/colour-science/colour-hdri/blob/
+develop/colour_hdri/examples/
+examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
 
     Examples
     --------
@@ -111,7 +120,6 @@ def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
     G = CFA * G_m
     B = CFA * B_m
 
-
     GRBG = scipy.signal.convolve2d(CFA, GR_GB,'same')
     GRBG = np.clip(GRBG,0,np.iinfo(CFA.dtype).max).astype(CFA.dtype)
     G = np.where(np.logical_or(R_m == 1, B_m == 1), GRBG, G)
@@ -125,8 +133,6 @@ def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
     RBgr_BBRR = scipy.signal.convolve2d(CFA, Rb_BB_Br_RR,'same')
     RBgr_BBRR = np.clip(RBgr_BBRR,0,np.iinfo(CFA.dtype).max).astype(CFA.dtype)
 
-
-    print('set dtype for np.ones, det fylder meget i hukommelsen')
     # Red rows.
     R_r = np.transpose(np.any(R_m == 1, axis=1)[np.newaxis]) * np.ones(R.shape,dtype='bool')
     # Red columns.
@@ -146,3 +152,4 @@ def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
     B = np.where(np.logical_and(R_r == 1, R_c == 1), RBgr_BBRR, B)
 
     return tstack((R, G, B))
+
