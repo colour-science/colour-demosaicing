@@ -121,17 +121,23 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     B = CFA * B_m
 
     GRBG = scipy.signal.convolve2d(CFA, GR_GB, 'same')
-    GRBG = np.clip(GRBG,0,np.iinfo(CFA.dtype).max).astype(CFA.dtype)
+    #GRBG = np.clip(GRBG,0,np.iinfo(CFA.dtype).max).astype(CFA.dtype)
+    GRBG[GRBG < 0] = 0
+    GRBG = GRBG.astype(CFA.dtype)
+
     G = np.where(np.logical_or(R_m == 1, B_m == 1), GRBG, G)
 
     RBg_RBBR = scipy.signal.convolve2d(CFA, Rg_RB_Bg_BR, 'same')
-    RBg_RBBR = np.clip(RBg_RBBR,0,np.iinfo(CFA.dtype).max).astype(CFA.dtype)
+    RBg_RBBR[RBg_RBBR < 0] = 0
+    RBg_RBBR = RBg_RBBR.astype(CFA.dtype)
 
     RBg_BRRB = scipy.signal.convolve2d(CFA, Rg_BR_Bg_RB, 'same')
-    RBg_BRRB = np.clip(RBg_BRRB,0,np.iinfo(CFA.dtype).max).astype(CFA.dtype)
+    RBg_BRRB[RBg_BRRB < 0] = 0
+    RBg_BRRB = RBg_BRRB.astype(CFA.dtype)
 
     RBgr_BBRR = scipy.signal.convolve2d(CFA, Rb_BB_Br_RR, 'same')
-    RBgr_BBRR = np.clip(RBgr_BBRR, 0, np.iinfo(CFA.dtype).max).astype(CFA.dtype)
+    RBgr_BBRR[RBgr_BBRR < 0] = 0
+    RBgr_BBRR = RBgr_BBRR.astype(CFA.dtype)
 
     # Red rows.
     R_r = np.transpose(np.any(R_m == 1, axis=1)[np.newaxis]) \
