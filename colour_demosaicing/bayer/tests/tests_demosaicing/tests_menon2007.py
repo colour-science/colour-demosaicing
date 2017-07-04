@@ -1,6 +1,5 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 """
 Defines unit tests for :mod:`colour_demosaicing.bayer.demosaicing.menon2007`
 module.
@@ -24,11 +23,10 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
 __status__ = 'Production'
 
-__all__ = ['BAYER_DIRECTORY',
-           'TestDemosaicing_CFA_Bayer_Menon2007']
+__all__ = ['BAYER_DIRECTORY', 'TestDemosaicing_CFA_Bayer_Menon2007']
 
-BAYER_DIRECTORY = os.path.join(
-    TESTS_RESOURCES_DIRECTORY, 'colour_demosaicing', 'bayer')
+BAYER_DIRECTORY = os.path.join(TESTS_RESOURCES_DIRECTORY, 'colour_demosaicing',
+                               'bayer')
 
 
 class TestDemosaicing_CFA_Bayer_Menon2007(unittest.TestCase):
@@ -44,31 +42,23 @@ demosaicing_CFA_Bayer_Menon2007` definition.
         """
 
         for pattern in ('RGGB', 'BGGR', 'GRBG', 'GBRG'):
-            np.testing.assert_almost_equal(
-                demosaicing_CFA_Bayer_Menon2007(
-                    colour.read_image(
-                        str(os.path.join(
-                            BAYER_DIRECTORY,
-                            'Lighthouse_CFA_{0}.exr'.format(pattern)))),
-                    pattern),
-                colour.read_image(
-                    str(os.path.join(
-                        BAYER_DIRECTORY,
-                        'Lighthouse_Menon2007_{0}.exr'.format(pattern)))),
-                decimal=7)
+            CFA = os.path.join(BAYER_DIRECTORY, 'Lighthouse_CFA_{0}.exr')
+            RGB = os.path.join(BAYER_DIRECTORY, 'Lighthouse_Menon2007_{0}.exr')
 
             np.testing.assert_almost_equal(
                 demosaicing_CFA_Bayer_Menon2007(
-                    colour.read_image(
-                        str(os.path.join(
-                            BAYER_DIRECTORY,
-                            'Lighthouse_CFA_{0}.exr'.format(pattern)))),
+                    colour.read_image(str(CFA.format(pattern))), pattern),
+                colour.read_image(str(RGB.format(pattern))),
+                decimal=7)
+
+            RGB = os.path.join(BAYER_DIRECTORY,
+                               'Lighthouse_Menon2007_NR_{0}.exr')
+            np.testing.assert_almost_equal(
+                demosaicing_CFA_Bayer_Menon2007(
+                    colour.read_image(str(CFA.format(pattern))),
                     pattern,
                     refining_step=False),
-                colour.read_image(
-                    str(os.path.join(
-                        BAYER_DIRECTORY,
-                        'Lighthouse_Menon2007_NR_{0}.exr'.format(pattern)))),
+                colour.read_image(str(RGB.format(pattern))),
                 decimal=7)
 
 

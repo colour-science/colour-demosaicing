@@ -20,10 +20,7 @@ except ImportError:
     import mock
 
 # Mock modules for *readthedocs.org*.
-MOCK_MODULES = (
-    'scipy',
-    'scipy.ndimage',
-    'scipy.ndimage.filters')
+MOCK_MODULES = ('scipy', 'scipy.ndimage', 'scipy.ndimage.filters')
 
 for module in MOCK_MODULES:
     sys.modules[module] = mock.Mock()
@@ -46,15 +43,10 @@ sys.modules['scipy.ndimage.filters'].convolve1d = lambda: None
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.intersphinx',
-    'sphinx.ext.todo',
-    'sphinx.ext.coverage',
-    'sphinx.ext.ifconfig',
-    'sphinx.ext.viewcode',
-    'sphinx.ext.autosummary',
-    'sphinx.ext.napoleon',
-    'sphinx.ext.mathjax']
+    'sphinx.ext.autodoc', 'sphinx.ext.intersphinx', 'sphinx.ext.todo',
+    'sphinx.ext.coverage', 'sphinx.ext.ifconfig', 'sphinx.ext.viewcode',
+    'sphinx.ext.autosummary', 'sphinx.ext.napoleon', 'sphinx.ext.mathjax'
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -118,7 +110,6 @@ pygments_style = 'sphinx'
 
 # If true, keep warnings as 'system message' paragraphs in the built documents.
 # keep_warnings = False
-
 
 # -- Options for HTML output ----------------------------------------------
 
@@ -247,19 +238,16 @@ latex_documents = [
 # If false, no module index is generated.
 # latex_domain_indices = True
 
-
 # -- Options for manual page output ---------------------------------------
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    ('index', 'Colour_Demosaicing', u'Colour - Demosaicing Documentation',
-     [u'Colour Developers'], 1)
-]
+man_pages = [('index', 'Colour_Demosaicing',
+              u'Colour - Demosaicing Documentation', [u'Colour Developers'],
+              1)]
 
 # If true, show URL addresses after external links.
 # man_show_urls = False
-
 
 # -- Options for Texinfo output -------------------------------------------
 
@@ -283,7 +271,6 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the 'Top' node's menu.
 # texinfo_no_detailmenu = False
-
 
 # -- Options for Epub output ----------------------------------------------
 
@@ -358,7 +345,6 @@ autoclass_content = 'both'
 
 intersphinx_mapping = {'python': ('https://docs.python.org/3.5', None)}
 
-
 # def _autodoc_process_docstring(app,
 #                                what,
 #                                name,
@@ -393,12 +379,7 @@ intersphinx_mapping = {'python': ('https://docs.python.org/3.5', None)}
 #     offset[0] += len(references)
 
 
-def _autodoc_process_docstring(app,
-                               what,
-                               name,
-                               obj,
-                               options,
-                               lines):
+def _autodoc_process_docstring(app, what, name, obj, options, lines):
     """
     Process the docstrings to remove the *# noqa* *flake8* pragma.
     """

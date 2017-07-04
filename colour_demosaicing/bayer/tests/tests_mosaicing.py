@@ -1,6 +1,5 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 """
 Defines unit tests for :mod:`colour_demosaicing.bayer.mosaicing` module.
 """
@@ -23,11 +22,10 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
 __status__ = 'Production'
 
-__all__ = ['BAYER_DIRECTORY',
-           'TestMosaicing_CFA_Bayer']
+__all__ = ['BAYER_DIRECTORY', 'TestMosaicing_CFA_Bayer']
 
-BAYER_DIRECTORY = os.path.join(
-    TESTS_RESOURCES_DIRECTORY, 'colour_demosaicing', 'bayer')
+BAYER_DIRECTORY = os.path.join(TESTS_RESOURCES_DIRECTORY, 'colour_demosaicing',
+                               'bayer')
 
 
 class TestMosaicing_CFA_Bayer(unittest.TestCase):
@@ -46,12 +44,10 @@ class TestMosaicing_CFA_Bayer(unittest.TestCase):
             str(os.path.join(BAYER_DIRECTORY, 'Lighthouse.exr')))
 
         for pattern in ('RGGB', 'BGGR', 'GRBG', 'GBRG'):
+            CFA = os.path.join(BAYER_DIRECTORY, 'Lighthouse_CFA_{0}.exr')
             np.testing.assert_almost_equal(
                 mosaicing_CFA_Bayer(image, pattern),
-                colour.read_image(
-                    str(os.path.join(
-                        BAYER_DIRECTORY,
-                        'Lighthouse_CFA_{0}.exr'.format(pattern)))),
+                colour.read_image(str(CFA.format(pattern))),
                 decimal=7)
 
 
