@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 """
 Colour - Demosaicing
 ====================
@@ -29,18 +28,18 @@ __status__ = 'Production'
 __all__ = []
 __all__ += bayer.__all__
 
-RESOURCES_DIRECTORY = os.path.join(
-    os.path.dirname(__file__), 'resources')
+RESOURCES_DIRECTORY = os.path.join(os.path.dirname(__file__), 'resources')
 EXAMPLES_RESOURCES_DIRECTORY = os.path.join(
     RESOURCES_DIRECTORY, 'colour-demosaicing-examples-dataset')
-TESTS_RESOURCES_DIRECTORY = os.path.join(
-    RESOURCES_DIRECTORY, 'colour-demosaicing-tests-dataset')
+TESTS_RESOURCES_DIRECTORY = os.path.join(RESOURCES_DIRECTORY,
+                                         'colour-demosaicing-tests-dataset')
 
 __application_name__ = 'Colour - Demosaicing'
 
 __major_version__ = '0'
 __minor_version__ = '1'
 __change_version__ = '2'
-__version__ = '.'.join((__major_version__,
-                        __minor_version__,
-                        __change_version__))
+__version__ = '.'.join(
+    (__major_version__,
+     __minor_version__,
+     __change_version__))  # yapf: disable

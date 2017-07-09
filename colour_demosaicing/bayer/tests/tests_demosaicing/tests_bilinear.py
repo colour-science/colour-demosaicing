@@ -1,6 +1,5 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 """
 Defines unit tests for :mod:`colour_demosaicing.bayer.demosaicing.bilinear`
 module.
@@ -24,11 +23,10 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
 __status__ = 'Production'
 
-__all__ = ['BAYER_DIRECTORY',
-           'TestDemosaicing_CFA_Bayer_bilinear']
+__all__ = ['BAYER_DIRECTORY', 'TestDemosaicing_CFA_Bayer_bilinear']
 
-BAYER_DIRECTORY = os.path.join(
-    TESTS_RESOURCES_DIRECTORY, 'colour_demosaicing', 'bayer')
+BAYER_DIRECTORY = os.path.join(TESTS_RESOURCES_DIRECTORY, 'colour_demosaicing',
+                               'bayer')
 
 
 class TestDemosaicing_CFA_Bayer_bilinear(unittest.TestCase):
@@ -44,17 +42,13 @@ demosaicing_CFA_Bayer_bilinear` definition.
         """
 
         for pattern in ('RGGB', 'BGGR', 'GRBG', 'GBRG'):
+            CFA = os.path.join(BAYER_DIRECTORY, 'Lighthouse_CFA_{0}.exr')
+            RGB = os.path.join(BAYER_DIRECTORY, 'Lighthouse_Bilinear_{0}.exr')
+
             np.testing.assert_almost_equal(
                 demosaicing_CFA_Bayer_bilinear(
-                    colour.read_image(
-                        str(os.path.join(
-                            BAYER_DIRECTORY,
-                            'Lighthouse_CFA_{0}.exr'.format(pattern)))),
-                    pattern),
-                colour.read_image(
-                    str(os.path.join(
-                        BAYER_DIRECTORY,
-                        'Lighthouse_Bilinear_{0}.exr'.format(pattern)))),
+                    colour.read_image(str(CFA.format(pattern))), pattern),
+                colour.read_image(str(RGB.format(pattern))),
                 decimal=7)
 
 

@@ -1,6 +1,5 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 """
 Defines unit tests for :mod:`colour_demosaicing.bayer.masks` module.
 """
@@ -23,11 +22,10 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
 __status__ = 'Production'
 
-__all__ = ['BAYER_DIRECTORY',
-           'TestMasks_CFA_Bayer']
+__all__ = ['BAYER_DIRECTORY', 'TestMasks_CFA_Bayer']
 
-BAYER_DIRECTORY = os.path.join(
-    TESTS_RESOURCES_DIRECTORY, 'colour_demosaicing', 'bayer')
+BAYER_DIRECTORY = os.path.join(TESTS_RESOURCES_DIRECTORY, 'colour_demosaicing',
+                               'bayer')
 
 
 class TestMasks_CFA_Bayer(unittest.TestCase):
@@ -43,11 +41,10 @@ class TestMasks_CFA_Bayer(unittest.TestCase):
         """
 
         for pattern in ('RGGB', 'BGGR', 'GRBG', 'GBRG'):
+            mask = os.path.join(BAYER_DIRECTORY, '{0}_Masks.exr')
             np.testing.assert_almost_equal(
                 colour.tstack(masks_CFA_Bayer((8, 8), pattern)),
-                colour.read_image(
-                    str(os.path.join(BAYER_DIRECTORY,
-                                     '{0}_Masks.exr'.format(pattern)))),
+                colour.read_image(str(mask.format(pattern))),
                 decimal=7)
 
 

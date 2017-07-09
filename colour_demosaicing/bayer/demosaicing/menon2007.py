@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-
 """
 DDFAPD - Menon (2007) Bayer CFA Demosaicing
 ===========================================
@@ -31,9 +29,10 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
 __status__ = 'Production'
 
-__all__ = ['demosaicing_CFA_Bayer_Menon2007',
-           'demosaicing_CFA_Bayer_DDFAPD',
-           'refining_step_Menon2007']
+__all__ = [
+    'demosaicing_CFA_Bayer_Menon2007', 'demosaicing_CFA_Bayer_DDFAPD',
+    'refining_step_Menon2007'
+]
 
 
 def _cnv_h(x, y):
@@ -83,8 +82,9 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
 
     Examples
     --------
-    >>> CFA = np.array([[ 0.30980393,  0.36078432,  0.30588236,  0.3764706 ],
-    ...                 [ 0.35686275,  0.39607844,  0.36078432,  0.40000001]])
+    >>> CFA = np.array(
+    ...     [[ 0.30980393,  0.36078432,  0.30588236,  0.3764706 ],
+    ...      [ 0.35686275,  0.39607844,  0.36078432,  0.40000001]])
     >>> demosaicing_CFA_Bayer_Menon2007(CFA)
     array([[[ 0.30980393,  0.35686275,  0.39215687],
             [ 0.30980393,  0.36078432,  0.39607844],
@@ -95,8 +95,9 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
             [ 0.30980393,  0.36078432,  0.39607844],
             [ 0.30588236,  0.36078432,  0.39019609],
             [ 0.32156864,  0.3764706 ,  0.40000001]]])
-    >>> CFA = np.array([[ 0.3764706 ,  0.36078432,  0.40784314,  0.3764706 ],
-    ...                 [ 0.35686275,  0.30980393,  0.36078432,  0.29803923]])
+    >>> CFA = np.array(
+    ...     [[ 0.3764706 ,  0.36078432,  0.40784314,  0.3764706 ],
+    ...      [ 0.35686275,  0.30980393,  0.36078432,  0.29803923]])
     >>> demosaicing_CFA_Bayer_Menon2007(CFA, 'BGGR')
     array([[[ 0.30588236,  0.35686275,  0.3764706 ],
             [ 0.30980393,  0.36078432,  0.39411766],
@@ -128,17 +129,17 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     C_V = np.where(R_m == 1, R - G_V, 0)
     C_V = np.where(B_m == 1, B - G_V, C_V)
 
-    D_H = np.abs(C_H -
-                 np.pad(C_H, ((0, 0), (0, 2)), mode=str('reflect'))[:, 2:])
-    D_V = np.abs(C_V -
-                 np.pad(C_V, ((0, 2), (0, 0)), mode=str('reflect'))[2:, :])
+    D_H = np.abs(C_H - np.pad(C_H, ((0, 0), (0, 2)),
+                              mode=str('reflect'))[:, 2:])
+    D_V = np.abs(C_V - np.pad(C_V, ((0, 2), (0, 0)),
+                              mode=str('reflect'))[2:, :])
 
     k = np.array(
         [[0, 0, 1, 0, 1],
          [0, 0, 0, 1, 0],
          [0, 0, 3, 0, 3],
          [0, 0, 0, 1, 0],
-         [0, 0, 1, 0, 1]])
+         [0, 0, 1, 0, 1]])  # yapf: disable
 
     d_H = convolve(D_H, k, mode='constant')
     d_V = convolve(D_V, np.transpose(k), mode='constant')
@@ -154,33 +155,31 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
 
     k_b = np.array([0.5, 0, 0.5])
 
-    R = np.where(np.logical_and(G_m == 1, R_r == 1),
-                 G + _cnv_h(R, k_b) - _cnv_h(G, k_b),
-                 R)
+    R = np.where(
+        np.logical_and(G_m == 1, R_r == 1),
+        G + _cnv_h(R, k_b) - _cnv_h(G, k_b), R)
 
-    R = np.where(np.logical_and(G_m == 1, B_r == 1) == 1,
-                 G + _cnv_v(R, k_b) - _cnv_v(G, k_b),
-                 R)
+    R = np.where(
+        np.logical_and(G_m == 1, B_r == 1) == 1,
+        G + _cnv_v(R, k_b) - _cnv_v(G, k_b), R)
 
-    B = np.where(np.logical_and(G_m == 1, B_r == 1),
-                 G + _cnv_h(B, k_b) - _cnv_h(G, k_b),
-                 B)
+    B = np.where(
+        np.logical_and(G_m == 1, B_r == 1),
+        G + _cnv_h(B, k_b) - _cnv_h(G, k_b), B)
 
-    B = np.where(np.logical_and(G_m == 1, R_r == 1) == 1,
-                 G + _cnv_v(B, k_b) - _cnv_v(G, k_b),
-                 B)
+    B = np.where(
+        np.logical_and(G_m == 1, R_r == 1) == 1,
+        G + _cnv_v(B, k_b) - _cnv_v(G, k_b), B)
 
-    R = np.where(np.logical_and(B_r == 1, B_m == 1),
-                 np.where(M == 1,
-                          B + _cnv_h(R, k_b) - _cnv_h(B, k_b),
-                          B + _cnv_v(R, k_b) - _cnv_v(B, k_b)),
-                 R)
+    R = np.where(
+        np.logical_and(B_r == 1, B_m == 1),
+        np.where(M == 1, B + _cnv_h(R, k_b) - _cnv_h(B, k_b),
+                 B + _cnv_v(R, k_b) - _cnv_v(B, k_b)), R)
 
-    B = np.where(np.logical_and(R_r == 1, R_m == 1),
-                 np.where(M == 1,
-                          R + _cnv_h(B, k_b) - _cnv_h(R, k_b),
-                          R + _cnv_v(B, k_b) - _cnv_v(R, k_b)),
-                 B)
+    B = np.where(
+        np.logical_and(R_r == 1, R_m == 1),
+        np.where(M == 1, R + _cnv_h(B, k_b) - _cnv_h(R, k_b),
+                 R + _cnv_v(B, k_b) - _cnv_v(R, k_b)), B)
 
     RGB = tstack((R, G, B))
 
@@ -213,24 +212,27 @@ def refining_step_Menon2007(RGB, RGB_m, M):
 
     Examples
     --------
-    >>> RGB = np.array([[[0.30588236, 0.35686275, 0.3764706],
-    ...                  [0.30980393, 0.36078432, 0.39411766],
-    ...                  [0.29607844, 0.36078432, 0.40784314],
-    ...                  [0.29803923, 0.37647060, 0.42352942]],
-    ...                 [[0.30588236, 0.35686275, 0.3764706],
-    ...                  [0.30980393, 0.36078432, 0.39411766],
-    ...                  [0.29607844, 0.36078432, 0.40784314],
-    ...                  [0.29803923, 0.37647060, 0.42352942]]])
-    >>> RGB_m = np.array([[[0, 0, 1],
-    ...                    [0, 1, 0],
-    ...                    [0, 0, 1],
-    ...                    [0, 1, 0]],
-    ...                   [[0, 1, 0],
-    ...                    [1, 0, 0],
-    ...                    [0, 1, 0],
-    ...                    [1, 0, 0]]])
-    >>> M = np.array([[0, 1, 0, 1],
-    ...               [1, 0, 1, 0]])
+    >>> RGB = np.array(
+    ...     [[[0.30588236, 0.35686275, 0.3764706],
+    ...       [0.30980393, 0.36078432, 0.39411766],
+    ...       [0.29607844, 0.36078432, 0.40784314],
+    ...       [0.29803923, 0.37647060, 0.42352942]],
+    ...      [[0.30588236, 0.35686275, 0.3764706],
+    ...       [0.30980393, 0.36078432, 0.39411766],
+    ...       [0.29607844, 0.36078432, 0.40784314],
+    ...       [0.29803923, 0.37647060, 0.42352942]]])
+    >>> RGB_m = np.array(
+    ...     [[[0, 0, 1],
+    ...       [0, 1, 0],
+    ...       [0, 0, 1],
+    ...       [0, 1, 0]],
+    ...      [[0, 1, 0],
+    ...       [1, 0, 0],
+    ...       [0, 1, 0],
+    ...       [1, 0, 0]]])
+    >>> M = np.array(
+    ...     [[0, 1, 0, 1],
+    ...      [1, 0, 1, 0]])
     >>> refining_step_Menon2007(RGB, RGB_m, M)
     array([[[ 0.30588236,  0.35686275,  0.3764706 ],
             [ 0.30980393,  0.36078432,  0.39411765],
@@ -276,22 +278,18 @@ def refining_step_Menon2007(RGB, RGB_m, M):
 
     k_b = np.array([0.5, 0, 0.5])
 
-    R_G_m = np.where(np.logical_and(G_m == 1, B_r == 1),
-                     _cnv_v(R_G, k_b),
-                     R_G_m)
+    R_G_m = np.where(
+        np.logical_and(G_m == 1, B_r == 1), _cnv_v(R_G, k_b), R_G_m)
     R = np.where(np.logical_and(G_m == 1, B_r == 1), G + R_G_m, R)
-    R_G_m = np.where(np.logical_and(G_m == 1, B_c == 1),
-                     _cnv_h(R_G, k_b),
-                     R_G_m)
+    R_G_m = np.where(
+        np.logical_and(G_m == 1, B_c == 1), _cnv_h(R_G, k_b), R_G_m)
     R = np.where(np.logical_and(G_m == 1, B_c == 1), G + R_G_m, R)
 
-    B_G_m = np.where(np.logical_and(G_m == 1, R_r == 1),
-                     _cnv_v(B_G, k_b),
-                     B_G_m)
+    B_G_m = np.where(
+        np.logical_and(G_m == 1, R_r == 1), _cnv_v(B_G, k_b), B_G_m)
     B = np.where(np.logical_and(G_m == 1, R_r == 1), G + B_G_m, B)
-    B_G_m = np.where(np.logical_and(G_m == 1, R_c == 1),
-                     _cnv_h(B_G, k_b),
-                     B_G_m)
+    B_G_m = np.where(
+        np.logical_and(G_m == 1, R_c == 1), _cnv_h(B_G, k_b), B_G_m)
     B = np.where(np.logical_and(G_m == 1, R_c == 1), G + B_G_m, B)
 
     # Updating of the red (blue) component in the blue (red) locations.
