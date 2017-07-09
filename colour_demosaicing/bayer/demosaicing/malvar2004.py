@@ -19,7 +19,7 @@ References
 from __future__ import division, unicode_literals
 
 import numpy as np
-from scipy.ndimage.filters import convolve
+import scipy.signal
 from colour import tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
@@ -121,20 +121,33 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     G = CFA * G_m
     B = CFA * B_m
 
-    G = np.where(np.logical_or(R_m == 1, B_m == 1), convolve(CFA, GR_GB), G)
+    dtypemax = 1.0 if isinstance(CFA, float) else np.iinfo(CFA.dtype).max
 
-    RBg_RBBR = convolve(CFA, Rg_RB_Bg_BR)
-    RBg_BRRB = convolve(CFA, Rg_BR_Bg_RB)
-    RBgr_BBRR = convolve(CFA, Rb_BB_Br_RR)
+    GRBG = scipy.signal.convolve2d(CFA, GR_GB, 'same')
+    GRBG = np.clip(GRBG, 0, dtypemax).astype(CFA.dtype)
+    G = np.where(np.logical_or(R_m == 1, B_m == 1), GRBG, G)
+
+    RBg_RBBR = scipy.signal.convolve2d(CFA, Rg_RB_Bg_BR, 'same')
+    RBg_RBBR = np.clip(RBg_RBBR, 0, dtypemax).astype(CFA.dtype)  
+
+    RBg_BRRB = scipy.signal.convolve2d(CFA, Rg_BR_Bg_RB, 'same')
+    RBg_BRRB = np.clip(RBg_BRRB, 0, dtypemax).astype(CFA.dtype)
+
+    RBgr_BBRR = scipy.signal.convolve2d(CFA, Rb_BB_Br_RR, 'same')
+    RBgr_BBRR = np.clip(RBgr_BBRR, 0, dtypemax).astype(CFA.dtype)
 
     # Red rows.
-    R_r = np.transpose(np.any(R_m == 1, axis=1)[np.newaxis]) * np.ones(R.shape)
+    R_r = np.transpose(np.any(R_m == 1, axis=1)[np.newaxis]) \
+        * np.ones(R.shape, dtype='bool')
     # Red columns.
-    R_c = np.any(R_m == 1, axis=0)[np.newaxis] * np.ones(R.shape)
+    R_c = np.any(R_m == 1, axis=0)[np.newaxis] \
+        * np.ones(R.shape, dtype='bool')
     # Blue rows.
-    B_r = np.transpose(np.any(B_m == 1, axis=1)[np.newaxis]) * np.ones(B.shape)
+    B_r = np.transpose(np.any(B_m == 1, axis=1)[np.newaxis]) \
+        * np.ones(B.shape, dtype='bool')
     # Blue columns
-    B_c = np.any(B_m == 1, axis=0)[np.newaxis] * np.ones(B.shape)
+    B_c = np.any(B_m == 1, axis=0)[np.newaxis] \
+        * np.ones(B.shape, dtype='bool')
 
     R = np.where(np.logical_and(R_r == 1, B_c == 1), RBg_RBBR, R)
     R = np.where(np.logical_and(B_r == 1, R_c == 1), RBg_BRRB, R)
@@ -146,3 +159,4 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     B = np.where(np.logical_and(R_r == 1, R_c == 1), RBgr_BBRR, B)
 
     return tstack((R, G, B))
+
