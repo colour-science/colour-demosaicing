@@ -12,22 +12,7 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys
-
-try:
-    from unittest import mock
-except ImportError:
-    import mock
-
-# Mock modules for *readthedocs.org*.
-MOCK_MODULES = ('scipy', 'scipy.ndimage', 'scipy.ndimage.filters')
-
-for module in MOCK_MODULES:
-    sys.modules[module] = mock.Mock()
-
-# Mock attributes for *readthedocs.org*.
-sys.modules['scipy.ndimage.filters'].convolve = lambda: None
-sys.modules['scipy.ndimage.filters'].convolve1d = lambda: None
+autodoc_mock_imports = ['colour', 'scipy', 'scipy.ndimage.filters']
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
