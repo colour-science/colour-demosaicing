@@ -1,5 +1,5 @@
-colour_demosaicing Package
-==========================
+colour\_demosaicing Package
+===========================
 
 Sub-Packages
 ------------
