@@ -1,5 +1,5 @@
-colour_demosaicing.bayer Package
-================================
+colour\_demosaicing\.bayer Package
+==================================
 
 Sub-Packages
 ------------

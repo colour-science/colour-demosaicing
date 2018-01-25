@@ -12,22 +12,7 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys
-
-try:
-    from unittest import mock
-except ImportError:
-    import mock
-
-# Mock modules for *readthedocs.org*.
-MOCK_MODULES = ('scipy', 'scipy.ndimage', 'scipy.ndimage.filters')
-
-for module in MOCK_MODULES:
-    sys.modules[module] = mock.Mock()
-
-# Mock attributes for *readthedocs.org*.
-sys.modules['scipy.ndimage.filters'].convolve = lambda: None
-sys.modules['scipy.ndimage.filters'].convolve1d = lambda: None
+autodoc_mock_imports = ['colour', 'scipy', 'scipy.ndimage.filters']
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -62,7 +47,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Colour - Demosaicing'
-copyright = u'2015-2017, Colour Developers'
+copyright = u'2015-2018, Colour Developers'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -278,7 +263,7 @@ texinfo_documents = [
 epub_title = u'Colour - Demosaicing'
 epub_author = u'Colour Developers'
 epub_publisher = u'Colour Developers'
-epub_copyright = u'2015-2017, Colour Developers'
+epub_copyright = u'2015-2018, Colour Developers'
 
 # The basename for the epub file. It defaults to the project name.
 # epub_basename = u'colour-demosaicing'
