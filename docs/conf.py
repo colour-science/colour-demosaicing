@@ -189,13 +189,20 @@ htmlhelp_basename = 'ColourDemosaicingDoc'
 
 latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
-    # 'papersize': 'letterpaper',
+    'papersize':
+        'letterpaper',
 
     # The font size ('10pt', '11pt' or '12pt').
-    # 'pointsize': '10pt',
+    'pointsize':
+        '10pt',
 
     # Additional stuff for the LaTeX preamble.
-    # 'preamble': '',
+    'preamble':
+        """
+        \usepackage{charter}
+        \usepackage[defaultsans]{lato}
+        \usepackage{inconsolata}
+        """,
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
@@ -208,7 +215,7 @@ latex_documents = [
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-# latex_logo = None
+latex_logo = '_static/Colour_Logo_Medium_001.png'
 
 # For 'manual' documents, if this is true, then toplevel headings are parts,
 # not chapters.
