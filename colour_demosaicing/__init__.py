@@ -15,8 +15,10 @@ from __future__ import absolute_import
 
 import os
 
-from .bayer import *  # noqa
-from . import bayer  # noqa
+from .bayer import (
+    demosaicing_CFA_Bayer_bilinear, demosaicing_CFA_Bayer_DDFAPD,
+    demosaicing_CFA_Bayer_Malvar2004, demosaicing_CFA_Bayer_Menon2007,
+    masks_CFA_Bayer, mosaicing_CFA_Bayer)
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2015-2018 - Colour Developers'
@@ -25,8 +27,11 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
 __status__ = 'Production'
 
-__all__ = []
-__all__ += bayer.__all__
+__all__ = [
+    'demosaicing_CFA_Bayer_bilinear', 'demosaicing_CFA_Bayer_DDFAPD',
+    'demosaicing_CFA_Bayer_Malvar2004', 'demosaicing_CFA_Bayer_Menon2007',
+    'masks_CFA_Bayer', 'mosaicing_CFA_Bayer'
+]
 
 RESOURCES_DIRECTORY = os.path.join(os.path.dirname(__file__), 'resources')
 EXAMPLES_RESOURCES_DIRECTORY = os.path.join(

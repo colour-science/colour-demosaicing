@@ -112,9 +112,9 @@ guide for `Colour <https://github.com/colour-science/colour>`_.
 Bibliography
 ------------
 
-The bibliography is available in the repository in either
+The bibliography is available in the repository in
 `BibTeX <https://github.com/colour-science/colour-demosaicing/blob/develop/BIBLIOGRAPHY.bib>`_
-format or `reStructuredText <https://github.com/colour-science/colour-demosaicing/blob/develop/BIBLIOGRAPHY.rst>`_.
+format.
 
 About
 -----

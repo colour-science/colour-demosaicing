@@ -30,12 +30,16 @@ LONG_DESCRIPTION = open('README.rst').read()
 
 INSTALLATION_REQUIREMENTS = ['colour-science>=0.3.8']
 
-DOCS_REQUIREMENTS = ['sphinx>=1.2.2']
+DOCS_REQUIREMENTS = [
+    'sphinx>=1.6.6', 'sphinxcontrib-bibtex', 'sphinx_rtd_theme'
+]
 
 TESTS_REQUIREMENTS = ['coverage>=3.7.1', 'flake8>=2.1.0', 'nose>=1.3.4']
 
 if os.environ.get('READTHEDOCS') == 'True':
-    INSTALLATION_REQUIREMENTS = ['colour-science>=0.3.8', 'mock==1.0.1']
+    INSTALLATION_REQUIREMENTS = [
+        'colour-science>=0.3.8', 'mock==1.0.1', 'sphinxcontrib-bibtex'
+    ]
 
 setup(
     name='colour-demosaicing',
