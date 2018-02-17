@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 DDFAPD - Menon (2007) Bayer CFA Demosaicing
