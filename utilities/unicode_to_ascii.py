@@ -64,4 +64,4 @@ def unicode_to_ascii(root_directory):
 
 
 if __name__ == '__main__':
-    unicode_to_ascii(os.path.join('..', 'colour'))
+    unicode_to_ascii(os.path.join('..', 'colour_demosaicing'))
