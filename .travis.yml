@@ -49,7 +49,7 @@ install:
 
 script:
   - flake8 colour_demosaicing
-  - nosetests --nocapture --with-doctest --doctest-options=+ELLIPSIS,+NORMALIZE_WHITESPACE --with-coverage --cover-package=colour_demosaicing -exclude-dir=
+  - nosetests --nocapture --with-doctest --doctest-options=+ELLIPSIS,+NORMALIZE_WHITESPACE --with-coverage --cover-package=colour_demosaicing colour_demosaicing
 
 after_success:
   - coveralls
