@@ -1,5 +1,6 @@
 *.pyc
 .DS_Store
+.coverage
 .idea
 .ipynb_checkpoints/
 __pycache__
@@ -7,4 +8,3 @@ build
 colour_demosaicing.egg-info
 dist
 docs/_build
-docs/generated
