@@ -1,6 +1,4 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 """
 Bilinear Bayer CFA Demosaicing
 ==============================
@@ -9,21 +7,22 @@ Bilinear Bayer CFA Demosaicing
 
 References
 ----------
-.. [1]  Losson, O., Macaire, L., & Yang, Y. (2010). Comparison of color
-        demosaicing methods. Advances in Imaging and Electron Physics, 162(C),
-        173–265. doi:10.1016/S1076-5670(10)62005-8
+-   :cite:`Losson2010c` : Losson, O., Macaire, L., & Yang, Y. (2010).
+    Comparison of Color Demosaicing Methods. In Advances in Imaging and
+    Electron Physics (Vol. 162, pp. 173-265). doi:10.1016/S1076-5670(10)62005-8
 """
 
 from __future__ import division, unicode_literals
 
 import numpy as np
 from scipy.ndimage.filters import convolve
-from colour import tstack
+
+from colour.utilities import tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2016 - Colour Developers'
+__copyright__ = 'Copyright (C) 2015-2018 - Colour Developers'
 __license__ = 'New BSD License - http://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
@@ -50,10 +49,24 @@ def demosaicing_CFA_Bayer_bilinear(CFA, pattern='RGGB'):
     ndarray
         *RGB* colourspace array.
 
+    Notes
+    -----
+    -   The definition output is not clipped in range [0, 1] : this allows for
+        direct HDRI / radiance image generation on *Bayer* CFA data and post
+        demosaicing of the high dynamic range data as showcased in this
+        `Jupyter Notebook <https://github.com/colour-science/colour-hdri/\
+blob/develop/colour_hdri/examples/\
+examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
+
+    References
+    ----------
+    -   :cite:`Losson2010c`
+
     Examples
     --------
-    >>> CFA = np.array([[0.30980393, 0.36078432, 0.30588236, 0.3764706],
-    ...                 [0.35686275, 0.39607844, 0.36078432, 0.40000001]])
+    >>> CFA = np.array(
+    ...     [[0.30980393, 0.36078432, 0.30588236, 0.3764706],
+    ...      [0.35686275, 0.39607844, 0.36078432, 0.40000001]])
     >>> demosaicing_CFA_Bayer_bilinear(CFA)
     array([[[ 0.69705884,  0.17941177,  0.09901961],
             [ 0.46176472,  0.4509804 ,  0.19803922],
@@ -64,8 +77,9 @@ def demosaicing_CFA_Bayer_bilinear(CFA, pattern='RGGB'):
             [ 0.15392157,  0.26960785,  0.59411766],
             [ 0.15294118,  0.4509804 ,  0.59705884],
             [ 0.07647059,  0.18431373,  0.90000002]]])
-    >>> CFA = np.array([[0.3764706, 0.360784320, 0.40784314, 0.3764706],
-    ...                 [0.35686275, 0.30980393, 0.36078432, 0.29803923]])
+    >>> CFA = np.array(
+    ...     [[0.3764706, 0.360784320, 0.40784314, 0.3764706],
+    ...      [0.35686275, 0.30980393, 0.36078432, 0.29803923]])
     >>> demosaicing_CFA_Bayer_bilinear(CFA, 'BGGR')
     array([[[ 0.07745098,  0.17941177,  0.84705885],
             [ 0.15490197,  0.4509804 ,  0.5882353 ],
@@ -84,12 +98,12 @@ def demosaicing_CFA_Bayer_bilinear(CFA, pattern='RGGB'):
     H_G = np.asarray(
         [[0, 1, 0],
          [1, 4, 1],
-         [0, 1, 0]]) / 4
+         [0, 1, 0]]) / 4  # yapf: disable
 
     H_RB = np.asarray(
         [[1, 2, 1],
          [2, 4, 2],
-         [1, 2, 1]]) / 4
+         [1, 2, 1]]) / 4  # yapf: disable
 
     R = convolve(CFA * R_m, H_RB)
     G = convolve(CFA * G_m, H_G)

@@ -1,32 +1,31 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 """
 Malvar (2004) Bayer CFA Demosaicing
 ===================================
 
-*Bayer* CFA (Colour Filter Array) Malvar (2004) demosaicing.
+*Bayer* CFA (Colour Filter Array) *Malvar (2004)* demosaicing.
 
 References
 ----------
-.. [1]  Malvar, H. S., He, L.-W., Cutler, R., & Way, O. M. (2004). High-Quality
-        Linear Interpolation for Demosaicing of Bayer-Patterned Color Images.
-        In International Conference of Acoustic, Speech and Signal Processing
-        (pp. 5–8). Institute of Electrical and Electronics Engineers, Inc.
-        Retrieved from
-        http://research.microsoft.com/apps/pubs/default.aspx?id=102068
+-   :cite:`Malvar2004a` : Malvar, H. S., He, L.-W., Cutler, R., & Way, O. M.
+    (2004). High-Quality Linear Interpolation for Demosaicing of
+    Bayer-Patterned Color Images. In International Conference of Acoustic,
+    Speech and Signal Processing (pp. 5-8). Institute of Electrical and
+    Electronics Engineers, Inc. Retrieved from
+    http://research.microsoft.com/apps/pubs/default.aspx?id=102068
 """
 
 from __future__ import division, unicode_literals
 
 import numpy as np
 from scipy.ndimage.filters import convolve
-from colour import tstack
+
+from colour.utilities import tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2016 - Colour Developers'
+__copyright__ = 'Copyright (C) 2015-2018 - Colour Developers'
 __license__ = 'New BSD License - http://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
@@ -38,7 +37,7 @@ __all__ = ['demosaicing_CFA_Bayer_Malvar2004']
 def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
     """
     Returns the demosaiced *RGB* colourspace array from given *Bayer* CFA using
-    Malvar (2004) demosaicing algorithm.
+    *Malvar (2004)* demosaicing algorithm.
 
     Parameters
     ----------
@@ -53,10 +52,24 @@ def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
     ndarray
         *RGB* colourspace array.
 
+    Notes
+    -----
+    -   The definition output is not clipped in range [0, 1] : this allows for
+        direct HDRI / radiance image generation on *Bayer* CFA data and post
+        demosaicing of the high dynamic range data as showcased in this
+        `Jupyter Notebook <https://github.com/colour-science/colour-hdri/\
+blob/develop/colour_hdri/examples/\
+examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
+
+    References
+    ----------
+    -   :cite:`Malvar2004a`
+
     Examples
     --------
-    >>> CFA = np.array([[0.30980393, 0.36078432, 0.30588236, 0.3764706],
-    ...                 [0.35686275, 0.39607844, 0.36078432, 0.40000001]])
+    >>> CFA = np.array(
+    ...     [[0.30980393, 0.36078432, 0.30588236, 0.3764706],
+    ...      [0.35686275, 0.39607844, 0.36078432, 0.40000001]])
     >>> demosaicing_CFA_Bayer_Malvar2004(CFA)
     array([[[ 0.30980393,  0.31666668,  0.32941177],
             [ 0.33039216,  0.36078432,  0.38112746],
@@ -67,8 +80,9 @@ def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
             [ 0.35318628,  0.38186275,  0.39607844],
             [ 0.3379902 ,  0.36078432,  0.3754902 ],
             [ 0.37769609,  0.39558825,  0.40000001]]])
-    >>> CFA = np.array([[0.3764706, 0.360784320, 0.40784314, 0.3764706],
-    ...                 [0.35686275, 0.30980393, 0.36078432, 0.29803923]])
+    >>> CFA = np.array(
+    ...     [[0.3764706, 0.360784320, 0.40784314, 0.3764706],
+    ...      [0.35686275, 0.30980393, 0.36078432, 0.29803923]])
     >>> demosaicing_CFA_Bayer_Malvar2004(CFA, 'BGGR')
     array([[[ 0.35539217,  0.37058825,  0.3764706 ],
             [ 0.34264707,  0.36078432,  0.37450981],
@@ -89,14 +103,14 @@ def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
          [0, 0, 2, 0, 0],
          [-1, 2, 4, 2, -1],
          [0, 0, 2, 0, 0],
-         [0, 0, -1, 0, 0]]) / 8
+         [0, 0, -1, 0, 0]]) / 8  # yapf: disable
 
     Rg_RB_Bg_BR = np.asarray(
         [[0, 0, 0.5, 0, 0],
          [0, -1, 0, -1, 0],
          [-1, 4, 5, 4, - 1],
          [0, -1, 0, -1, 0],
-         [0, 0, 0.5, 0, 0]]) / 8
+         [0, 0, 0.5, 0, 0]]) / 8  # yapf: disable
 
     Rg_BR_Bg_RB = np.transpose(Rg_RB_Bg_BR)
 
@@ -105,7 +119,7 @@ def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
          [0, 2, 0, 2, 0],
          [-1.5, 0, 6, 0, -1.5],
          [0, 2, 0, 2, 0],
-         [0, 0, -1.5, 0, 0]]) / 8
+         [0, 0, -1.5, 0, 0]]) / 8  # yapf: disable
 
     R = CFA * R_m
     G = CFA * G_m
