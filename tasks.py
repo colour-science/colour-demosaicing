@@ -68,7 +68,7 @@ def clean(ctx, docs=True, bytecode=False):
 
 
 @task
-def formatting(ctx, yapf=True, asciify=True):
+def formatting(ctx, yapf=False, asciify=True):
     """
     Formats the codebase with *Yapf* and converts unicode characters to ASCII.
 
