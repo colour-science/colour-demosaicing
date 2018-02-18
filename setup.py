@@ -29,7 +29,7 @@ SHORT_DESCRIPTION = 'Colour - Demosaicing'
 
 LONG_DESCRIPTION = open('README.rst').read()
 
-INSTALLATION_REQUIREMENTS = ['colour-science>=0.3.8']
+INSTALLATION_REQUIREMENTS = ['colour-science>=0.3.11']
 
 if os.environ.get('READTHEDOCS') == 'True':
     INSTALLATION_REQUIREMENTS = [
