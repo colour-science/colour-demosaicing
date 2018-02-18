@@ -10,7 +10,7 @@ import numpy as np
 import os
 import unittest
 
-import colour
+from colour.io import read_image
 
 from colour_demosaicing import TESTS_RESOURCES_DIRECTORY
 from colour_demosaicing.bayer import mosaicing_CFA_Bayer
@@ -40,14 +40,14 @@ class TestMosaicing_CFA_Bayer(unittest.TestCase):
         definition.
         """
 
-        image = colour.read_image(
+        image = read_image(
             str(os.path.join(BAYER_DIRECTORY, 'Lighthouse.exr')))
 
         for pattern in ('RGGB', 'BGGR', 'GRBG', 'GBRG'):
             CFA = os.path.join(BAYER_DIRECTORY, 'Lighthouse_CFA_{0}.exr')
             np.testing.assert_almost_equal(
                 mosaicing_CFA_Bayer(image, pattern),
-                colour.read_image(str(CFA.format(pattern))),
+                read_image(str(CFA.format(pattern))),
                 decimal=7)
 
 

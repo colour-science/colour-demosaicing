@@ -9,7 +9,7 @@ References
 ----------
 -   :cite:`Menon2007c` : Menon, D., Andriani, S., & Calvagno, G. (2007).
     Demosaicing With Directional Filtering and a posteriori Decision. IEEE
-    Transactions on Image Processing, 16(1), 132–141.
+    Transactions on Image Processing, 16(1), 132-141.
     doi:10.1109/TIP.2006.884928
 """
 

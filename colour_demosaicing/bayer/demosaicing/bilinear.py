@@ -9,13 +9,14 @@ References
 ----------
 -   :cite:`Losson2010c` : Losson, O., Macaire, L., & Yang, Y. (2010).
     Comparison of Color Demosaicing Methods. In Advances in Imaging and
-    Electron Physics (Vol. 162, pp. 173–265). doi:10.1016/S1076-5670(10)62005-8
+    Electron Physics (Vol. 162, pp. 173-265). doi:10.1016/S1076-5670(10)62005-8
 """
 
 from __future__ import division, unicode_literals
 
 import numpy as np
 from scipy.ndimage.filters import convolve
+
 from colour.utilities import tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer

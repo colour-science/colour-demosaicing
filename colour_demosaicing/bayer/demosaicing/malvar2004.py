@@ -10,7 +10,7 @@ References
 -   :cite:`Malvar2004a` : Malvar, H. S., He, L.-W., Cutler, R., & Way, O. M.
     (2004). High-Quality Linear Interpolation for Demosaicing of
     Bayer-Patterned Color Images. In International Conference of Acoustic,
-    Speech and Signal Processing (pp. 5–8). Institute of Electrical and
+    Speech and Signal Processing (pp. 5-8). Institute of Electrical and
     Electronics Engineers, Inc. Retrieved from
     http://research.microsoft.com/apps/pubs/default.aspx?id=102068
 """
@@ -19,6 +19,7 @@ from __future__ import division, unicode_literals
 
 import numpy as np
 from scipy.ndimage.filters import convolve
+
 from colour.utilities import tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
