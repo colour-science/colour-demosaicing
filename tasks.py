@@ -22,7 +22,7 @@ __status__ = 'Production'
 
 __all__ = [
     'APPLICATION_NAME', 'PYTHON_PACKAGE_NAME', 'PYPI_PACKAGE_NAME', 'clean',
-    'tests', 'formatting', 'quality', 'examples', 'docs', 'todo', 'preflight',
+    'formatting', 'tests', 'quality', 'examples', 'docs', 'todo', 'preflight',
     'build', 'virtualise', 'tag', 'release', 'sha256'
 ]
 
@@ -68,6 +68,36 @@ def clean(ctx, docs=True, bytecode=False):
 
 
 @task
+def formatting(ctx, yapf=True, asciify=True):
+    """
+    Formats the codebase with *Yapf* and converts unicode characters to ASCII.
+
+    Parameters
+    ----------
+    ctx : invoke.context.Context
+        Context.
+    yapf : bool, optional
+        Whether to format the codebase with *Yapf*.
+    asciify : bool, optional
+        Whether to convert unicode characters to ASCII.
+
+    Returns
+    -------
+    bool
+        Task success.
+    """
+
+    if yapf:
+        message_box('Formatting codebase with "Yapf"...')
+        ctx.run('yapf -p -i -r .')
+
+    if asciify:
+        message_box('Converting unicode characters to ASCII...')
+        with ctx.cd('utilities'):
+            ctx.run('./unicode_to_ascii.py')
+
+
+@task
 def tests(ctx, nose=True):
     """
     Runs the unit tests with *Nose* or *Pytest*.
@@ -97,36 +127,6 @@ def tests(ctx, nose=True):
     else:
         message_box('Running "Pytest"...')
         ctx.run('pytest -W ignore')
-
-
-@task
-def formatting(ctx, yapf=True, asciify=True):
-    """
-    Formats the codebase with *Yapf* and converts unicode characters to ASCII.
-
-    Parameters
-    ----------
-    ctx : invoke.context.Context
-        Context.
-    yapf : bool, optional
-        Whether to format the codebase with *Yapf*.
-    asciify : bool, optional
-        Whether to convert unicode characters to ASCII.
-
-    Returns
-    -------
-    bool
-        Task success.
-    """
-
-    if yapf:
-        message_box('Formatting codebase with "Yapf"...')
-        ctx.run('yapf -p -i -r .')
-
-    if asciify:
-        message_box('Converting unicode characters to ASCII...')
-        with ctx.cd('utilities'):
-            ctx.run('./unicode_to_ascii.py')
 
 
 @task
@@ -239,10 +239,10 @@ def todo(ctx):
         ctx.run('./export_todo.py')
 
 
-@task(tests, formatting, quality, examples)
+@task(formatting, tests, quality, examples)
 def preflight(ctx):
     """
-    Performs the preflight tasks, i.e. *tests*, *formatting*, *quality*, and
+    Performs the preflight tasks, i.e. *formatting*, *tests*, *quality*, and
     *examples*.
 
     Parameters
@@ -256,7 +256,7 @@ def preflight(ctx):
         Task success.
     """
 
-    message_box('Entering "Preflight"...')
+    message_box('Finishing "Preflight"...')
 
 
 @task(docs, todo, preflight)
@@ -364,8 +364,7 @@ def tag(ctx):
                 PYTHON_PACKAGE_NAME, version))
 
         ctx.run('git flow release start v{0}'.format(version))
-        ctx.run('git flow release finish -m "Create {0} v{1} version." v{1}'.
-                format(APPLICATION_NAME, version))
+        ctx.run('git flow release finish v{0}'.format(version))
 
 
 @task(clean, build)
@@ -386,8 +385,8 @@ def release(ctx):
 
     message_box('Releasing...')
     with ctx.cd('dist'):
-        ctx.run('twine upload dist/*.tar.gz')
-        ctx.run('twine upload dist/*.whl')
+        ctx.run('twine upload *.tar.gz')
+        ctx.run('twine upload *.whl')
 
 
 @task
