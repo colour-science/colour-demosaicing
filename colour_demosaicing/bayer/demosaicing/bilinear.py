@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 Bilinear Bayer CFA Demosaicing
@@ -8,16 +7,17 @@ Bilinear Bayer CFA Demosaicing
 
 References
 ----------
-.. [1]  Losson, O., Macaire, L., & Yang, Y. (2010). Comparison of color
-        demosaicing methods. Advances in Imaging and Electron Physics, 162(C),
-        173–265. doi:10.1016/S1076-5670(10)62005-8
+-   :cite:`Losson2010c` : Losson, O., Macaire, L., & Yang, Y. (2010).
+    Comparison of Color Demosaicing Methods. In Advances in Imaging and
+    Electron Physics (Vol. 162, pp. 173-265). doi:10.1016/S1076-5670(10)62005-8
 """
 
 from __future__ import division, unicode_literals
 
 import numpy as np
 from scipy.ndimage.filters import convolve
-from colour import tstack
+
+from colour.utilities import tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
@@ -57,6 +57,10 @@ def demosaicing_CFA_Bayer_bilinear(CFA, pattern='RGGB'):
         `Jupyter Notebook <https://github.com/colour-science/colour-hdri/\
 blob/develop/colour_hdri/examples/\
 examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
+
+    References
+    ----------
+    -   :cite:`Losson2010c`
 
     Examples
     --------

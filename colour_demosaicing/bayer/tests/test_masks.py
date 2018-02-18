@@ -10,7 +10,8 @@ import numpy as np
 import os
 import unittest
 
-import colour
+from colour.io import read_image
+from colour.utilities import tstack
 
 from colour_demosaicing import TESTS_RESOURCES_DIRECTORY
 from colour_demosaicing.bayer import masks_CFA_Bayer
@@ -43,8 +44,8 @@ class TestMasks_CFA_Bayer(unittest.TestCase):
         for pattern in ('RGGB', 'BGGR', 'GRBG', 'GBRG'):
             mask = os.path.join(BAYER_DIRECTORY, '{0}_Masks.exr')
             np.testing.assert_almost_equal(
-                colour.tstack(masks_CFA_Bayer((8, 8), pattern)),
-                colour.read_image(str(mask.format(pattern))),
+                tstack(masks_CFA_Bayer((8, 8), pattern)),
+                read_image(str(mask.format(pattern))),
                 decimal=7)
 
 

@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 DDFAPD - Menon (2007) Bayer CFA Demosaicing
@@ -8,9 +7,10 @@ DDFAPD - Menon (2007) Bayer CFA Demosaicing
 
 References
 ----------
-.. [1]  Menon, D., Andriani, S., & Calvagno, G. (2007). Demosaicing with
-        directional filtering and a posteriori decision. IEEE Transactions on
-        Image Processing, 16(1), 132–141. doi:10.1109/TIP.2006.884928
+-   :cite:`Menon2007c` : Menon, D., Andriani, S., & Calvagno, G. (2007).
+    Demosaicing With Directional Filtering and a posteriori Decision. IEEE
+    Transactions on Image Processing, 16(1), 132-141.
+    doi:10.1109/TIP.2006.884928
 """
 
 from __future__ import division, unicode_literals
@@ -18,7 +18,7 @@ from __future__ import division, unicode_literals
 import numpy as np
 from scipy.ndimage.filters import convolve, convolve1d
 
-from colour import tsplit, tstack
+from colour.utilities import tsplit, tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
@@ -79,6 +79,10 @@ def demosaicing_CFA_Bayer_Menon2007(CFA, pattern='RGGB', refining_step=True):
         `Jupyter Notebook <https://github.com/colour-science/colour-hdri/\
 blob/develop/colour_hdri/examples/\
 examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
+
+    References
+    ----------
+    -   :cite:`Menon2007c`
 
     Examples
     --------

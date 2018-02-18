@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 Malvar (2004) Bayer CFA Demosaicing
@@ -8,19 +7,20 @@ Malvar (2004) Bayer CFA Demosaicing
 
 References
 ----------
-.. [1]  Malvar, H. S., He, L.-W., Cutler, R., & Way, O. M. (2004). High-Quality
-        Linear Interpolation for Demosaicing of Bayer-Patterned Color Images.
-        In International Conference of Acoustic, Speech and Signal Processing
-        (pp. 5–8). Institute of Electrical and Electronics Engineers, Inc.
-        Retrieved from
-        http://research.microsoft.com/apps/pubs/default.aspx?id=102068
+-   :cite:`Malvar2004a` : Malvar, H. S., He, L.-W., Cutler, R., & Way, O. M.
+    (2004). High-Quality Linear Interpolation for Demosaicing of
+    Bayer-Patterned Color Images. In International Conference of Acoustic,
+    Speech and Signal Processing (pp. 5-8). Institute of Electrical and
+    Electronics Engineers, Inc. Retrieved from
+    http://research.microsoft.com/apps/pubs/default.aspx?id=102068
 """
 
 from __future__ import division, unicode_literals
 
 import numpy as np
 from scipy.ndimage.filters import convolve
-from colour import tstack
+
+from colour.utilities import tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
@@ -60,6 +60,10 @@ def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
         `Jupyter Notebook <https://github.com/colour-science/colour-hdri/\
 blob/develop/colour_hdri/examples/\
 examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
+
+    References
+    ----------
+    -   :cite:`Malvar2004a`
 
     Examples
     --------

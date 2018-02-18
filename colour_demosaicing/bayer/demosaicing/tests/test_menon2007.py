@@ -11,7 +11,7 @@ import numpy as np
 import os
 import unittest
 
-import colour
+from colour.io import read_image
 
 from colour_demosaicing import TESTS_RESOURCES_DIRECTORY
 from colour_demosaicing.bayer import demosaicing_CFA_Bayer_Menon2007
@@ -47,18 +47,18 @@ demosaicing_CFA_Bayer_Menon2007` definition.
 
             np.testing.assert_almost_equal(
                 demosaicing_CFA_Bayer_Menon2007(
-                    colour.read_image(str(CFA.format(pattern))), pattern),
-                colour.read_image(str(RGB.format(pattern))),
+                    read_image(str(CFA.format(pattern))), pattern),
+                read_image(str(RGB.format(pattern))),
                 decimal=7)
 
             RGB = os.path.join(BAYER_DIRECTORY,
                                'Lighthouse_Menon2007_NR_{0}.exr')
             np.testing.assert_almost_equal(
                 demosaicing_CFA_Bayer_Menon2007(
-                    colour.read_image(str(CFA.format(pattern))),
+                    read_image(str(CFA.format(pattern))),
                     pattern,
                     refining_step=False),
-                colour.read_image(str(RGB.format(pattern))),
+                read_image(str(RGB.format(pattern))),
                 decimal=7)
 
 

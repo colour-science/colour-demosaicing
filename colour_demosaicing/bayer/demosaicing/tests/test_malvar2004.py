@@ -11,7 +11,7 @@ import numpy as np
 import os
 import unittest
 
-import colour
+from colour.io import read_image
 
 from colour_demosaicing import TESTS_RESOURCES_DIRECTORY
 from colour_demosaicing.bayer import demosaicing_CFA_Bayer_Malvar2004
@@ -48,8 +48,8 @@ demosaicing_CFA_Bayer_Malvar2004` definition.
 
             np.testing.assert_almost_equal(
                 demosaicing_CFA_Bayer_Malvar2004(
-                    colour.read_image(str(CFA.format(pattern))), pattern),
-                colour.read_image(str(RGB.format(pattern))),
+                    read_image(str(CFA.format(pattern))), pattern),
+                read_image(str(RGB.format(pattern))),
                 decimal=7)
 
 

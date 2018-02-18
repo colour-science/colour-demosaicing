@@ -3,33 +3,20 @@ Colour - Demosaicing
 
 ..  image:: https://raw.githubusercontent.com/colour-science/colour-demosaicing/master/docs/_static/Demosaicing_001.png
 
-.. list-table::
-    :stub-columns: 1
+.. start-badges
 
-    * - Status
-      - |waffle| |travis| |coveralls| |scrutinizer| |landscape| |gemnasium|
-    * - Package
-      - |version|
+|travis| |coveralls| |codacy| |version|
 
-.. |waffle| image:: https://badge.waffle.io/colour-science/colour-demosaicing.svg?label=ready&title=Ready
-    :target: https://github.com/colour-science/colour-demosaicing/issues
-    :alt: Issues Ready
-.. |travis| image:: https://img.shields.io/travis/colour-science/colour-demosaicing/develop.svg
+.. |travis| image:: https://img.shields.io/travis/colour-science/colour-demosaicing/develop.svg?style=flat-square
     :target: https://travis-ci.org/colour-science/colour-demosaicing
     :alt: Develop Build Status
-.. |coveralls| image:: http://img.shields.io/coveralls/colour-science/colour-demosaicing/develop.svg
+.. |coveralls| image:: http://img.shields.io/coveralls/colour-science/colour-demosaicing/develop.svg?style=flat-square
     :target: https://coveralls.io/r/colour-science/colour-demosaicing
     :alt: Coverage Status
-.. |scrutinizer| image:: https://img.shields.io/scrutinizer/g/colour-science/colour-demosaicing/develop.svg
-    :target: https://scrutinizer-ci.com/g/colour-science/colour-demosaicing/
-    :alt: Code Quality
-.. |landscape| image:: https://landscape.io/github/colour-science/colour-demosaicing/master/landscape.png
-    :target: https://landscape.io/github/colour-science/colour-demosaicing
-    :alt: Code Quality
-.. |gemnasium| image:: https://img.shields.io/gemnasium/colour-science/colour-demosaicing.svg
-    :target: https://gemnasium.com/colour-science/colour-demosaicing
-    :alt: Dependencies Status
-.. |version| image:: https://badge.fury.io/py/colour-demosaicing.svg
+.. |codacy| image:: https://img.shields.io/codacy/grade/984900e3a85e40239a0f8f633dd1ebcb/develop.svg?style=flat-square
+    :target: https://www.codacy.com/app/colour-science/colour-demosaicing
+    :alt: Code Grade
+.. |version| image:: https://img.shields.io/pypi/v/colour-demosaicing.svg?style=flat-square
     :target: https://pypi.python.org/pypi/colour-demosaicing
     :alt: Package Version
 
@@ -112,9 +99,9 @@ guide for `Colour <https://github.com/colour-science/colour>`_.
 Bibliography
 ------------
 
-The bibliography is available in the repository in either
+The bibliography is available in the repository in
 `BibTeX <https://github.com/colour-science/colour-demosaicing/blob/develop/BIBLIOGRAPHY.bib>`_
-format or `reStructuredText <https://github.com/colour-science/colour-demosaicing/blob/develop/BIBLIOGRAPHY.rst>`_.
+format.
 
 About
 -----

@@ -63,9 +63,12 @@ API
 
 The main reference for
 `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`_
-is the complete Sphinx API Reference:
+is the manual:
 
--   :doc:`API Reference <api>`
+.. toctree::
+    :maxdepth: 4
+
+    manual
 
 Examples
 ^^^^^^^^
@@ -83,9 +86,9 @@ guide for `Colour <https://github.com/colour-science/colour>`_.
 Bibliography
 ------------
 
-The bibliography is available in the repository in either
+The bibliography is available in the repository in
 `BibTeX <https://github.com/colour-science/colour-demosaicing/blob/develop/BIBLIOGRAPHY.bib>`_
-format or `reStructuredText <https://github.com/colour-science/colour-demosaicing/blob/develop/BIBLIOGRAPHY.rst>`_.
+format.
 
 About
 -----

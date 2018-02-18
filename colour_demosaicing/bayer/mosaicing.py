@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 Bayer CFA Mosaicing
@@ -11,7 +10,7 @@ from __future__ import division, unicode_literals
 
 import numpy as np
 
-from colour import tsplit
+from colour.utilities import tsplit
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
 

@@ -1,25 +1,53 @@
-colour\_demosaicing\.bayer Package
-==================================
+Bayer CFA Demosaicing and Mosaicing
+===================================
 
-Sub-Packages
-------------
+.. contents:: :local:
 
-.. toctree::
-
-    colour_demosaicing.bayer.demosaicing
-
-Sub-Modules
+Demosaicing
 -----------
 
-.. toctree::
+``colour_demosaicing``
 
-   colour_demosaicing.bayer.masks
-   colour_demosaicing.bayer.mosaicing
+.. currentmodule:: colour_demosaicing
 
-Module Contents
----------------
+.. autosummary::
+    :toctree: generated/
 
-.. automodule:: colour_demosaicing.bayer
-    :members:
-    :undoc-members:
-    :show-inheritance:
+    demosaicing_CFA_Bayer_bilinear
+    demosaicing_CFA_Bayer_Malvar2004
+    demosaicing_CFA_Bayer_Menon2007
+
+**Ancillary Objects**
+
+``colour_demosaicing``
+
+.. currentmodule:: colour_demosaicing
+
+.. autosummary::
+    :toctree: generated/
+
+    demosaicing_CFA_Bayer_DDFAPD
+
+Mosaicing
+---------
+
+``colour_demosaicing``
+
+.. currentmodule:: colour_demosaicing
+
+.. autosummary::
+    :toctree: generated/
+
+    mosaicing_CFA_Bayer
+
+Masks
+-----
+
+``colour_demosaicing``
+
+.. currentmodule:: colour_demosaicing
+
+.. autosummary::
+    :toctree: generated/
+
+    masks_CFA_Bayer

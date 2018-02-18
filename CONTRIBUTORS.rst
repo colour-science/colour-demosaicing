@@ -12,6 +12,15 @@ Colour - Demosaicing
 
     Technical support.
 
+Issues & Discussions
+--------------------
+
+-   @Zoldike
+-   @jiawen
+-   @laihaotao
+-   @m0ose
+-   @timmeinhardt
+
 About
 -----
 
