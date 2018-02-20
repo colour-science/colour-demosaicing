@@ -55,6 +55,10 @@ The documentation building dependencies are installed as follows::
 
     pip install 'colour-demosaicing[docs]'
 
+The overall development dependencies are installed as follows::
+
+    pip install 'colour-demosaicing[development]'
+
 Usage
 -----
 
