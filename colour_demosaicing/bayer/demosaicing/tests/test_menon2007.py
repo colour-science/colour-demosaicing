@@ -11,7 +11,7 @@ import numpy as np
 import os
 import unittest
 
-from colour.io import read_image
+from colour import read_image
 
 from colour_demosaicing import TESTS_RESOURCES_DIRECTORY
 from colour_demosaicing.bayer import demosaicing_CFA_Bayer_Menon2007
