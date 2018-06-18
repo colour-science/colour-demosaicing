@@ -97,7 +97,7 @@ Contributing
 ------------
 
 If you would like to contribute to `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`_,
-please refer to the following `Contributing <http://colour-science.org/contributing/>`_
+please refer to the following `Contributing <https://www.colour-science.org/contributing/>`_
 guide for `Colour <https://github.com/colour-science/colour>`_.
 
 Bibliography
