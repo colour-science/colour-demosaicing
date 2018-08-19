@@ -63,7 +63,7 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
 
     References
     ----------
-    -   :cite:`Malvar2004a`
+    :cite:`Malvar2004a`
 
     Examples
     --------

@@ -82,7 +82,7 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
 
     References
     ----------
-    -   :cite:`Menon2007c`
+    :cite:`Menon2007c`
 
     Examples
     --------

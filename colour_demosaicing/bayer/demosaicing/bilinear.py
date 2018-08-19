@@ -60,7 +60,7 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
 
     References
     ----------
-    -   :cite:`Losson2010c`
+    :cite:`Losson2010c`
 
     Examples
     --------
