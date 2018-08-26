@@ -133,10 +133,10 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     C_V = np.where(R_m == 1, R - G_V, 0)
     C_V = np.where(B_m == 1, B - G_V, C_V)
 
-    D_H = np.abs(C_H - np.pad(C_H, ((0, 0), (0, 2)),
-                              mode=str('reflect'))[:, 2:])
-    D_V = np.abs(C_V - np.pad(C_V, ((0, 2), (0, 0)),
-                              mode=str('reflect'))[2:, :])
+    D_H = np.abs(C_H - np.pad(C_H, ((0, 0),
+                                    (0, 2)), mode=str('reflect'))[:, 2:])
+    D_V = np.abs(C_V - np.pad(C_V, ((0, 2),
+                                    (0, 0)), mode=str('reflect'))[2:, :])
 
     k = np.array(
         [[0, 0, 1, 0, 1],
@@ -161,29 +161,47 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
 
     R = np.where(
         np.logical_and(G_m == 1, R_r == 1),
-        G + _cnv_h(R, k_b) - _cnv_h(G, k_b), R)
+        G + _cnv_h(R, k_b) - _cnv_h(G, k_b),
+        R,
+    )
 
     R = np.where(
         np.logical_and(G_m == 1, B_r == 1) == 1,
-        G + _cnv_v(R, k_b) - _cnv_v(G, k_b), R)
+        G + _cnv_v(R, k_b) - _cnv_v(G, k_b),
+        R,
+    )
 
     B = np.where(
         np.logical_and(G_m == 1, B_r == 1),
-        G + _cnv_h(B, k_b) - _cnv_h(G, k_b), B)
+        G + _cnv_h(B, k_b) - _cnv_h(G, k_b),
+        B,
+    )
 
     B = np.where(
         np.logical_and(G_m == 1, R_r == 1) == 1,
-        G + _cnv_v(B, k_b) - _cnv_v(G, k_b), B)
+        G + _cnv_v(B, k_b) - _cnv_v(G, k_b),
+        B,
+    )
 
     R = np.where(
         np.logical_and(B_r == 1, B_m == 1),
-        np.where(M == 1, B + _cnv_h(R, k_b) - _cnv_h(B, k_b),
-                 B + _cnv_v(R, k_b) - _cnv_v(B, k_b)), R)
+        np.where(
+            M == 1,
+            B + _cnv_h(R, k_b) - _cnv_h(B, k_b),
+            B + _cnv_v(R, k_b) - _cnv_v(B, k_b),
+        ),
+        R,
+    )
 
     B = np.where(
         np.logical_and(R_r == 1, R_m == 1),
-        np.where(M == 1, R + _cnv_h(B, k_b) - _cnv_h(R, k_b),
-                 R + _cnv_v(B, k_b) - _cnv_v(R, k_b)), B)
+        np.where(
+            M == 1,
+            R + _cnv_h(B, k_b) - _cnv_h(R, k_b),
+            R + _cnv_v(B, k_b) - _cnv_v(R, k_b),
+        ),
+        B,
+    )
 
     RGB = tstack((R, G, B))
 
@@ -259,10 +277,16 @@ def refining_step_Menon2007(RGB, RGB_m, M):
 
     FIR = np.ones(3) / 3
 
-    B_G_m = np.where(B_m == 1,
-                     np.where(M == 1, _cnv_h(B_G, FIR), _cnv_v(B_G, FIR)), 0)
-    R_G_m = np.where(R_m == 1,
-                     np.where(M == 1, _cnv_h(R_G, FIR), _cnv_v(R_G, FIR)), 0)
+    B_G_m = np.where(
+        B_m == 1,
+        np.where(M == 1, _cnv_h(B_G, FIR), _cnv_v(B_G, FIR)),
+        0,
+    )
+    R_G_m = np.where(
+        R_m == 1,
+        np.where(M == 1, _cnv_h(R_G, FIR), _cnv_v(R_G, FIR)),
+        0,
+    )
 
     G = np.where(R_m == 1, R - R_G_m, G)
     G = np.where(B_m == 1, B - B_G_m, G)
@@ -283,27 +307,45 @@ def refining_step_Menon2007(RGB, RGB_m, M):
     k_b = np.array([0.5, 0, 0.5])
 
     R_G_m = np.where(
-        np.logical_and(G_m == 1, B_r == 1), _cnv_v(R_G, k_b), R_G_m)
+        np.logical_and(G_m == 1, B_r == 1),
+        _cnv_v(R_G, k_b),
+        R_G_m,
+    )
     R = np.where(np.logical_and(G_m == 1, B_r == 1), G + R_G_m, R)
     R_G_m = np.where(
-        np.logical_and(G_m == 1, B_c == 1), _cnv_h(R_G, k_b), R_G_m)
+        np.logical_and(G_m == 1, B_c == 1),
+        _cnv_h(R_G, k_b),
+        R_G_m,
+    )
     R = np.where(np.logical_and(G_m == 1, B_c == 1), G + R_G_m, R)
 
     B_G_m = np.where(
-        np.logical_and(G_m == 1, R_r == 1), _cnv_v(B_G, k_b), B_G_m)
+        np.logical_and(G_m == 1, R_r == 1),
+        _cnv_v(B_G, k_b),
+        B_G_m,
+    )
     B = np.where(np.logical_and(G_m == 1, R_r == 1), G + B_G_m, B)
     B_G_m = np.where(
-        np.logical_and(G_m == 1, R_c == 1), _cnv_h(B_G, k_b), B_G_m)
+        np.logical_and(G_m == 1, R_c == 1),
+        _cnv_h(B_G, k_b),
+        B_G_m,
+    )
     B = np.where(np.logical_and(G_m == 1, R_c == 1), G + B_G_m, B)
 
     # Updating of the red (blue) component in the blue (red) locations.
     R_B = R - B
-    R_B_m = np.where(B_m == 1,
-                     np.where(M == 1, _cnv_h(R_B, FIR), _cnv_v(R_B, FIR)), 0)
+    R_B_m = np.where(
+        B_m == 1,
+        np.where(M == 1, _cnv_h(R_B, FIR), _cnv_v(R_B, FIR)),
+        0,
+    )
     R = np.where(B_m == 1, B + R_B_m, R)
 
-    R_B_m = np.where(R_m == 1,
-                     np.where(M == 1, _cnv_h(R_B, FIR), _cnv_v(R_B, FIR)), 0)
+    R_B_m = np.where(
+        R_m == 1,
+        np.where(M == 1, _cnv_h(R_B, FIR), _cnv_v(R_B, FIR)),
+        0,
+    )
     B = np.where(R_m == 1, R - R_B_m, B)
 
     return tstack((R, G, B))
