@@ -203,10 +203,10 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
         B,
     )
 
-    RGB = tstack((R, G, B))
+    RGB = tstack([R, G, B])
 
     if refining_step:
-        RGB = refining_step_Menon2007(RGB, tstack((R_m, G_m, B_m)), M)
+        RGB = refining_step_Menon2007(RGB, tstack([R_m, G_m, B_m]), M)
 
     return RGB
 
@@ -348,4 +348,4 @@ def refining_step_Menon2007(RGB, RGB_m, M):
     )
     B = np.where(R_m == 1, R - R_B_m, B)
 
-    return tstack((R, G, B))
+    return tstack([R, G, B])

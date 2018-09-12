@@ -149,4 +149,4 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     R = np.where(np.logical_and(B_r == 1, B_c == 1), RBgr_BBRR, R)
     B = np.where(np.logical_and(R_r == 1, R_c == 1), RBgr_BBRR, B)
 
-    return tstack((R, G, B))
+    return tstack([R, G, B])
