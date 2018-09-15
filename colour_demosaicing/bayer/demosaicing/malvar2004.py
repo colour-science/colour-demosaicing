@@ -20,7 +20,7 @@ from __future__ import division, unicode_literals
 import numpy as np
 from scipy.ndimage.filters import convolve
 
-from colour.utilities import tstack
+from colour.utilities import as_float_array, tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
@@ -95,17 +95,17 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
             [ 0.29803923,  0.30441178,  0.31740197]]])
     """
 
-    CFA = np.asarray(CFA)
+    CFA = as_float_array(CFA)
     R_m, G_m, B_m = masks_CFA_Bayer(CFA.shape, pattern)
 
-    GR_GB = np.asarray(
+    GR_GB = as_float_array(
         [[0, 0, -1, 0, 0],
          [0, 0, 2, 0, 0],
          [-1, 2, 4, 2, -1],
          [0, 0, 2, 0, 0],
          [0, 0, -1, 0, 0]]) / 8  # yapf: disable
 
-    Rg_RB_Bg_BR = np.asarray(
+    Rg_RB_Bg_BR = as_float_array(
         [[0, 0, 0.5, 0, 0],
          [0, -1, 0, -1, 0],
          [-1, 4, 5, 4, - 1],
@@ -114,7 +114,7 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
 
     Rg_BR_Bg_RB = np.transpose(Rg_RB_Bg_BR)
 
-    Rb_BB_Br_RR = np.asarray(
+    Rb_BB_Br_RR = as_float_array(
         [[0, 0, -1.5, 0, 0],
          [0, 2, 0, 2, 0],
          [-1.5, 0, 6, 0, -1.5],

@@ -18,7 +18,7 @@ from __future__ import division, unicode_literals
 import numpy as np
 from scipy.ndimage.filters import convolve, convolve1d
 
-from colour.utilities import tsplit, tstack
+from colour.utilities import as_float_array, tsplit, tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
@@ -114,7 +114,7 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
             [ 0.29803923,  0.3764706 ,  0.42352942]]])
     """
 
-    CFA = np.asarray(CFA)
+    CFA = as_float_array(CFA)
     R_m, G_m, B_m = masks_CFA_Bayer(CFA.shape, pattern)
 
     h_0 = np.array([0, 0.5, 0, 0.5, 0])
@@ -269,7 +269,7 @@ def refining_step_Menon2007(RGB, RGB_m, M):
 
     R, G, B = tsplit(RGB)
     R_m, G_m, B_m = tsplit(RGB_m)
-    M = np.asarray(M)
+    M = as_float_array(M)
 
     # Updating of the green component.
     R_G = R - G

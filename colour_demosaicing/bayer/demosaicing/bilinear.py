@@ -14,10 +14,9 @@ References
 
 from __future__ import division, unicode_literals
 
-import numpy as np
 from scipy.ndimage.filters import convolve
 
-from colour.utilities import tstack
+from colour.utilities import as_float_array, tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
@@ -92,15 +91,15 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
             [ 0.67058827,  0.18431373,  0.10196078]]])
     """
 
-    CFA = np.asarray(CFA)
+    CFA = as_float_array(CFA)
     R_m, G_m, B_m = masks_CFA_Bayer(CFA.shape, pattern)
 
-    H_G = np.asarray(
+    H_G = as_float_array(
         [[0, 1, 0],
          [1, 4, 1],
          [0, 1, 0]]) / 4  # yapf: disable
 
-    H_RB = np.asarray(
+    H_RB = as_float_array(
         [[1, 2, 1],
          [2, 4, 2],
          [1, 2, 1]]) / 4  # yapf: disable
