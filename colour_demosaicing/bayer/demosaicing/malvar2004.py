@@ -127,9 +127,9 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
 
     G = np.where(np.logical_or(R_m == 1, B_m == 1), convolve(CFA, GR_GB), G)
 
-    RBg_RBBR = convolve(CFA, Rg_RB_Bg_BR)
-    RBg_BRRB = convolve(CFA, Rg_BR_Bg_RB)
-    RBgr_BBRR = convolve(CFA, Rb_BB_Br_RR)
+    RBg_RBBR = convolve(CFA, Rg_RB_Bg_BR, mode='mirror')
+    RBg_BRRB = convolve(CFA, Rg_BR_Bg_RB, mode='mirror')
+    RBgr_BBRR = convolve(CFA, Rb_BB_Br_RR, mode='mirror')
 
     # Red rows.
     R_r = np.transpose(np.any(R_m == 1, axis=1)[np.newaxis]) * np.ones(R.shape)
