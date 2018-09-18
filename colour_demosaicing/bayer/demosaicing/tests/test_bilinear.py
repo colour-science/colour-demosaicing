@@ -15,6 +15,7 @@ from colour.io import read_image
 
 from colour_demosaicing import TESTS_RESOURCES_DIRECTORY
 from colour_demosaicing.bayer import demosaicing_CFA_Bayer_bilinear
+from colour.demosaicing.bayer import mosaicing_CFA_Bayer
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2015-2018 - Colour Developers'
@@ -50,6 +51,21 @@ demosaicing_CFA_Bayer_bilinear` definition.
                     read_image(str(CFA.format(pattern))), pattern),
                 read_image(str(RGB.format(pattern))),
                 decimal=7)
+
+    def test_demosaicing_CFA_Bayer_bilinear_interpolant(self):
+        """
+        Tests whether the result of :func:`colour_demosaicing.bayer.\
+        demosaicing.bilinear.demosaicing_CFA_Bayer_bilinear` agrees
+        with the original values.
+        """
+
+        for pattern in ('RGGB', 'BGGR', 'GRGB', 'GBRG'):
+            CFA_file = os.path.join(BAYER_DIRECTORY, 'Lighthouse_CFA_{0}.exr')
+
+            CFA = read_image(str(CFA_file.format(pattern)))
+            RGB = demosaicing_CFA_Bayer_bilinear(CFA, pattern)
+            CFA_from_RGB = mosaicing_CFA_Bayer(RGB, pattern)
+            np.testing.assert_almost_equal(CFA_from_RGB, CFA, decimal=7)
 
 
 if __name__ == '__main__':
