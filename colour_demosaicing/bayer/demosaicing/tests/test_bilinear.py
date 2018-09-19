@@ -15,7 +15,7 @@ from colour.io import read_image
 
 from colour_demosaicing import TESTS_RESOURCES_DIRECTORY
 from colour_demosaicing.bayer import demosaicing_CFA_Bayer_bilinear
-from colour.demosaicing.bayer import mosaicing_CFA_Bayer
+from colour_demosaicing.bayer import mosaicing_CFA_Bayer
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2015-2018 - Colour Developers'

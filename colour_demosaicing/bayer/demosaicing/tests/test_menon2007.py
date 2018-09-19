@@ -15,7 +15,7 @@ from colour.io import read_image
 
 from colour_demosaicing import TESTS_RESOURCES_DIRECTORY
 from colour_demosaicing.bayer import demosaicing_CFA_Bayer_Menon2007
-from colour.demosaicing.bayer import mosaicing_CFA_Bayer
+from colour_demosaicing.bayer import mosaicing_CFA_Bayer
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2015-2018 - Colour Developers'
@@ -76,7 +76,6 @@ demosaicing_CFA_Bayer_Menon2007` definition.
             RGB = demosaicing_CFA_Bayer_Menon2007(CFA, pattern)
             CFA_from_RGB = mosaicing_CFA_Bayer(RGB, pattern)
             np.testing.assert_almost_equal(CFA_from_RGB, CFA, decimal=7)
-
 
 
 if __name__ == '__main__':
