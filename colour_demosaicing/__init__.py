@@ -56,7 +56,7 @@ try:
     version = subprocess.check_output(
         ['git', 'describe'], cwd=os.path.dirname(__file__)).strip()
     version = version.decode('utf-8')
-except subprocess.CalledProcessError:
+except Exception:
     version = __version__
 
 colour.utilities.ANCILLARY_COLOUR_SCIENCE_PACKAGES['colour-demosaicing'] = (
