@@ -13,6 +13,7 @@ References
 """
 
 from __future__ import division, unicode_literals
+import gc
 
 import numpy as np
 from scipy.ndimage.filters import convolve
@@ -108,5 +109,8 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     R = convolve(CFA * R_m, H_RB)
     G = convolve(CFA * G_m, H_G)
     B = convolve(CFA * B_m, H_RB)
+
+    del R_m, G_m, B_m, H_RB, H_G
+    gc.collect()
 
     return tstack((R, G, B))
