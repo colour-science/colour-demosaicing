@@ -46,7 +46,7 @@ def clean(ctx, docs=True, bytecode=False):
     docs : bool, optional
         Whether to clean the *docs* directory.
     bytecode : bool, optional
-        Whether to clean the bytecode files, e.g., *.pyc* files.
+        Whether to clean the bytecode files, e.g. *.pyc* files.
 
     Returns
     -------
@@ -240,7 +240,7 @@ def todo(ctx):
 @task(formatting, tests, quality, examples)
 def preflight(ctx):
     """
-    Performs the preflight tasks, i.e., *formatting*, *tests*, *quality*, and
+    Performs the preflight tasks, i.e. *formatting*, *tests*, *quality*, and
     *examples*.
 
     Parameters
@@ -260,7 +260,7 @@ def preflight(ctx):
 @task(docs, todo, preflight)
 def build(ctx):
     """
-    Builds the project and runs dependency tasks, i.e., *docs*, *todo*, and
+    Builds the project and runs dependency tasks, i.e. *docs*, *todo*, and
     *preflight*.
 
     Parameters
