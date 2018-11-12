@@ -109,4 +109,6 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     G = convolve(CFA * G_m, H_G)
     B = convolve(CFA * B_m, H_RB)
 
+    del R_m, G_m, B_m, H_RB, H_G
+
     return tstack((R, G, B))

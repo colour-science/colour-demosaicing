@@ -138,6 +138,8 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     D_V = np.abs(C_V - np.pad(C_V, ((0, 2), (0, 0)),
                               mode=str('reflect'))[2:, :])
 
+    del h_0, h_1, CFA, C_V, C_H
+
     k = np.array(
         [[0, 0, 1, 0, 1],
          [0, 0, 0, 1, 0],
@@ -148,9 +150,13 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     d_H = convolve(D_H, k, mode='constant')
     d_V = convolve(D_V, np.transpose(k), mode='constant')
 
+    del D_H, D_V
+
     mask = d_V >= d_H
     G = np.where(mask, G_H, G_V)
     M = np.where(mask, 1, 0)
+
+    del d_H, d_V, G_H, G_V
 
     # Red rows.
     R_r = np.transpose(np.any(R_m == 1, axis=1)[np.newaxis]) * np.ones(R.shape)
@@ -187,8 +193,12 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
 
     RGB = tstack((R, G, B))
 
+    del R, G, B, k_b, R_r, B_r
+
     if refining_step:
         RGB = refining_step_Menon2007(RGB, tstack((R_m, G_m, B_m)), M)
+
+    del M, R_m, G_m, B_m
 
     return RGB
 
@@ -253,6 +263,8 @@ def refining_step_Menon2007(RGB, RGB_m, M):
     R_m, G_m, B_m = tsplit(RGB_m)
     M = np.asarray(M)
 
+    del RGB, RGB_m
+
     # Updating of the green component.
     R_G = R - G
     B_G = B - G
@@ -264,6 +276,8 @@ def refining_step_Menon2007(RGB, RGB_m, M):
     R_G_m = np.where(R_m == 1,
                      np.where(M == 1, _cnv_h(R_G, FIR), _cnv_v(R_G, FIR)), 0)
 
+    del B_G, R_G
+
     G = np.where(R_m == 1, R - R_G_m, G)
     G = np.where(B_m == 1, B - B_G_m, G)
 
@@ -274,7 +288,7 @@ def refining_step_Menon2007(RGB, RGB_m, M):
     R_c = np.any(R_m == 1, axis=0)[np.newaxis] * np.ones(R.shape)
     # Blue rows.
     B_r = np.transpose(np.any(B_m == 1, axis=1)[np.newaxis]) * np.ones(B.shape)
-    # Blue columns
+    # Blue columns.
     B_c = np.any(B_m == 1, axis=0)[np.newaxis] * np.ones(B.shape)
 
     R_G = R - G
@@ -289,12 +303,16 @@ def refining_step_Menon2007(RGB, RGB_m, M):
         np.logical_and(G_m == 1, B_c == 1), _cnv_h(R_G, k_b), R_G_m)
     R = np.where(np.logical_and(G_m == 1, B_c == 1), G + R_G_m, R)
 
+    del B_r, R_G_m, B_c, R_G
+
     B_G_m = np.where(
         np.logical_and(G_m == 1, R_r == 1), _cnv_v(B_G, k_b), B_G_m)
     B = np.where(np.logical_and(G_m == 1, R_r == 1), G + B_G_m, B)
     B_G_m = np.where(
         np.logical_and(G_m == 1, R_c == 1), _cnv_h(B_G, k_b), B_G_m)
     B = np.where(np.logical_and(G_m == 1, R_c == 1), G + B_G_m, B)
+
+    del B_G_m, R_r, R_c, G_m, B_G
 
     # Updating of the red (blue) component in the blue (red) locations.
     R_B = R - B
@@ -305,5 +323,7 @@ def refining_step_Menon2007(RGB, RGB_m, M):
     R_B_m = np.where(R_m == 1,
                      np.where(M == 1, _cnv_h(R_B, FIR), _cnv_v(R_B, FIR)), 0)
     B = np.where(R_m == 1, R - R_B_m, B)
+
+    del R_B, R_B_m, R_m
 
     return tstack((R, G, B))
