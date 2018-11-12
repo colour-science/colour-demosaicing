@@ -16,7 +16,6 @@ References
 """
 
 from __future__ import division, unicode_literals
-import gc
 
 import numpy as np
 from scipy.ndimage.filters import convolve
@@ -127,7 +126,6 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     B = CFA * B_m
 
     del G_m
-    gc.collect()
 
     G = np.where(np.logical_or(R_m == 1, B_m == 1), convolve(CFA, GR_GB), G)
 
@@ -136,7 +134,6 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     RBgr_BBRR = convolve(CFA, Rb_BB_Br_RR)
 
     del GR_GB, Rg_RB_Bg_BR, Rg_BR_Bg_RB, Rb_BB_Br_RR
-    gc.collect()
 
     # Red rows.
     R_r = np.transpose(np.any(R_m == 1, axis=1)[np.newaxis]) * np.ones(R.shape)
@@ -148,7 +145,6 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     B_c = np.any(B_m == 1, axis=0)[np.newaxis] * np.ones(B.shape)
 
     del R_m, B_m
-    gc.collect()
 
     R = np.where(np.logical_and(R_r == 1, B_c == 1), RBg_RBBR, R)
     R = np.where(np.logical_and(B_r == 1, R_c == 1), RBg_BRRB, R)
@@ -160,6 +156,5 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     B = np.where(np.logical_and(R_r == 1, R_c == 1), RBgr_BBRR, B)
 
     del RBg_RBBR, RBg_BRRB, RBgr_BBRR, R_r, R_c, B_r, B_c
-    gc.collect()
 
     return tstack((R, G, B))
