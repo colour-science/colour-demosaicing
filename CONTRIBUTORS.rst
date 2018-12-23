@@ -12,6 +12,10 @@ Colour - Demosaicing
 
     Technical support.
 
+-   **Maximilian Schambach**
+
+    Memory optimizations.
+
 Issues & Discussions
 --------------------
 
@@ -19,6 +23,7 @@ Issues & Discussions
 -   @jiawen
 -   @laihaotao
 -   @m0ose
+-   @maaleske
 -   @timmeinhardt
 
 About
