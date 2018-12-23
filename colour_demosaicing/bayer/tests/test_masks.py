@@ -10,7 +10,7 @@ import numpy as np
 import os
 import unittest
 
-from colour.io import read_image
+from colour import read_image
 from colour.utilities import tstack
 
 from colour_demosaicing import TESTS_RESOURCES_DIRECTORY

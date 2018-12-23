@@ -6,6 +6,7 @@ Invoke - Tasks
 
 from __future__ import unicode_literals
 
+import fnmatch
 import os
 import re
 from invoke import task
@@ -177,9 +178,6 @@ def examples(ctx):
 
     message_box('Running examples...')
 
-    import fnmatch
-    import os
-
     for root, dirnames, filenames in os.walk(
             os.path.join(PYTHON_PACKAGE_NAME, 'examples')):
         for filename in fnmatch.filter(filenames, '*.py'):
@@ -323,7 +321,7 @@ def virtualise(ctx, tests=True):
 @task
 def tag(ctx):
     """
-    Tags the repository accordingly to defined version using *git-flow*.
+    Tags the repository according to defined version using *git-flow*.
 
     Parameters
     ----------

@@ -35,6 +35,7 @@ Primary Dependencies
 
 -  `Python 2.7 <https://www.python.org/download/releases/>`_ or
    `Python 3.5 <https://www.python.org/download/releases/>`_
+-  `Colour Science <https://www.colour-science.org>`_
 -  `NumPy <http://www.numpy.org/>`_
 -  `OpenImageIO <https://github.com/OpenImageIO/oiio>`_
 
@@ -54,6 +55,10 @@ The tests suite dependencies are installed as follows::
 The documentation building dependencies are installed as follows::
 
     pip install 'colour-demosaicing[docs]'
+
+The overall development dependencies are installed as follows::
+
+    pip install 'colour-demosaicing[development]'
 
 Usage
 -----
@@ -80,7 +85,7 @@ Contributing
 ------------
 
 If you would like to contribute to `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`_,
-please refer to the following `Contributing <http://colour-science.org/contributing/>`_
+please refer to the following `Contributing <https://www.colour-science.org/contributing/>`_
 guide for `Colour <https://github.com/colour-science/colour>`_.
 
 Bibliography

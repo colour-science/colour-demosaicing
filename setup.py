@@ -42,7 +42,7 @@ DOCS_REQUIREMENTS = [
 
 TESTS_REQUIREMENTS = ['coverage>=3.7.1', 'flake8>=2.1.0', 'nose>=1.3.4']
 
-DEVELOPMENT_REQUIREMENTS = TESTS_REQUIREMENTS + [
+DEVELOPMENT_REQUIREMENTS = DOCS_REQUIREMENTS + TESTS_REQUIREMENTS + [
     'invoke', 'restructuredtext_lint', 'twine', 'yapf'
 ]
 

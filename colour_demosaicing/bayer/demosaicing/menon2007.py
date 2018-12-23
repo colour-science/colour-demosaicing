@@ -18,7 +18,7 @@ from __future__ import division, unicode_literals
 import numpy as np
 from scipy.ndimage.filters import convolve, convolve1d
 
-from colour.utilities import tsplit, tstack
+from colour.utilities import as_float_array, tsplit, tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
@@ -82,7 +82,7 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
 
     References
     ----------
-    -   :cite:`Menon2007c`
+    :cite:`Menon2007c`
 
     Examples
     --------
@@ -114,7 +114,7 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
             [ 0.29803923,  0.3764706 ,  0.42352942]]])
     """
 
-    CFA = np.asarray(CFA)
+    CFA = as_float_array(CFA)
     R_m, G_m, B_m = masks_CFA_Bayer(CFA.shape, pattern)
 
     h_0 = np.array([0, 0.5, 0, 0.5, 0])
@@ -133,10 +133,10 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     C_V = np.where(R_m == 1, R - G_V, 0)
     C_V = np.where(B_m == 1, B - G_V, C_V)
 
-    D_H = np.abs(C_H - np.pad(C_H, ((0, 0), (0, 2)),
-                              mode=str('reflect'))[:, 2:])
-    D_V = np.abs(C_V - np.pad(C_V, ((0, 2), (0, 0)),
-                              mode=str('reflect'))[2:, :])
+    D_H = np.abs(C_H - np.pad(C_H, ((0, 0),
+                                    (0, 2)), mode=str('reflect'))[:, 2:])
+    D_V = np.abs(C_V - np.pad(C_V, ((0, 2),
+                                    (0, 0)), mode=str('reflect'))[2:, :])
 
     del h_0, h_1, CFA, C_V, C_H
 
@@ -167,36 +167,54 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
 
     R = np.where(
         np.logical_and(G_m == 1, R_r == 1),
-        G + _cnv_h(R, k_b) - _cnv_h(G, k_b), R)
+        G + _cnv_h(R, k_b) - _cnv_h(G, k_b),
+        R,
+    )
 
     R = np.where(
         np.logical_and(G_m == 1, B_r == 1) == 1,
-        G + _cnv_v(R, k_b) - _cnv_v(G, k_b), R)
+        G + _cnv_v(R, k_b) - _cnv_v(G, k_b),
+        R,
+    )
 
     B = np.where(
         np.logical_and(G_m == 1, B_r == 1),
-        G + _cnv_h(B, k_b) - _cnv_h(G, k_b), B)
+        G + _cnv_h(B, k_b) - _cnv_h(G, k_b),
+        B,
+    )
 
     B = np.where(
         np.logical_and(G_m == 1, R_r == 1) == 1,
-        G + _cnv_v(B, k_b) - _cnv_v(G, k_b), B)
+        G + _cnv_v(B, k_b) - _cnv_v(G, k_b),
+        B,
+    )
 
     R = np.where(
         np.logical_and(B_r == 1, B_m == 1),
-        np.where(M == 1, B + _cnv_h(R, k_b) - _cnv_h(B, k_b),
-                 B + _cnv_v(R, k_b) - _cnv_v(B, k_b)), R)
+        np.where(
+            M == 1,
+            B + _cnv_h(R, k_b) - _cnv_h(B, k_b),
+            B + _cnv_v(R, k_b) - _cnv_v(B, k_b),
+        ),
+        R,
+    )
 
     B = np.where(
         np.logical_and(R_r == 1, R_m == 1),
-        np.where(M == 1, R + _cnv_h(B, k_b) - _cnv_h(R, k_b),
-                 R + _cnv_v(B, k_b) - _cnv_v(R, k_b)), B)
+        np.where(
+            M == 1,
+            R + _cnv_h(B, k_b) - _cnv_h(R, k_b),
+            R + _cnv_v(B, k_b) - _cnv_v(R, k_b),
+        ),
+        B,
+    )
 
-    RGB = tstack((R, G, B))
+    RGB = tstack([R, G, B])
 
     del R, G, B, k_b, R_r, B_r
 
     if refining_step:
-        RGB = refining_step_Menon2007(RGB, tstack((R_m, G_m, B_m)), M)
+        RGB = refining_step_Menon2007(RGB, tstack([R_m, G_m, B_m]), M)
 
     del M, R_m, G_m, B_m
 
@@ -261,7 +279,7 @@ def refining_step_Menon2007(RGB, RGB_m, M):
 
     R, G, B = tsplit(RGB)
     R_m, G_m, B_m = tsplit(RGB_m)
-    M = np.asarray(M)
+    M = as_float_array(M)
 
     del RGB, RGB_m
 
@@ -271,10 +289,16 @@ def refining_step_Menon2007(RGB, RGB_m, M):
 
     FIR = np.ones(3) / 3
 
-    B_G_m = np.where(B_m == 1,
-                     np.where(M == 1, _cnv_h(B_G, FIR), _cnv_v(B_G, FIR)), 0)
-    R_G_m = np.where(R_m == 1,
-                     np.where(M == 1, _cnv_h(R_G, FIR), _cnv_v(R_G, FIR)), 0)
+    B_G_m = np.where(
+        B_m == 1,
+        np.where(M == 1, _cnv_h(B_G, FIR), _cnv_v(B_G, FIR)),
+        0,
+    )
+    R_G_m = np.where(
+        R_m == 1,
+        np.where(M == 1, _cnv_h(R_G, FIR), _cnv_v(R_G, FIR)),
+        0,
+    )
 
     del B_G, R_G
 
@@ -297,33 +321,51 @@ def refining_step_Menon2007(RGB, RGB_m, M):
     k_b = np.array([0.5, 0, 0.5])
 
     R_G_m = np.where(
-        np.logical_and(G_m == 1, B_r == 1), _cnv_v(R_G, k_b), R_G_m)
+        np.logical_and(G_m == 1, B_r == 1),
+        _cnv_v(R_G, k_b),
+        R_G_m,
+    )
     R = np.where(np.logical_and(G_m == 1, B_r == 1), G + R_G_m, R)
     R_G_m = np.where(
-        np.logical_and(G_m == 1, B_c == 1), _cnv_h(R_G, k_b), R_G_m)
+        np.logical_and(G_m == 1, B_c == 1),
+        _cnv_h(R_G, k_b),
+        R_G_m,
+    )
     R = np.where(np.logical_and(G_m == 1, B_c == 1), G + R_G_m, R)
 
     del B_r, R_G_m, B_c, R_G
 
     B_G_m = np.where(
-        np.logical_and(G_m == 1, R_r == 1), _cnv_v(B_G, k_b), B_G_m)
+        np.logical_and(G_m == 1, R_r == 1),
+        _cnv_v(B_G, k_b),
+        B_G_m,
+    )
     B = np.where(np.logical_and(G_m == 1, R_r == 1), G + B_G_m, B)
     B_G_m = np.where(
-        np.logical_and(G_m == 1, R_c == 1), _cnv_h(B_G, k_b), B_G_m)
+        np.logical_and(G_m == 1, R_c == 1),
+        _cnv_h(B_G, k_b),
+        B_G_m,
+    )
     B = np.where(np.logical_and(G_m == 1, R_c == 1), G + B_G_m, B)
 
     del B_G_m, R_r, R_c, G_m, B_G
 
     # Updating of the red (blue) component in the blue (red) locations.
     R_B = R - B
-    R_B_m = np.where(B_m == 1,
-                     np.where(M == 1, _cnv_h(R_B, FIR), _cnv_v(R_B, FIR)), 0)
+    R_B_m = np.where(
+        B_m == 1,
+        np.where(M == 1, _cnv_h(R_B, FIR), _cnv_v(R_B, FIR)),
+        0,
+    )
     R = np.where(B_m == 1, B + R_B_m, R)
 
-    R_B_m = np.where(R_m == 1,
-                     np.where(M == 1, _cnv_h(R_B, FIR), _cnv_v(R_B, FIR)), 0)
+    R_B_m = np.where(
+        R_m == 1,
+        np.where(M == 1, _cnv_h(R_B, FIR), _cnv_v(R_B, FIR)),
+        0,
+    )
     B = np.where(R_m == 1, R - R_B_m, B)
 
     del R_B, R_B_m, R_m
 
-    return tstack((R, G, B))
+    return tstack([R, G, B])
