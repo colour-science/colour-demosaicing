@@ -9,7 +9,7 @@ from __future__ import unicode_literals
 
 import os
 import re
-
+import sys
 from setuptools import setup
 from setuptools import find_packages
 
@@ -45,6 +45,11 @@ TESTS_REQUIREMENTS = ['coverage>=3.7.1', 'flake8>=2.1.0', 'nose>=1.3.4']
 DEVELOPMENT_REQUIREMENTS = DOCS_REQUIREMENTS + TESTS_REQUIREMENTS + [
     'invoke', 'restructuredtext_lint', 'twine', 'yapf'
 ]
+if sys.version_info[:2] >= (3, 2):
+    DEVELOPMENT_REQUIREMENTS += [
+        'biblib @ git+ssh://git@github.comcolour-science/biblib'
+        '@v0.1.0#egg=biblib'
+    ]
 
 
 def get_version():
@@ -57,8 +62,8 @@ def get_version():
         Package full version.
     """
 
-    with open(
-            os.path.join('colour_demosaicing', '__init__.py')) as file_handle:
+    with open(os.path.join('colour_demosaicing',
+                           '__init__.py')) as file_handle:
         file_content = file_handle.read()
         major_version = re.search("__major_version__\s+=\s+'(.*)'",
                                   file_content).group(1)
