@@ -43,7 +43,7 @@ DOCS_REQUIREMENTS = [
 TESTS_REQUIREMENTS = ['coverage>=3.7.1', 'flake8>=2.1.0', 'nose>=1.3.4']
 
 DEVELOPMENT_REQUIREMENTS = DOCS_REQUIREMENTS + TESTS_REQUIREMENTS + [
-    'invoke', 'restructuredtext_lint', 'twine', 'yapf'
+    'invoke', 'restructuredtext_lint', 'twine', 'yapf=0.23.0'
 ]
 if sys.version_info[:2] >= (3, 2):
     DEVELOPMENT_REQUIREMENTS += [
