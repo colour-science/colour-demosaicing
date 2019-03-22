@@ -29,11 +29,11 @@ SHORT_DESCRIPTION = 'Colour - Demosaicing'
 
 LONG_DESCRIPTION = open('README.rst').read()
 
-INSTALLATION_REQUIREMENTS = ['colour-science>=0.3.11']
+INSTALLATION_REQUIREMENTS = ['colour-science>=0.3.12']
 
 if os.environ.get('READTHEDOCS') == 'True':
     INSTALLATION_REQUIREMENTS = [
-        'colour-science>=0.3.8', 'mock==1.0.1', 'sphinxcontrib-bibtex'
+        'colour-science>=0.3.12', 'mock==1.0.1', 'sphinxcontrib-bibtex'
     ]
 
 DOCS_REQUIREMENTS = [
@@ -43,13 +43,10 @@ DOCS_REQUIREMENTS = [
 TESTS_REQUIREMENTS = ['coverage>=3.7.1', 'flake8>=2.1.0', 'nose>=1.3.4']
 
 DEVELOPMENT_REQUIREMENTS = DOCS_REQUIREMENTS + TESTS_REQUIREMENTS + [
-    'invoke', 'restructuredtext_lint', 'twine', 'yapf=0.23.0'
+    'invoke', 'restructuredtext_lint', 'twine', 'yapf==0.23.0'
 ]
 if sys.version_info[:2] >= (3, 2):
-    DEVELOPMENT_REQUIREMENTS += [
-        'biblib @ git+ssh://git@github.comcolour-science/biblib'
-        '@v0.1.0#egg=biblib'
-    ]
+    DEVELOPMENT_REQUIREMENTS += ['biblib-simple']
 
 
 def get_version():
