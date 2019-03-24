@@ -1,5 +1,5 @@
-colour\_demosaicing\.demosaicing\_CFA\_Bayer\_Menon2007
-=======================================================
+colour\_demosaicing.demosaicing\_CFA\_Bayer\_Menon2007
+======================================================
 
 .. currentmodule:: colour_demosaicing
 

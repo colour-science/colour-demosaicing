@@ -6,7 +6,7 @@ TODO
 
 -   colour_demosaicing/__init__.py
 
-    -   Line 51 : # TODO: Remove legacy printing support when deemed appropriate.
+    -   Line 64 : # TODO: Remove legacy printing support when deemed appropriate.
 
 About
 -----

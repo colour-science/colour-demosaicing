@@ -1,5 +1,5 @@
-colour\_demosaicing\.demosaicing\_CFA\_Bayer\_bilinear
-======================================================
+colour\_demosaicing.demosaicing\_CFA\_Bayer\_bilinear
+=====================================================
 
 .. currentmodule:: colour_demosaicing
 
