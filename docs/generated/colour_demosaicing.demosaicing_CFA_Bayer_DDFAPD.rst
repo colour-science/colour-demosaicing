@@ -1,5 +1,5 @@
-colour\_demosaicing\.demosaicing\_CFA\_Bayer\_DDFAPD
-====================================================
+colour\_demosaicing.demosaicing\_CFA\_Bayer\_DDFAPD
+===================================================
 
 .. currentmodule:: colour_demosaicing
 
