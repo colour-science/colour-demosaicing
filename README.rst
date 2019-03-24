@@ -55,6 +55,7 @@ Primary Dependencies
 -  `Python 2.7 <https://www.python.org/download/releases/>`_ or
    `Python 3.5 <https://www.python.org/download/releases/>`_
 -  `NumPy <http://www.numpy.org/>`_
+-  `Colour Science <https://www.colour-science.org>`_
 -  `OpenImageIO <https://github.com/OpenImageIO/oiio>`_
 
 Pypi
@@ -73,6 +74,10 @@ The tests suite dependencies are installed as follows::
 The documentation building dependencies are installed as follows::
 
     pip install 'colour-demosaicing[docs]'
+
+The overall development dependencies are installed as follows::
+
+    pip install 'colour-demosaicing[development]'
 
 Usage
 -----
@@ -93,7 +98,7 @@ Contributing
 ------------
 
 If you would like to contribute to `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`_,
-please refer to the following `Contributing <http://colour-science.org/contributing/>`_
+please refer to the following `Contributing <https://www.colour-science.org/contributing/>`_
 guide for `Colour <https://github.com/colour-science/colour>`_.
 
 Bibliography
@@ -107,6 +112,6 @@ About
 -----
 
 | **Colour - Demosaicing** by Colour Developers
-| Copyright © 2015-2018 – Colour Developers – `colour-science@googlegroups.com <colour-science@googlegroups.com>`_
+| Copyright © 2015-2019 – Colour Developers – `colour-science@googlegroups.com <colour-science@googlegroups.com>`_
 | This software is released under terms of New BSD License: http://opensource.org/licenses/BSD-3-Clause
 | `http://github.com/colour-science/colour-demosaicing <http://github.com/colour-science/colour-demosaicing>`_

@@ -20,12 +20,12 @@ from __future__ import division, unicode_literals
 import numpy as np
 from scipy.ndimage.filters import convolve
 
-from colour.utilities import tstack
+from colour.utilities import as_float_array, tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2018 - Colour Developers'
+__copyright__ = 'Copyright (C) 2015-2019 - Colour Developers'
 __license__ = 'New BSD License - http://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
@@ -63,7 +63,7 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
 
     References
     ----------
-    -   :cite:`Malvar2004a`
+    :cite:`Malvar2004a`
 
     Examples
     --------
@@ -95,17 +95,17 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
             [ 0.29803923,  0.30441178,  0.31740197]]])
     """
 
-    CFA = np.asarray(CFA)
+    CFA = as_float_array(CFA)
     R_m, G_m, B_m = masks_CFA_Bayer(CFA.shape, pattern)
 
-    GR_GB = np.asarray(
+    GR_GB = as_float_array(
         [[0, 0, -1, 0, 0],
          [0, 0, 2, 0, 0],
          [-1, 2, 4, 2, -1],
          [0, 0, 2, 0, 0],
          [0, 0, -1, 0, 0]]) / 8  # yapf: disable
 
-    Rg_RB_Bg_BR = np.asarray(
+    Rg_RB_Bg_BR = as_float_array(
         [[0, 0, 0.5, 0, 0],
          [0, -1, 0, -1, 0],
          [-1, 4, 5, 4, - 1],
@@ -114,7 +114,7 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
 
     Rg_BR_Bg_RB = np.transpose(Rg_RB_Bg_BR)
 
-    Rb_BB_Br_RR = np.asarray(
+    Rb_BB_Br_RR = as_float_array(
         [[0, 0, -1.5, 0, 0],
          [0, 2, 0, 2, 0],
          [-1.5, 0, 6, 0, -1.5],
@@ -125,11 +125,15 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     G = CFA * G_m
     B = CFA * B_m
 
+    del G_m
+
     G = np.where(np.logical_or(R_m == 1, B_m == 1), convolve(CFA, GR_GB), G)
 
     RBg_RBBR = convolve(CFA, Rg_RB_Bg_BR)
     RBg_BRRB = convolve(CFA, Rg_BR_Bg_RB)
     RBgr_BBRR = convolve(CFA, Rb_BB_Br_RR)
+
+    del GR_GB, Rg_RB_Bg_BR, Rg_BR_Bg_RB, Rb_BB_Br_RR
 
     # Red rows.
     R_r = np.transpose(np.any(R_m == 1, axis=1)[np.newaxis]) * np.ones(R.shape)
@@ -140,6 +144,8 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     # Blue columns
     B_c = np.any(B_m == 1, axis=0)[np.newaxis] * np.ones(B.shape)
 
+    del R_m, B_m
+
     R = np.where(np.logical_and(R_r == 1, B_c == 1), RBg_RBBR, R)
     R = np.where(np.logical_and(B_r == 1, R_c == 1), RBg_BRRB, R)
 
@@ -149,4 +155,6 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     R = np.where(np.logical_and(B_r == 1, B_c == 1), RBgr_BBRR, R)
     B = np.where(np.logical_and(R_r == 1, R_c == 1), RBgr_BBRR, B)
 
-    return tstack((R, G, B))
+    del RBg_RBBR, RBg_BRRB, RBgr_BBRR, R_r, R_c, B_r, B_c
+
+    return tstack([R, G, B])

@@ -14,15 +14,14 @@ References
 
 from __future__ import division, unicode_literals
 
-import numpy as np
 from scipy.ndimage.filters import convolve
 
-from colour.utilities import tstack
+from colour.utilities import as_float_array, tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2018 - Colour Developers'
+__copyright__ = 'Copyright (C) 2015-2019 - Colour Developers'
 __license__ = 'New BSD License - http://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
@@ -60,10 +59,11 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
 
     References
     ----------
-    -   :cite:`Losson2010c`
+    :cite:`Losson2010c`
 
     Examples
     --------
+    >>> import numpy as np
     >>> CFA = np.array(
     ...     [[0.30980393, 0.36078432, 0.30588236, 0.3764706],
     ...      [0.35686275, 0.39607844, 0.36078432, 0.40000001]])
@@ -92,15 +92,15 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
             [ 0.67058827,  0.18431373,  0.10196078]]])
     """
 
-    CFA = np.asarray(CFA)
+    CFA = as_float_array(CFA)
     R_m, G_m, B_m = masks_CFA_Bayer(CFA.shape, pattern)
 
-    H_G = np.asarray(
+    H_G = as_float_array(
         [[0, 1, 0],
          [1, 4, 1],
          [0, 1, 0]]) / 4  # yapf: disable
 
-    H_RB = np.asarray(
+    H_RB = as_float_array(
         [[1, 2, 1],
          [2, 4, 2],
          [1, 2, 1]]) / 4  # yapf: disable
@@ -109,4 +109,6 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
     G = convolve(CFA * G_m, H_G)
     B = convolve(CFA * B_m, H_RB)
 
-    return tstack((R, G, B))
+    del R_m, G_m, B_m, H_RB, H_G
+
+    return tstack([R, G, B])

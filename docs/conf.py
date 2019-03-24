@@ -207,9 +207,9 @@ latex_elements = {
     # Additional stuff for the LaTeX preamble.
     'preamble':
         """
-        \usepackage{charter}
-        \usepackage[defaultsans]{lato}
-        \usepackage{inconsolata}
+        \\usepackage{charter}
+        \\usepackage[defaultsans]{lato}
+        \\usepackage{inconsolata}
         """,
 }
 
@@ -217,9 +217,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    ('index', '{0}.tex'.format(basename),
-     u'{0} Documentation'.format(package.__application_name__),
-     package.__author__, 'manual'),
+    ('index', '{0}.tex'.format(basename), u'{0} Documentation'.format(
+        package.__application_name__), package.__author__, 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -246,9 +245,8 @@ latex_logo = '_static/Logo_Medium_001.png'
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [('index', basename,
-              u'{0} Documentation'.format(package.__application_name__),
-              [package.__author__], 1)]
+man_pages = [('index', basename, u'{0} Documentation'.format(
+    package.__application_name__), [package.__author__], 1)]
 
 # If true, show URL addresses after external links.
 # man_show_urls = False
@@ -259,10 +257,9 @@ man_pages = [('index', basename,
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    ('index', basename,
-     u'{0} Documentation'.format(package.__application_name__),
-     package.__author__, package.__application_name__, basename,
-     'Miscellaneous'),
+    ('index', basename, u'{0} Documentation'.format(
+        package.__application_name__), package.__author__,
+     package.__application_name__, basename, 'Miscellaneous'),
 ]
 
 # Documents to append as an appendix to all manuals.

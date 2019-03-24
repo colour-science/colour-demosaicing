@@ -12,7 +12,11 @@ Subpackages
 
 from __future__ import absolute_import
 
+import numpy as np
 import os
+import subprocess  # nosec
+
+import colour
 
 from .bayer import (
     demosaicing_CFA_Bayer_bilinear, demosaicing_CFA_Bayer_DDFAPD,
@@ -20,7 +24,7 @@ from .bayer import (
     masks_CFA_Bayer, mosaicing_CFA_Bayer)
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2018 - Colour Developers'
+__copyright__ = 'Copyright (C) 2015-2019 - Colour Developers'
 __license__ = 'New BSD License - http://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
@@ -42,8 +46,24 @@ __application_name__ = 'Colour - Demosaicing'
 
 __major_version__ = '0'
 __minor_version__ = '1'
-__change_version__ = '3'
+__change_version__ = '4'
 __version__ = '.'.join(
     (__major_version__,
      __minor_version__,
      __change_version__))  # yapf: disable
+
+try:
+    version = subprocess.check_output(  # nosec
+        ['git', 'describe'], cwd=os.path.dirname(__file__)).strip()
+    version = version.decode('utf-8')
+except Exception:
+    version = __version__
+
+colour.utilities.ANCILLARY_COLOUR_SCIENCE_PACKAGES['colour-demosaicing'] = (
+    version)
+
+# TODO: Remove legacy printing support when deemed appropriate.
+try:
+    np.set_printoptions(legacy='1.13')
+except TypeError:
+    pass

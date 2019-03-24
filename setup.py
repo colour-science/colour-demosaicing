@@ -9,12 +9,12 @@ from __future__ import unicode_literals
 
 import os
 import re
-
+import sys
 from setuptools import setup
 from setuptools import find_packages
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2018 - Colour Developers'
+__copyright__ = 'Copyright (C) 2015-2019 - Colour Developers'
 __license__ = 'New BSD License - http://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
@@ -29,11 +29,11 @@ SHORT_DESCRIPTION = 'Colour - Demosaicing'
 
 LONG_DESCRIPTION = open('README.rst').read()
 
-INSTALLATION_REQUIREMENTS = ['colour-science>=0.3.11']
+INSTALLATION_REQUIREMENTS = ['colour-science>=0.3.12']
 
 if os.environ.get('READTHEDOCS') == 'True':
     INSTALLATION_REQUIREMENTS = [
-        'colour-science>=0.3.8', 'mock==1.0.1', 'sphinxcontrib-bibtex'
+        'colour-science>=0.3.12', 'mock==1.0.1', 'sphinxcontrib-bibtex'
     ]
 
 DOCS_REQUIREMENTS = [
@@ -42,9 +42,11 @@ DOCS_REQUIREMENTS = [
 
 TESTS_REQUIREMENTS = ['coverage>=3.7.1', 'flake8>=2.1.0', 'nose>=1.3.4']
 
-DEVELOPMENT_REQUIREMENTS = TESTS_REQUIREMENTS + [
-    'invoke', 'restructuredtext_lint', 'twine', 'yapf'
+DEVELOPMENT_REQUIREMENTS = DOCS_REQUIREMENTS + TESTS_REQUIREMENTS + [
+    'invoke', 'restructuredtext_lint', 'twine', 'yapf==0.23.0'
 ]
+if sys.version_info[:2] >= (3, 2):
+    DEVELOPMENT_REQUIREMENTS += ['biblib-simple']
 
 
 def get_version():
@@ -57,8 +59,8 @@ def get_version():
         Package full version.
     """
 
-    with open(
-            os.path.join('colour_demosaicing', '__init__.py')) as file_handle:
+    with open(os.path.join('colour_demosaicing',
+                           '__init__.py')) as file_handle:
         file_content = file_handle.read()
         major_version = re.search("__major_version__\s+=\s+'(.*)'",
                                   file_content).group(1)
