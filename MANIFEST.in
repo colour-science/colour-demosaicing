@@ -3,6 +3,7 @@ include *.bib
 include *.rst
 graft colour_demosaicing/examples
 prune colour_demosaicing/examples/.ipynb_checkpoints
+global-exclude __pycache__
 global-exclude *.pyc
 global-exclude *.pyo
 global-exclude ._*
