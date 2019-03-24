@@ -6,6 +6,9 @@ Invoke - Tasks
 
 from __future__ import unicode_literals
 
+import sys
+if sys.version_info[:2] >= (3, 2):
+    import biblib.bib
 import fnmatch
 import os
 import re
@@ -15,16 +18,17 @@ import colour_demosaicing
 from colour.utilities import message_box
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2013-2018 - Colour Developers'
+__copyright__ = 'Copyright (C) 2015-2019 - Colour Developers'
 __license__ = 'New BSD License - http://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
 __status__ = 'Production'
 
 __all__ = [
-    'APPLICATION_NAME', 'PYTHON_PACKAGE_NAME', 'PYPI_PACKAGE_NAME', 'clean',
-    'formatting', 'tests', 'quality', 'examples', 'docs', 'todo', 'preflight',
-    'build', 'virtualise', 'tag', 'release', 'sha256'
+    'APPLICATION_NAME', 'PYTHON_PACKAGE_NAME', 'PYPI_PACKAGE_NAME',
+    'BIBLIOGRAPHY_NAME', 'clean', 'formatting', 'tests', 'quality', 'examples',
+    'docs', 'todo', 'preflight', 'build', 'virtualise', 'tag', 'release',
+    'sha256'
 ]
 
 APPLICATION_NAME = colour_demosaicing.__application_name__
@@ -32,6 +36,8 @@ APPLICATION_NAME = colour_demosaicing.__application_name__
 PYTHON_PACKAGE_NAME = colour_demosaicing.__name__
 
 PYPI_PACKAGE_NAME = 'colour-demosaicing'
+
+BIBLIOGRAPHY_NAME = 'BIBLIOGRAPHY.bib'
 
 
 @task
@@ -69,7 +75,7 @@ def clean(ctx, docs=True, bytecode=False):
 
 
 @task
-def formatting(ctx, yapf=False, asciify=True):
+def formatting(ctx, yapf=False, asciify=True, bibtex=True):
     """
     Formats the codebase with *Yapf* and converts unicode characters to ASCII.
 
@@ -81,6 +87,8 @@ def formatting(ctx, yapf=False, asciify=True):
         Whether to format the codebase with *Yapf*.
     asciify : bool, optional
         Whether to convert unicode characters to ASCII.
+    bibtex : bool, optional
+        Whether to cleanup the *BibTeX* file.
 
     Returns
     -------
@@ -90,12 +98,32 @@ def formatting(ctx, yapf=False, asciify=True):
 
     if yapf:
         message_box('Formatting codebase with "Yapf"...')
-        ctx.run('yapf -p -i -r .')
+        ctx.run('yapf -p -i -r --exclude \'.git\' .')
 
     if asciify:
         message_box('Converting unicode characters to ASCII...')
         with ctx.cd('utilities'):
             ctx.run('./unicode_to_ascii.py')
+
+    if bibtex and sys.version_info[:2] >= (3, 2):
+        message_box('Cleaning up "BibTeX" file...')
+        bibtex_path = BIBLIOGRAPHY_NAME
+        with open(bibtex_path) as bibtex_file:
+            bibtex = biblib.bib.Parser().parse(
+                bibtex_file.read()).get_entries()
+
+        for entry in sorted(bibtex.values(), key=lambda x: x.key):
+            try:
+                del entry['file']
+            except KeyError:
+                pass
+            for key, value in entry.items():
+                entry[key] = re.sub('(?<!\\\\)\\&', '\\&', value)
+
+        with open(bibtex_path, 'w') as bibtex_file:
+            for entry in bibtex.values():
+                bibtex_file.write(entry.to_bib())
+                bibtex_file.write('\n')
 
 
 @task
@@ -305,7 +333,7 @@ def virtualise(ctx, tests=True):
         ctx.run('virtualenv staging')
         with ctx.cd('{0}-*'.format(PYPI_PACKAGE_NAME)):
             ctx.run('pwd')
-            ctx.run('{0} install numpy==1.13.3'.format(pip_binary))
+            ctx.run('{0} install numpy'.format(pip_binary))
             ctx.run('{0} install -e .'.format(pip_binary))
             ctx.run('{0} install matplotlib'.format(pip_binary))
             ctx.run('{0} install nose'.format(pip_binary))
@@ -335,7 +363,7 @@ def tag(ctx):
     """
 
     message_box('Tagging...')
-    result = ctx.run('git rev-parse --abbrev-ref HEAD', hide='both')
+    result = ctx.run('git reverse-parse --abbrev-ref HEAD', hide='both')
     assert result.stdout.strip() == 'develop', (
         'Are you still on a feature or master branch?')
 

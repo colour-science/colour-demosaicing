@@ -14,7 +14,7 @@ from __future__ import absolute_import
 
 import numpy as np
 import os
-import subprocess
+import subprocess  # nosec
 
 import colour
 
@@ -24,7 +24,7 @@ from .bayer import (
     masks_CFA_Bayer, mosaicing_CFA_Bayer)
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2018 - Colour Developers'
+__copyright__ = 'Copyright (C) 2015-2019 - Colour Developers'
 __license__ = 'New BSD License - http://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
@@ -53,7 +53,7 @@ __version__ = '.'.join(
      __change_version__))  # yapf: disable
 
 try:
-    version = subprocess.check_output(
+    version = subprocess.check_output(  # nosec
         ['git', 'describe'], cwd=os.path.dirname(__file__)).strip()
     version = version.decode('utf-8')
 except Exception:
