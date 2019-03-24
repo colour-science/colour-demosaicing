@@ -1,10 +1,7 @@
 include LICENSE
 include *.bib
 include *.rst
-include docs/_build/latex/ColourDemosaicing.pdf
 graft colour_demosaicing/examples
-graft docs/_build/html
-graft docs/_build/doctrees
 prune colour_demosaicing/examples/.ipynb_checkpoints
 global-exclude *.pyc
 global-exclude *.pyo
