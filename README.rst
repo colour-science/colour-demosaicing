@@ -1,8 +1,6 @@
 Colour - Demosaicing
 ====================
 
-..  image:: https://raw.githubusercontent.com/colour-science/colour-demosaicing/master/docs/_static/Demosaicing_001.png
-
 .. start-badges
 
 |travis| |coveralls| |codacy| |version|
@@ -27,6 +25,14 @@ CFA (Colour Filter Array) demosaicing algorithms and related utilities.
 
 It is open source and freely available under the
 `New BSD License <http://opensource.org/licenses/BSD-3-Clause>`_ terms.
+
+..  image:: https://raw.githubusercontent.com/colour-science/colour-demosaicing/master/docs/_static/Demosaicing_001.png
+
+.. contents:: **Table of Contents**
+    :backlinks: none
+    :depth: 3
+
+.. sectnum::
 
 Features
 --------
