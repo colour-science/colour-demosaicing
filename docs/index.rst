@@ -5,7 +5,7 @@ A `Python <https://www.python.org/>`_ package implementing various
 CFA (Colour Filter Array) demosaicing algorithms and related utilities.
 
 It is open source and freely available under the
-`New BSD License <http://opensource.org/licenses/BSD-3-Clause>`_ terms.
+`New BSD License <https://opensource.org/licenses/BSD-3-Clause>`_ terms.
 
 ..  image:: https://raw.githubusercontent.com/colour-science/colour-demosaicing/master/docs/_static/Demosaicing_001.png
 
@@ -106,5 +106,5 @@ About
 
 | **Colour - Demosaicing** by Colour Developers
 | Copyright © 2015-2019 – Colour Developers – `colour-science@googlegroups.com <colour-science@googlegroups.com>`_
-| This software is released under terms of New BSD License: http://opensource.org/licenses/BSD-3-Clause
+| This software is released under terms of New BSD License: https://opensource.org/licenses/BSD-3-Clause
 | `https://github.com/colour-science/colour-demosaicing <https://github.com/colour-science/colour-demosaicing>`_
