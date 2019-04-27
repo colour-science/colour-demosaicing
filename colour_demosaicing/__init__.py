@@ -54,7 +54,9 @@ __version__ = '.'.join(
 
 try:
     version = subprocess.check_output(  # nosec
-        ['git', 'describe'], cwd=os.path.dirname(__file__)).strip()
+        ['git', 'describe'],
+        cwd=os.path.dirname(__file__),
+        stderr=subprocess.STDOUT).strip()
     version = version.decode('utf-8')
 except Exception:
     version = __version__
