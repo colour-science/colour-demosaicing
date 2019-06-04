@@ -38,9 +38,9 @@ __all__ = [
 
 RESOURCES_DIRECTORY = os.path.join(os.path.dirname(__file__), 'resources')
 EXAMPLES_RESOURCES_DIRECTORY = os.path.join(
-    RESOURCES_DIRECTORY, 'colour-demosaicing-examples-dataset')
+    RESOURCES_DIRECTORY, 'colour-demosaicing-examples-datasets')
 TESTS_RESOURCES_DIRECTORY = os.path.join(RESOURCES_DIRECTORY,
-                                         'colour-demosaicing-tests-dataset')
+                                         'colour-demosaicing-tests-datasets')
 
 __application_name__ = 'Colour - Demosaicing'
 
