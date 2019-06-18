@@ -60,9 +60,7 @@ Primary Dependencies
 
 -  `Python 2.7 <https://www.python.org/download/releases/>`_ or
    `Python 3.7 <https://www.python.org/download/releases/>`_
--  `NumPy <http://www.numpy.org/>`_
 -  `Colour Science <https://www.colour-science.org>`_
--  `OpenImageIO <https://github.com/OpenImageIO/oiio>`_
 
 Pypi
 ^^^^
