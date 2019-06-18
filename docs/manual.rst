@@ -1,5 +1,5 @@
-Colour - Demoisaicing Manual
-============================
+Colour - Demosaicing Manual
+===========================
 
 .. toctree::
     :maxdepth: 3
