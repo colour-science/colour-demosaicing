@@ -8,3 +8,4 @@ build
 colour_demosaicing.egg-info
 dist
 docs/_build
+poetry.lock
