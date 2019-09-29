@@ -15,7 +15,7 @@ Colour - Demosaicing
     :target: https://www.codacy.com/app/colour-science/colour-demosaicing
     :alt: Code Grade
 .. |version| image:: https://img.shields.io/pypi/v/colour-demosaicing.svg?style=flat-square
-    :target: https://pypi.python.org/pypi/colour-demosaicing
+    :target: https://pypi.org/project/colour-demosaicing
     :alt: Package Version
 
 .. end-badges
