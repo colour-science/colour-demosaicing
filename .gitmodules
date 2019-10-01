@@ -1,6 +1,6 @@
-[submodule "colour_demosaicing/resources/colour-demosaicing-tests-dataset"]
-	path = colour_demosaicing/resources/colour-demosaicing-tests-dataset
-	url = https://github.com/colour-science/colour-demosaicing-tests-dataset.git
-[submodule "colour_demosaicing/resources/colour-demosaicing-examples-dataset"]
-	path = colour_demosaicing/resources/colour-demosaicing-examples-dataset
-	url = https://github.com/colour-science/colour-demosaicing-examples-dataset.git
+[submodule "colour_demosaicing/resources/colour-demosaicing-tests-datasets"]
+	path = colour_demosaicing/resources/colour-demosaicing-tests-datasets
+	url = https://github.com/colour-science/colour-demosaicing-tests-datasets.git
+[submodule "colour_demosaicing/resources/colour-demosaicing-examples-datasets"]
+	path = colour_demosaicing/resources/colour-demosaicing-examples-datasets
+	url = https://github.com/colour-science/colour-demosaicing-examples-datasets.git

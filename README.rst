@@ -15,7 +15,7 @@ Colour - Demosaicing
     :target: https://www.codacy.com/app/colour-science/colour-demosaicing
     :alt: Code Grade
 .. |version| image:: https://img.shields.io/pypi/v/colour-demosaicing.svg?style=flat-square
-    :target: https://pypi.python.org/pypi/colour-demosaicing
+    :target: https://pypi.org/project/colour-demosaicing
     :alt: Package Version
 
 .. end-badges
@@ -24,7 +24,7 @@ A `Python <https://www.python.org/>`_ package implementing various
 CFA (Colour Filter Array) demosaicing algorithms and related utilities.
 
 It is open source and freely available under the
-`New BSD License <http://opensource.org/licenses/BSD-3-Clause>`_ terms.
+`New BSD License <https://opensource.org/licenses/BSD-3-Clause>`_ terms.
 
 ..  image:: https://raw.githubusercontent.com/colour-science/colour-demosaicing/master/docs/_static/Demosaicing_001.png
 
@@ -58,11 +58,9 @@ Primary Dependencies
 
 **Colour - Demosaicing** requires various dependencies in order to run:
 
--  `Python 2.7 <https://www.python.org/download/releases/>`_ or
-   `Python 3.7 <https://www.python.org/download/releases/>`_
--  `NumPy <http://www.numpy.org/>`_
+-  `Python >= 2.7 <https://www.python.org/download/releases/>`_ or
+   `Python >= 3.5 <https://www.python.org/download/releases/>`_
 -  `Colour Science <https://www.colour-science.org>`_
--  `OpenImageIO <https://github.com/OpenImageIO/oiio>`_
 
 Pypi
 ^^^^
@@ -72,14 +70,6 @@ the `Python Package Index <http://pypi.python.org/pypi/colour-demosaicing>`_ by
 issuing this command in a shell::
 
 	pip install colour-demosaicing
-
-The tests suite dependencies are installed as follows::
-
-    pip install 'colour-demosaicing[tests]'
-
-The documentation building dependencies are installed as follows::
-
-    pip install 'colour-demosaicing[docs]'
 
 The overall development dependencies are installed as follows::
 
@@ -114,10 +104,16 @@ The bibliography is available in the repository in
 `BibTeX <https://github.com/colour-science/colour-demosaicing/blob/develop/BIBLIOGRAPHY.bib>`_
 format.
 
+Code of Conduct
+---------------
+
+The *Code of Conduct*, adapted from the `Contributor Covenant 1.4 <https://www.contributor-covenant.org/version/1/4/code-of-conduct.html>`_,
+is available on the `Code of Conduct <https://www.colour-science.org/code-of-conduct/>`_ page.
+
 About
 -----
 
 | **Colour - Demosaicing** by Colour Developers
 | Copyright © 2015-2019 – Colour Developers – `colour-science@googlegroups.com <colour-science@googlegroups.com>`_
-| This software is released under terms of New BSD License: http://opensource.org/licenses/BSD-3-Clause
-| `http://github.com/colour-science/colour-demosaicing <http://github.com/colour-science/colour-demosaicing>`_
+| This software is released under terms of New BSD License: https://opensource.org/licenses/BSD-3-Clause
+| `https://github.com/colour-science/colour-demosaicing <https://github.com/colour-science/colour-demosaicing>`_
