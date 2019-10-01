@@ -3,10 +3,10 @@ Colour - Demosaicing
 
 .. start-badges
 
-|travis| |coveralls| |codacy| |version|
+|actions| |coveralls| |codacy| |version|
 
-.. |travis| image:: https://img.shields.io/travis/colour-science/colour-demosaicing/develop.svg?style=flat-square
-    :target: https://travis-ci.org/colour-science/colour-demosaicing
+.. |actions| image:: https://github.com/colour-science/colour-demosaicing/workflows/Continuous%20Integration/badge.svg
+    :target: https://github.com/colour-science/colour-demosaicing/actions
     :alt: Develop Build Status
 .. |coveralls| image:: http://img.shields.io/coveralls/colour-science/colour-demosaicing/develop.svg?style=flat-square
     :target: https://coveralls.io/r/colour-science/colour-demosaicing
