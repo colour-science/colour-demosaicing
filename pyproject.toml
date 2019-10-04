@@ -61,6 +61,7 @@ jupyter = { version = "*", optional = true }  # Development dependency.
 mock = { version = "*", optional = true }  # Development dependency.
 nose = { version = "*", optional = true }  # Development dependency.
 numpy = { version = "*", optional = true }
+pytest = { version = "*", optional = true }  # Development dependency.
 restructuredtext-lint = { version = "*", optional = true }  # Development dependency.
 sphinx = { version = "*", optional = true }  # Development dependency.
 sphinx_rtd_theme = { version = "*", optional = true }  # Development dependency.
@@ -78,6 +79,7 @@ invoke = "*"
 jupyter = "*"
 mock = "*"
 nose = "*"
+pytest = "*"
 restructuredtext-lint = "*"
 sphinx = "*"
 sphinx_rtd_theme = "*"
@@ -96,6 +98,7 @@ development = [
     "jupyter",
     "mock",
     "nose",
+    "pytest",
     "restructuredtext-lint",
     "sphinx",
     "sphinx_rtd_theme",

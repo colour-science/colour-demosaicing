@@ -147,10 +147,6 @@ def tests(ctx, nose=True):
         Task success.
     """
 
-    # TODO: Find a way to deploy OpenImageIO.
-
-    return
-
     if nose:
         message_box('Running "Nosetests"...')
         ctx.run(
@@ -158,7 +154,8 @@ def tests(ctx, nose=True):
             format(PYTHON_PACKAGE_NAME))
     else:
         message_box('Running "Pytest"...')
-        ctx.run('pytest -W ignore')
+        ctx.run('py.test --disable-warnings --doctest-modules '
+                '--ignore={0}/examples {0}'.format(PYTHON_PACKAGE_NAME))
 
 
 @task
