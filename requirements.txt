@@ -1,0 +1,136 @@
+alabaster==0.7.12
+appnope==0.1.0; python_version < "3.3" and sys_platform == "darwin" or sys_platform == "darwin" or python_version >= "3.3" and sys_platform == "darwin"
+asn1crypto==1.0.1
+atomicwrites==1.3.0
+attrs==19.2.0
+babel==2.7.0
+backcall==0.1.0
+backports.shutil-get-terminal-size==1.0.0; python_version == "2.7"
+backports.shutil-which==3.5.2; os_name == "nt" and python_version < "3.0"
+biblib-simple==0.1.1
+bleach==3.1.0
+certifi==2019.9.11
+cffi==1.12.3
+chardet==3.0.4
+colorama==0.4.1; python_version < "3.3" and sys_platform == "win32" or sys_platform == "win32" or python_version >= "3.3" and sys_platform == "win32"
+colour-science==0.3.13
+configparser==4.0.2; python_version < "3.2"
+contextlib2==0.6.0; python_version < "3"
+coverage==4.5.4
+coveralls==1.8.2
+cryptography==2.7
+decorator==4.4.0
+defusedxml==0.6.0
+docopt==0.6.2
+docutils==0.15.2
+entrypoints==0.3
+enum34==1.1.6; python_version < "3" and extra == "secure" or python_version < "3.4"
+flake8==3.7.8
+funcsigs==1.0.2; python_version < "3.3"
+functools32==3.2.3-2; python_version < "3.2"
+idna==2.8
+imageio==2.5.0
+imagesize==1.1.0
+importlib-metadata==0.23
+invoke==1.3.0
+ipaddress==1.0.22; python_version < "3" and extra == "secure" or python_version == "2.7" and extra == "secure" or python_version == "2.7"
+ipykernel==4.10.1
+ipykernel==5.1.2
+ipython==5.8.0
+ipython==7.8.0
+ipython-genutils==0.2.0
+ipywidgets==7.5.1
+jedi==0.15.1
+jinja2==2.10.3
+jsonschema==3.0.2
+jupyter==1.0.0
+jupyter-client==5.3.3
+jupyter-console==5.2.0
+jupyter-console==6.0.0
+jupyter-core==4.5.0
+latexcodec==1.0.7
+markupsafe==1.1.1
+mccabe==0.6.1
+mistune==0.8.4
+mock==3.0.5
+more-itertools==5.0.0
+more-itertools==7.2.0
+nbconvert==5.6.0
+nbformat==4.4.0
+nose==1.3.7
+notebook==5.7.8
+notebook==6.0.1
+numpy==1.16.5
+numpy==1.17.2
+oset==0.1.3
+packaging==19.2
+pandocfilters==1.4.2
+parso==0.5.1
+pathlib2==2.3.5; python_version < "3.6" or python_version < "3.3" and python_version in "2.6 2.7 3.2 3.3"
+pexpect==4.7.0; python_version < "3.3" and sys_platform != "win32" or sys_platform != "win32" or python_version >= "3.3" and sys_platform != "win32"
+pickleshare==0.7.5
+pillow==6.2.0
+pkginfo==1.5.0.1
+pluggy==0.13.0
+prometheus-client==0.7.1
+prompt-toolkit==1.0.18
+prompt-toolkit==2.0.10
+ptyprocess==0.6.0; sys_platform != "win32" or os_name != "nt" or python_version < "3.3" and sys_platform != "win32" or python_version >= "3.3" and sys_platform != "win32"
+py==1.8.0
+pybtex==0.22.2
+pybtex-docutils==0.2.1
+pycodestyle==2.5.0
+pycparser==2.19
+pyflakes==2.1.1
+pygments==2.4.2
+pyopenssl==19.0.0
+pyparsing==2.4.2
+pyrsistent==0.15.4
+pytest==4.6.5
+pytest==5.2.0
+python-dateutil==2.8.0
+pytz==2019.2
+pywin32==225; sys_platform == "win32"
+pywinpty==0.5.5; os_name == "nt"
+pyyaml==5.1.2
+pyzmq==18.1.0
+qtconsole==4.5.5
+readme-renderer==24.0
+requests==2.22.0
+requests-toolbelt==0.9.1
+restructuredtext-lint==1.3.0
+scandir==1.10.0; python_version < "3.5" or python_version < "3.3" and python_version in "2.6 2.7 3.2 3.3"
+scipy==1.2.2
+scipy==1.3.1
+send2trash==1.5.0
+simplegeneric==0.8.1
+six==1.12.0
+snowballstemmer==2.0.0
+sphinx==1.8.5
+sphinx==2.2.0
+sphinx-rtd-theme==0.4.3
+sphinxcontrib-applehelp==1.0.1
+sphinxcontrib-bibtex==0.4.2
+sphinxcontrib-bibtex==1.0.0
+sphinxcontrib-devhelp==1.0.1
+sphinxcontrib-htmlhelp==1.0.2
+sphinxcontrib-jsmath==1.0.1
+sphinxcontrib-qthelp==1.0.2
+sphinxcontrib-serializinghtml==1.1.3
+sphinxcontrib-websupport==1.1.2
+terminado==0.8.2
+testpath==0.4.2
+toml==0.10.0
+tornado==5.1.1
+tornado==6.0.3
+tqdm==4.36.1
+traitlets==4.3.3
+twine==1.15.0
+typing==3.7.4.1; python_version < "3.5"
+urllib3==1.25.6
+wcwidth==0.1.7
+webencodings==0.5.1
+widgetsnbextension==3.5.1
+win-unicode-console==0.5; sys_platform == "win32" and python_version < "3.6" or sys_platform == "win32" and python_version < "3.3" or sys_platform == "win32" and python_version < "3.6" and python_version >= "3.3"
+yapf==0.23.0
+zipp==0.6.0
