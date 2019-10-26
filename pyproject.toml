@@ -58,6 +58,7 @@ coveralls = { version = "*", optional = true }  # Development dependency.
 flake8 = { version = "*", optional = true }  # Development dependency.
 invoke = { version = "*", optional = true }  # Development dependency.
 jupyter = { version = "*", optional = true }  # Development dependency.
+matplotlib = { version = "*", optional = true }
 mock = { version = "*", optional = true }  # Development dependency.
 nose = { version = "*", optional = true }  # Development dependency.
 numpy = { version = "*", optional = true }
@@ -110,6 +111,7 @@ development = [
     "twine",
     "yapf"
 ]
+plotting = [ "backports.functools_lru_cache", "matplotlib" ]
 read-the-docs = [ "mock", "numpy", "sphinxcontrib-bibtex" ]
 
 [build-system]
