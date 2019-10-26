@@ -47,7 +47,7 @@ demosaicing_CFA_Bayer_bilinear` definition.
 
             np.testing.assert_almost_equal(
                 demosaicing_CFA_Bayer_bilinear(
-                    read_image(str(CFA.format(pattern))), pattern),
+                    read_image(str(CFA.format(pattern)))[..., 0], pattern),
                 read_image(str(RGB.format(pattern))),
                 decimal=7)
 
