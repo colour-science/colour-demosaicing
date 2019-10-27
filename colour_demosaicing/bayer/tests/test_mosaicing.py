@@ -17,7 +17,7 @@ from colour_demosaicing.bayer import mosaicing_CFA_Bayer
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2015-2019 - Colour Developers'
-__license__ = 'New BSD License - http://opensource.org/licenses/BSD-3-Clause'
+__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
 __status__ = 'Production'
@@ -47,7 +47,7 @@ class TestMosaicing_CFA_Bayer(unittest.TestCase):
             CFA = os.path.join(BAYER_DIRECTORY, 'Lighthouse_CFA_{0}.exr')
             np.testing.assert_almost_equal(
                 mosaicing_CFA_Bayer(image, pattern),
-                read_image(str(CFA.format(pattern))),
+                read_image(str(CFA.format(pattern)))[..., 0],
                 decimal=7)
 
 

@@ -18,7 +18,7 @@ from colour_demosaicing.bayer import demosaicing_CFA_Bayer_bilinear
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2015-2019 - Colour Developers'
-__license__ = 'New BSD License - http://opensource.org/licenses/BSD-3-Clause'
+__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
 __email__ = 'colour-science@googlegroups.com'
 __status__ = 'Production'
@@ -47,7 +47,7 @@ demosaicing_CFA_Bayer_bilinear` definition.
 
             np.testing.assert_almost_equal(
                 demosaicing_CFA_Bayer_bilinear(
-                    read_image(str(CFA.format(pattern))), pattern),
+                    read_image(str(CFA.format(pattern)))[..., 0], pattern),
                 read_image(str(RGB.format(pattern))),
                 decimal=7)
 

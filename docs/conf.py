@@ -16,7 +16,7 @@ import re
 
 import colour_demosaicing as package
 
-basename = re.sub('_(\w)', lambda x: x.group(1).upper(),
+basename = re.sub('_(\\w)', lambda x: x.group(1).upper(),
                   package.__name__.title())
 
 autosummary_generate = True
@@ -99,7 +99,7 @@ exclude_patterns = ['_build']
 # show_authors = False
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+pygments_style = 'lovelace'
 
 # A list of ignored prefixes for module index sorting.
 # modindex_common_prefix = []
@@ -198,7 +198,7 @@ htmlhelp_basename = '{0}Doc'.format(basename)
 latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     'papersize':
-        'letterpaper',
+        'a4paper',
 
     # The font size ('10pt', '11pt' or '12pt').
     'pointsize':
@@ -285,10 +285,10 @@ epub_copyright = package.__copyright__.replace('Copyright (C)', '')
 # The basename for the epub file. It defaults to the project name.
 # epub_basename = basename
 
-# The HTML theme for the epub output. Since the default themes are not optimized
-# for small screen space, using the same theme for HTML and epub output is
-# usually not wise. This defaults to 'epub', a theme designed to save visual
-# space.
+# The HTML theme for the epub output. Since the default themes are not
+# optimized for small screen space, using the same theme for HTML and epub
+# output is usually not wise. This defaults to 'epub', a theme designed to save
+# visual space.
 # epub_theme = 'epub'
 
 # The language of the text. It defaults to the language option
@@ -345,7 +345,7 @@ epub_exclude_files = ['search.html']
 
 autoclass_content = 'both'
 
-intersphinx_mapping = {'python': ('https://docs.python.org/3.5', None)}
+intersphinx_mapping = {'python': ('https://docs.python.org/3.7', None)}
 
 
 def _autodoc_process_docstring(app, what, name, obj, options, lines):
