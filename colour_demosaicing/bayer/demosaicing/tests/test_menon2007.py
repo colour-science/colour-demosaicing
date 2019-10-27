@@ -47,7 +47,7 @@ demosaicing_CFA_Bayer_Menon2007` definition.
 
             np.testing.assert_almost_equal(
                 demosaicing_CFA_Bayer_Menon2007(
-                    read_image(str(CFA.format(pattern))), pattern),
+                    read_image(str(CFA.format(pattern)))[..., 0], pattern),
                 read_image(str(RGB.format(pattern))),
                 decimal=7)
 
@@ -55,7 +55,7 @@ demosaicing_CFA_Bayer_Menon2007` definition.
                                'Lighthouse_Menon2007_NR_{0}.exr')
             np.testing.assert_almost_equal(
                 demosaicing_CFA_Bayer_Menon2007(
-                    read_image(str(CFA.format(pattern))),
+                    read_image(str(CFA.format(pattern)))[..., 0],
                     pattern,
                     refining_step=False),
                 read_image(str(RGB.format(pattern))),
