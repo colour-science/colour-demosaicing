@@ -380,7 +380,8 @@ def tag(ctx):
     """
 
     message_box('Tagging...')
-    result = ctx.run('git reverse-parse --abbrev-ref HEAD', hide='both')
+    result = ctx.run('git rev-parse --abbrev-ref HEAD', hide='both')
+
     assert result.stdout.strip() == 'develop', (
         'Are you still on a feature or master branch?')
 
