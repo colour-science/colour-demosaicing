@@ -43,7 +43,8 @@ classifiers = [
     "Topic :: Software Development"
 ]
 exclude = [
-    "colour_demosaicing/resources"
+    "colour_demosaicing/resources/colour-demosaicing-examples-datasets/bayer/*",
+    "colour_demosaicing/resources/colour-demosaicing-tests-datasets/colour_demosaicing/bayer/*"
 ]
 
 [tool.poetry.dependencies]
