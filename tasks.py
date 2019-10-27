@@ -356,6 +356,11 @@ def virtualise(ctx, tests=True):
                                                  APPLICATION_VERSION))
         ctx.run('mv {0}-{1} {2}'.format(PYPI_PACKAGE_NAME, APPLICATION_VERSION,
                                         unique_name))
+        ctx.run('rm -rf {0}/{1}/resources'.format(unique_name,
+                                                  PYTHON_PACKAGE_NAME))
+        ctx.run('ln -s ../../../{0}/resources {1}/{0}'.format(
+            PYTHON_PACKAGE_NAME, unique_name))
+
         with ctx.cd(unique_name):
             ctx.run('poetry env use 3')
             ctx.run('poetry install')
