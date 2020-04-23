@@ -59,7 +59,7 @@ def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
         demosaicing of the high dynamic range data as showcased in this
         `Jupyter Notebook <https://github.com/colour-science/colour-hdri/\
 blob/develop/colour_hdri/examples/\
-examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
+examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
 
     References
     ----------
