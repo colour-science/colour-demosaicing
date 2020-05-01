@@ -9,9 +9,8 @@ References
 ----------
 -   :cite:`Malvar2004a` : Malvar, H. S., He, L.-W., Cutler, R., & Way, O. M.
     (2004). High-Quality Linear Interpolation for Demosaicing of
-    Bayer-Patterned Color Images. In International Conference of Acoustic,
-    Speech and Signal Processing (pp. 5-8). Institute of Electrical and
-    Electronics Engineers, Inc. Retrieved from
+    Bayer-Patterned Color Images. International Conference of Acoustic, Speech
+    and Signal Processing, 5-8.
     http://research.microsoft.com/apps/pubs/default.aspx?id=102068
 """
 
