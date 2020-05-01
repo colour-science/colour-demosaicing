@@ -127,7 +127,7 @@ def formatting(ctx, yapf=True, asciify=True, bibtex=True):
                 entry[key] = re.sub('(?<!\\\\)\\&', '\\&', value)
 
         with open(bibtex_path, 'w') as bibtex_file:
-            for entry in bibtex.values():
+            for entry in sorted(bibtex.values(), key=lambda x: x.key):
                 bibtex_file.write(entry.to_bib())
                 bibtex_file.write('\n')
 
