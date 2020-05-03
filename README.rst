@@ -5,7 +5,7 @@ Colour - Demosaicing
 
 |actions| |coveralls| |codacy| |version|
 
-.. |actions| image:: https://github.com/colour-science/colour-demosaicing/workflows/Continuous%20Integration/badge.svg
+.. |actions| image:: https://img.shields.io/github/workflow/status/colour-science/colour-demosaicing/Continuous%20Integration?label=actions&logo=github&style=flat-square
     :target: https://github.com/colour-science/colour-demosaicing/actions
     :alt: Develop Build Status
 .. |coveralls| image:: http://img.shields.io/coveralls/colour-science/colour-demosaicing/develop.svg?style=flat-square
@@ -114,6 +114,6 @@ About
 -----
 
 | **Colour - Demosaicing** by Colour Developers
-| Copyright © 2015-2019 – Colour Developers – `colour-science@googlegroups.com <colour-science@googlegroups.com>`__
+| Copyright © 2015-2020 – Colour Developers – `colour-developers@colour-science.org <colour-developers@colour-science.org>`__
 | This software is released under terms of New BSD License: https://opensource.org/licenses/BSD-3-Clause
 | `https://github.com/colour-science/colour-demosaicing <https://github.com/colour-science/colour-demosaicing>`__

@@ -9,9 +9,8 @@ References
 ----------
 -   :cite:`Malvar2004a` : Malvar, H. S., He, L.-W., Cutler, R., & Way, O. M.
     (2004). High-Quality Linear Interpolation for Demosaicing of
-    Bayer-Patterned Color Images. In International Conference of Acoustic,
-    Speech and Signal Processing (pp. 5-8). Institute of Electrical and
-    Electronics Engineers, Inc. Retrieved from
+    Bayer-Patterned Color Images. International Conference of Acoustic, Speech
+    and Signal Processing, 5-8.
     http://research.microsoft.com/apps/pubs/default.aspx?id=102068
 """
 
@@ -25,10 +24,10 @@ from colour.utilities import as_float_array, tstack
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2019 - Colour Developers'
+__copyright__ = 'Copyright (C) 2015-2020 - Colour Developers'
 __license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
-__email__ = 'colour-science@googlegroups.com'
+__email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = ['demosaicing_CFA_Bayer_Malvar2004']
@@ -59,7 +58,7 @@ def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
         demosaicing of the high dynamic range data as showcased in this
         `Jupyter Notebook <https://github.com/colour-science/colour-hdri/\
 blob/develop/colour_hdri/examples/\
-examples_merge_from_raw_files_with_post_demosaicing.ipynb>`_.
+examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
 
     References
     ----------
