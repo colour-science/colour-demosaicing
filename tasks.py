@@ -332,6 +332,51 @@ def build(ctx):
 
     message_box('Building...')
     ctx.run('poetry build')
+
+    with ctx.cd('dist'):
+        ctx.run('tar -xvf {0}-{1}.tar.gz'.format(PYPI_PACKAGE_NAME,
+                                                 APPLICATION_VERSION))
+        ctx.run('cp {0}-{1}/setup.py ../'.format(PYPI_PACKAGE_NAME,
+                                                 APPLICATION_VERSION))
+
+        ctx.run('rm -rf {0}-{1}'.format(PYPI_PACKAGE_NAME,
+                                        APPLICATION_VERSION))
+
+    with open('setup.py') as setup_file:
+        source = setup_file.read()
+
+    setup_kwargs = []
+
+    def sub_callable(match):
+        setup_kwargs.append(match)
+
+        return ''
+
+    template = """
+    setup({0}
+    )
+    """
+
+    source = re.sub('from setuptools import setup',
+                    'import codecs\nfrom setuptools import setup', source)
+    source = re.sub(
+        'setup_kwargs = {(.*)}.*setup\\(\\*\\*setup_kwargs\\)',
+        sub_callable,
+        source,
+        flags=re.DOTALL)[:-2]
+    setup_kwargs = setup_kwargs[0].group(1).splitlines()
+    for i, line in enumerate(setup_kwargs):
+        setup_kwargs[i] = re.sub('^\\s*(\'(\\w+)\':\\s?)', '    \\2=', line)
+        if setup_kwargs[i].strip().startswith('long_description'):
+            setup_kwargs[i] = ('    long_description='
+                               'codecs.open(\'README.rst\', encoding=\'utf8\')'
+                               '.read(),')
+
+    source += template.format('\n'.join(setup_kwargs))
+
+    with open('setup.py', 'w') as setup_file:
+        setup_file.write(source)
+
     ctx.run('twine check dist/*')
 
 
