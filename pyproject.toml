@@ -9,7 +9,7 @@ readme = 'README.rst'
 repository = "https://github.com/colour-science/colour-demosaicing"
 homepage = "https://www.colour-science.org/"
 keywords = [
-   "cfa",
+    "cfa",
     "bayer",
     "color",
     "color-science",
