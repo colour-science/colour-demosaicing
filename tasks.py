@@ -353,9 +353,9 @@ def build(ctx):
         return ''
 
     template = """
-    setup({0}
-    )
-    """
+setup({0}
+)
+"""
 
     source = re.sub('from setuptools import setup',
                     'import codecs\nfrom setuptools import setup', source)
