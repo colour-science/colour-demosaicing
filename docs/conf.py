@@ -19,9 +19,12 @@ import colour_demosaicing as package
 basename = re.sub('_(\\w)', lambda x: x.group(1).upper(),
                   package.__name__.title())
 
+autodoc_member_order = 'bysource'
+autodoc_mock_imports = ['colour', 'scipy', 'scipy.ndimage.filters']
+
 autosummary_generate = True
 
-autodoc_mock_imports = ['colour', 'scipy', 'scipy.ndimage.filters']
+napoleon_custom_sections = ['Attributes', 'Methods']
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
