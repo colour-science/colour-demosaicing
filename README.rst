@@ -69,11 +69,11 @@ Once the dependencies satisfied, **Colour - Demosaicing** can be installed from
 the `Python Package Index <http://pypi.python.org/pypi/colour-demosaicing>`__ by
 issuing this command in a shell::
 
-	pip install colour-demosaicing
+	pip install --user colour-demosaicing
 
 The overall development dependencies are installed as follows::
 
-    pip install 'colour-demosaicing[development]'
+    pip install --user 'colour-demosaicing[development]'
 
 Usage
 -----
