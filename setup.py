@@ -40,7 +40,7 @@ extras_require = \
  'plotting': ['backports.functools_lru_cache', 'matplotlib'],
  'read-the-docs': ['mock', 'numpy', 'sphinxcontrib-bibtex']}
 
-    setup(
+setup(
     name='colour-demosaicing',
     version='0.1.5',
     description='CFA (Colour Filter Array) Demosaicing Algorithms for Python',
@@ -55,5 +55,4 @@ extras_require = \
     install_requires=install_requires,
     extras_require=extras_require,
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*',
-    )
-    
+)

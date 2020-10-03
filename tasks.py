@@ -258,7 +258,7 @@ def docs(ctx, html=True, pdf=True):
         Task success.
     """
 
-    with ctx.prefix('export COLOUR_SCIENCE_DOCUMENTATION_BUILD=True'):
+    with ctx.prefix('export COLOUR_SCIENCE__DOCUMENTATION_BUILD=True'):
         with ctx.cd('docs'):
             if html:
                 message_box('Building "HTML" documentation...')
@@ -353,9 +353,9 @@ def build(ctx):
         return ''
 
     template = """
-    setup({0}
-    )
-    """
+setup({0}
+)
+"""
 
     source = re.sub('from setuptools import setup',
                     'import codecs\nfrom setuptools import setup', source)

@@ -39,9 +39,9 @@ Primary Dependencies
 
 **Colour - Demosaicing** requires various dependencies in order to run:
 
--  `Python 2.7 <https://www.python.org/download/releases/>`__ or
-   `Python 3.7 <https://www.python.org/download/releases/>`__
--  `Colour Science <https://www.colour-science.org>`__
+-   `python>=2.7 <https://www.python.org/download/releases/>`__ or
+    `python>=3.5 <https://www.python.org/download/releases/>`__
+-   `colour-science <https://pypi.org/project/colour-science/>`__
 
 Pypi
 ^^^^
@@ -50,19 +50,19 @@ Once the dependencies satisfied, **Colour - Demosaicing** can be installed from
 the `Python Package Index <http://pypi.python.org/pypi/colour-demosaicing>`__ by
 issuing this command in a shell::
 
-	pip install colour-demosaicing
+	pip install --user colour-demosaicing
 
 The tests suite dependencies are installed as follows::
 
-    pip install 'colour-demosaicing[tests]'
+    pip install --user 'colour-demosaicing[tests]'
 
 The documentation building dependencies are installed as follows::
 
-    pip install 'colour-demosaicing[docs]'
+    pip install --user 'colour-demosaicing[docs]'
 
 The overall development dependencies are installed as follows::
 
-    pip install 'colour-demosaicing[development]'
+    pip install --user 'colour-demosaicing[development]'
 
 Usage
 -----
