@@ -49,7 +49,7 @@ exclude = [
 ]
 
 [tool.poetry.dependencies]
-python = "~2.7 || ^3.5"
+python = "~2.7 || ^3.6"
 colour-science = "^0.3.14"
 
 "backports.functools_lru_cache" = { version = "*", optional = true }
