@@ -7,8 +7,9 @@ jobs:
     name: ${{ matrix.os }} - Python ${{ matrix.python-version }}
     strategy:
       matrix:
-        os: [macOS-latest, ubuntu-18.04, windows-2019]
+        os: [macOS-latest, ubuntu-18.04, windows-latest]
         python-version: [2.7, 3.6, 3.7, 3.8]
+      fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v1
@@ -17,7 +18,7 @@ jobs:
     - name: Environment Variables
       run: |
         echo "CI_PYTHON_VERSION=${{ matrix.python-version }}" >> $GITHUB_ENV
-        echo "CI_PACKAGE=colour_checker_detection" >> $GITHUB_ENV
+        echo "CI_PACKAGE=colour_demosaicing" >> $GITHUB_ENV
         echo "CI_SHA=${{ github.sha }}" >> $GITHUB_ENV
         echo "COVERALLS_REPO_TOKEN=${{ secrets.COVERALLS_REPO_TOKEN }}" >> $GITHUB_ENV
       shell: bash
@@ -25,16 +26,37 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Update OS & Install APT Dependencies (macOs)
+      if: matrix.os == 'macOS-latest'
+      run: |
+        brew install gnu-sed
+        ln -s /usr/local/bin/gsed /usr/local/bin/sed
+      shell: bash
     - name: Install Poetry
       run: |
         curl -L https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py -o get-poetry.py
-        python get-poetry.py
-        PATH=$HOME/.poetry/bin:$PATH
-        echo ::set-env name=PATH::$PATH
+        python get-poetry.py --version 1.0.10
+        echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+      shell: bash
+    - name: Update pyproject.toml file (Python 2.7)
+      if: matrix.python-version == '2.7'
+      run: |
+        sed -i.bak 's/python = "~2.7 || ^3.6"/python = "~2.7"/g' pyproject.toml
+        sed -i.bak '/colour-science = "\^0\.3\.16"/ a qtconsole = "4.7.7"' pyproject.toml
+      shell: bash
+    - name: Update pyproject.toml file (Windows, Python 2.7)
+      if: matrix.os == 'windows-latest' && matrix.python-version == '2.7'
+      run: |
+        sed -i.bak '/colour-science = "\^0\.3\.16"/ a pywin32 = "228"' pyproject.toml
+      shell: bash
+    - name: Update pyproject.toml file (Python 3.x)
+      if: matrix.python-version != '2.7'
+      run: |
+        sed -i.bak 's/python = "~2.7 || ^3.6"/python = "^3.6"/g' pyproject.toml
       shell: bash
     - name: Install Package Dependencies
       run: |
-        poetry install --extras "optional plotting"
+        poetry install
         poetry run python -c "import imageio;imageio.plugins.freeimage.download()"
       shell: bash
     - name: Lint with flake8
