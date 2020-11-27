@@ -16,7 +16,7 @@ package_data = \
                         'resources/colour-demosaicing-tests-datasets/*']}
 
 install_requires = \
-['colour-science>=0.3.14,<0.4.0']
+['colour-science>=0.3.16,<0.4.0']
 
 extras_require = \
 {'development': ['biblib-simple',
@@ -31,7 +31,7 @@ extras_require = \
                  'pre-commit',
                  'pytest',
                  'restructuredtext-lint',
-                 'sphinx',
+                 'sphinx<=3.1.2',
                  'sphinx_rtd_theme',
                  'sphinxcontrib-bibtex',
                  'toml',
@@ -54,5 +54,5 @@ setup(
     package_data=package_data,
     install_requires=install_requires,
     extras_require=extras_require,
-    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*',
+    python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*',
 )
