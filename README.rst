@@ -65,7 +65,7 @@ Primary Dependencies
 Pypi
 ^^^^
 
-Once the dependencies satisfied, **Colour - Demosaicing** can be installed from
+Once the dependencies are satisfied, **Colour - Demosaicing** can be installed from
 the `Python Package Index <http://pypi.python.org/pypi/colour-demosaicing>`__ by
 issuing this command in a shell::
 
