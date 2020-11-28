@@ -21,10 +21,10 @@ import colour_demosaicing
 from colour.utilities import message_box
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2019 - Colour Developers'
+__copyright__ = 'Copyright (C) 2015-2020 - Colour Developers'
 __license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
-__email__ = 'colour-science@googlegroups.com'
+__email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
@@ -80,9 +80,10 @@ def clean(ctx, docs=True, bytecode=False):
 
 
 @task
-def formatting(ctx, yapf=False, asciify=True, bibtex=True):
+def formatting(ctx, yapf=True, asciify=True, bibtex=True):
     """
-    Formats the codebase with *Yapf* and converts unicode characters to ASCII.
+    Formats the codebase with *Yapf*, converts unicode characters to ASCII and
+    cleanup the "BibTeX" file.
 
     Parameters
     ----------
@@ -126,7 +127,7 @@ def formatting(ctx, yapf=False, asciify=True, bibtex=True):
                 entry[key] = re.sub('(?<!\\\\)\\&', '\\&', value)
 
         with open(bibtex_path, 'w') as bibtex_file:
-            for entry in bibtex.values():
+            for entry in sorted(bibtex.values(), key=lambda x: x.key):
                 bibtex_file.write(entry.to_bib())
                 bibtex_file.write('\n')
 
@@ -153,11 +154,14 @@ def tests(ctx, nose=True):
         message_box('Running "Nosetests"...')
         ctx.run(
             'nosetests --with-doctest --with-coverage --cover-package={0} {0}'.
-            format(PYTHON_PACKAGE_NAME))
+            format(PYTHON_PACKAGE_NAME),
+            env={'MPLBACKEND': 'AGG'})
     else:
         message_box('Running "Pytest"...')
-        ctx.run('py.test --disable-warnings --doctest-modules '
-                '--ignore={0}/examples {0}'.format(PYTHON_PACKAGE_NAME))
+        ctx.run(
+            'py.test --disable-warnings --doctest-modules '
+            '--ignore={0}/examples {0}'.format(PYTHON_PACKAGE_NAME),
+            env={'MPLBACKEND': 'AGG'})
 
 
 @task
@@ -254,7 +258,7 @@ def docs(ctx, html=True, pdf=True):
         Task success.
     """
 
-    with ctx.prefix('export COLOUR_SCIENCE_DOCUMENTATION_BUILD=True'):
+    with ctx.prefix('export COLOUR_SCIENCE__DOCUMENTATION_BUILD=True'):
         with ctx.cd('docs'):
             if html:
                 message_box('Building "HTML" documentation...')
@@ -290,7 +294,7 @@ def todo(ctx):
 @task
 def requirements(ctx):
     """
-    Export the *requirements.txt* file.
+    Exports the *requirements.txt* file.
 
     Parameters
     ----------
@@ -304,11 +308,12 @@ def requirements(ctx):
     """
 
     message_box('Exporting "requirements.txt" file...')
-    ctx.run('poetry run pip freeze | grep -v "github.com/colour-science" '
+    ctx.run('poetry run pip freeze | '
+            'egrep -v "github.com/colour-science|enum34" '
             '> requirements.txt')
 
 
-@task(preflight, docs, todo, requirements)
+@task(clean, preflight, docs, todo, requirements)
 def build(ctx):
     """
     Builds the project and runs dependency tasks, i.e. *docs*, *todo*, and
@@ -328,8 +333,54 @@ def build(ctx):
     message_box('Building...')
     ctx.run('poetry build')
 
+    with ctx.cd('dist'):
+        ctx.run('tar -xvf {0}-{1}.tar.gz'.format(PYPI_PACKAGE_NAME,
+                                                 APPLICATION_VERSION))
+        ctx.run('cp {0}-{1}/setup.py ../'.format(PYPI_PACKAGE_NAME,
+                                                 APPLICATION_VERSION))
 
-@task(clean, build)
+        ctx.run('rm -rf {0}-{1}'.format(PYPI_PACKAGE_NAME,
+                                        APPLICATION_VERSION))
+
+    with open('setup.py') as setup_file:
+        source = setup_file.read()
+
+    setup_kwargs = []
+
+    def sub_callable(match):
+        setup_kwargs.append(match)
+
+        return ''
+
+    template = """
+setup({0}
+)
+"""
+
+    source = re.sub('from setuptools import setup',
+                    'import codecs\nfrom setuptools import setup', source)
+    source = re.sub(
+        'setup_kwargs = {(.*)}.*setup\\(\\*\\*setup_kwargs\\)',
+        sub_callable,
+        source,
+        flags=re.DOTALL)[:-2]
+    setup_kwargs = setup_kwargs[0].group(1).splitlines()
+    for i, line in enumerate(setup_kwargs):
+        setup_kwargs[i] = re.sub('^\\s*(\'(\\w+)\':\\s?)', '    \\2=', line)
+        if setup_kwargs[i].strip().startswith('long_description'):
+            setup_kwargs[i] = ('    long_description='
+                               'codecs.open(\'README.rst\', encoding=\'utf8\')'
+                               '.read(),')
+
+    source += template.format('\n'.join(setup_kwargs))
+
+    with open('setup.py', 'w') as setup_file:
+        setup_file.write(source)
+
+    ctx.run('twine check dist/*')
+
+
+@task
 def virtualise(ctx, tests=True):
     """
     Create a virtual environment for the project build.
@@ -353,6 +404,11 @@ def virtualise(ctx, tests=True):
                                                  APPLICATION_VERSION))
         ctx.run('mv {0}-{1} {2}'.format(PYPI_PACKAGE_NAME, APPLICATION_VERSION,
                                         unique_name))
+        ctx.run('rm -rf {0}/{1}/resources'.format(unique_name,
+                                                  PYTHON_PACKAGE_NAME))
+        ctx.run('ln -s ../../../{0}/resources {1}/{0}'.format(
+            PYTHON_PACKAGE_NAME, unique_name))
+
         with ctx.cd(unique_name):
             ctx.run('poetry env use 3')
             ctx.run('poetry install')
@@ -360,7 +416,7 @@ def virtualise(ctx, tests=True):
             ctx.run('python -c "import imageio;'
                     'imageio.plugins.freeimage.download()"')
             if tests:
-                ctx.run('poetry run nosetests')
+                ctx.run('poetry run nosetests', env={'MPLBACKEND': 'AGG'})
 
 
 @task
@@ -411,7 +467,7 @@ def tag(ctx):
         ctx.run('git flow release finish v{0}'.format(version))
 
 
-@task(clean, build)
+@task(build)
 def release(ctx):
     """
     Releases the project to *Pypi* with *Twine*.

@@ -19,9 +19,12 @@ import colour_demosaicing as package
 basename = re.sub('_(\\w)', lambda x: x.group(1).upper(),
                   package.__name__.title())
 
+autodoc_member_order = 'bysource'
+autodoc_mock_imports = ['colour', 'scipy', 'scipy.ndimage.filters']
+
 autosummary_generate = True
 
-autodoc_mock_imports = ['colour', 'scipy', 'scipy.ndimage.filters']
+napoleon_custom_sections = ['Attributes', 'Methods']
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -37,9 +40,9 @@ autodoc_mock_imports = ['colour', 'scipy', 'scipy.ndimage.filters']
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc', 'sphinx.ext.intersphinx', 'sphinx.ext.todo',
-    'sphinx.ext.coverage', 'sphinx.ext.ifconfig', 'sphinx.ext.viewcode',
-    'sphinx.ext.autosummary', 'sphinx.ext.napoleon', 'sphinx.ext.mathjax',
+    'sphinx.ext.autodoc', 'sphinx.ext.autosummary', 'sphinx.ext.coverage',
+    'sphinx.ext.ifconfig', 'sphinx.ext.intersphinx', 'sphinx.ext.mathjax',
+    'sphinx.ext.napoleon', 'sphinx.ext.todo', 'sphinx.ext.viewcode',
     'sphinxcontrib.bibtex'
 ]
 
@@ -207,9 +210,20 @@ latex_elements = {
     # Additional stuff for the LaTeX preamble.
     'preamble':
         """
-        \\usepackage{charter}
-        \\usepackage[defaultsans]{lato}
-        \\usepackage{inconsolata}
+\\usepackage{charter}
+\\usepackage[defaultsans]{lato}
+\\usepackage{inconsolata}
+
+% Ignoring unicode errors.
+\\makeatletter
+\\def\\UTFviii@defined#1{%
+    \\ifx#1\\relax
+        ?%
+    \\else\\expandafter
+        #1%
+    \\fi
+}
+\\makeatother
         """,
 }
 

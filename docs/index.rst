@@ -39,30 +39,30 @@ Primary Dependencies
 
 **Colour - Demosaicing** requires various dependencies in order to run:
 
--  `Python 2.7 <https://www.python.org/download/releases/>`__ or
-   `Python 3.7 <https://www.python.org/download/releases/>`__
--  `Colour Science <https://www.colour-science.org>`__
+-   `python>=2.7 <https://www.python.org/download/releases/>`__ or
+    `python>=3.5 <https://www.python.org/download/releases/>`__
+-   `colour-science <https://pypi.org/project/colour-science/>`__
 
 Pypi
 ^^^^
 
-Once the dependencies satisfied, **Colour - Demosaicing** can be installed from
+Once the dependencies are satisfied, **Colour - Demosaicing** can be installed from
 the `Python Package Index <http://pypi.python.org/pypi/colour-demosaicing>`__ by
 issuing this command in a shell::
 
-	pip install colour-demosaicing
+	pip install --user colour-demosaicing
 
 The tests suite dependencies are installed as follows::
 
-    pip install 'colour-demosaicing[tests]'
+    pip install --user 'colour-demosaicing[tests]'
 
 The documentation building dependencies are installed as follows::
 
-    pip install 'colour-demosaicing[docs]'
+    pip install --user 'colour-demosaicing[docs]'
 
 The overall development dependencies are installed as follows::
 
-    pip install 'colour-demosaicing[development]'
+    pip install --user 'colour-demosaicing[development]'
 
 Usage
 -----
@@ -109,6 +109,6 @@ About
 -----
 
 | **Colour - Demosaicing** by Colour Developers
-| Copyright © 2015-2019 – Colour Developers – `colour-science@googlegroups.com <colour-science@googlegroups.com>`__
+| Copyright © 2015-2020 – Colour Developers – `colour-developers@colour-science.org <colour-developers@colour-science.org>`__
 | This software is released under terms of New BSD License: https://opensource.org/licenses/BSD-3-Clause
 | `https://github.com/colour-science/colour-demosaicing <https://github.com/colour-science/colour-demosaicing>`__

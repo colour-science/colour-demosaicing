@@ -1,14 +1,15 @@
 [tool.poetry]
 name = "colour-demosaicing"
-version = "0.1.5"
+version = "0.1.6"
 description = "CFA (Colour Filter Array) Demosaicing Algorithms for Python"
 license = "BSD-3-Clause"
-authors = [ "Colour Developers" ]
+authors = [ "Colour Developers <colour-developers@colour-science.org>" ]
+maintainers = [ "Colour Developers <colour-developers@colour-science.org>" ]
 readme = 'README.rst'
 repository = "https://github.com/colour-science/colour-demosaicing"
 homepage = "https://www.colour-science.org/"
 keywords = [
-   "cfa",
+    "cfa",
     "bayer",
     "color",
     "color-science",
@@ -48,8 +49,8 @@ exclude = [
 ]
 
 [tool.poetry.dependencies]
-python = "~2.7 || ^3.5"
-colour-science = "^0.3.14"
+python = "~2.7 || ^3.6"
+colour-science = "^0.3.16"
 
 "backports.functools_lru_cache" = { version = "*", optional = true }
 biblib-simple = { version = "*", optional = true }  # Development dependency.
@@ -60,12 +61,13 @@ invoke = { version = "*", optional = true }  # Development dependency.
 jupyter = { version = "*", optional = true }  # Development dependency.
 matplotlib = { version = "*", optional = true }
 mock = { version = "*", optional = true }  # Development dependency.
+nbformat = { version = "^4", optional = true }  # Fixed development dependency for Python 2.7 support only.
 nose = { version = "*", optional = true }  # Development dependency.
 numpy = { version = "*", optional = true }
 pre-commit = { version = "*", optional = true }  # Development dependency.
 pytest = { version = "*", optional = true }  # Development dependency.
 restructuredtext-lint = { version = "*", optional = true }  # Development dependency.
-sphinx = { version = "*", optional = true }  # Development dependency.
+sphinx = { version = "<=3.1.2", optional = true }  # Development dependency.
 sphinx_rtd_theme = { version = "*", optional = true }  # Development dependency.
 sphinxcontrib-bibtex = { version = "*", optional = true }  # Development dependency.
 toml = { version = "*", optional = true }  # Development dependency.
@@ -80,11 +82,12 @@ flake8 = "*"
 invoke = "*"
 jupyter = "*"
 mock = "*"
+nbformat = "^4"
 nose = "*"
 pre-commit = "*"
 pytest = "*"
 restructuredtext-lint = "*"
-sphinx = "*"
+sphinx = "<=3.1.2"
 sphinx_rtd_theme = "*"
 sphinxcontrib-bibtex = "*"
 toml = "*"
@@ -100,6 +103,7 @@ development = [
     "invoke",
     "jupyter",
     "mock",
+    "nbformat",
     "nose",
     "pre-commit",
     "pytest",

@@ -24,10 +24,10 @@ from .bayer import (
     masks_CFA_Bayer, mosaicing_CFA_Bayer)
 
 __author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2019 - Colour Developers'
+__copyright__ = 'Copyright (C) 2015-2020 - Colour Developers'
 __license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
 __maintainer__ = 'Colour Developers'
-__email__ = 'colour-science@googlegroups.com'
+__email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
@@ -46,7 +46,7 @@ __application_name__ = 'Colour - Demosaicing'
 
 __major_version__ = '0'
 __minor_version__ = '1'
-__change_version__ = '5'
+__change_version__ = '6'
 __version__ = '.'.join(
     (__major_version__,
      __minor_version__,
