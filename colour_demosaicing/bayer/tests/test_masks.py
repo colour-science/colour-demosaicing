@@ -4,8 +4,6 @@
 Defines unit tests for :mod:`colour_demosaicing.bayer.masks` module.
 """
 
-from __future__ import division, unicode_literals
-
 import numpy as np
 import os
 import unittest

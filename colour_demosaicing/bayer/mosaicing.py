@@ -6,8 +6,6 @@ Bayer CFA Mosaicing
 *Bayer* CFA (Colour Filter Array) data generation.
 """
 
-from __future__ import division, unicode_literals
-
 from colour.utilities import as_float_array, tsplit
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
