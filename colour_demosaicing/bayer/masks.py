@@ -6,8 +6,6 @@ Bayer CFA Masks
 *Bayer* CFA (Colour Filter Array) masks generation.
 """
 
-from __future__ import division, unicode_literals
-
 import numpy as np
 
 __author__ = 'Colour Developers'

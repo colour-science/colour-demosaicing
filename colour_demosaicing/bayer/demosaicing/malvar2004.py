@@ -14,8 +14,6 @@ References
     http://research.microsoft.com/apps/pubs/default.aspx?id=102068
 """
 
-from __future__ import division, unicode_literals
-
 import numpy as np
 from scipy.ndimage.filters import convolve
 

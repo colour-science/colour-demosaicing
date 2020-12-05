@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import
-
 from .masks import masks_CFA_Bayer
 from .mosaicing import mosaicing_CFA_Bayer
 from .demosaicing import *  # noqa

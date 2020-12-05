@@ -12,8 +12,6 @@ References
     Electron Physics (Vol. 162, pp. 173-265). doi:10.1016/S1076-5670(10)62005-8
 """
 
-from __future__ import division, unicode_literals
-
 from scipy.ndimage.filters import convolve
 
 from colour.utilities import as_float_array, tstack

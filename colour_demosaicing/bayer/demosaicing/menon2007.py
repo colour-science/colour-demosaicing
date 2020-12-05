@@ -13,8 +13,6 @@ References
     doi:10.1109/TIP.2006.884928
 """
 
-from __future__ import division, unicode_literals
-
 import numpy as np
 from scipy.ndimage.filters import convolve, convolve1d
 
