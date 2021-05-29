@@ -1,8 +1,8 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Defines unit tests for :mod:`colour_demosaicing.bayer.demosaicing.menon2007`
-module.
+Defines the unit tests for the
+:mod:`colour_demosaicing.bayer.demosaicing.menon2007` module.
 """
 
 import numpy as np
