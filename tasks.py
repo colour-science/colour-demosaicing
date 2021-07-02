@@ -303,7 +303,7 @@ def requirements(ctx):
 
     message_box('Exporting "requirements.txt" file...')
     ctx.run('poetry run pip list --format=freeze | '
-            'egrep -v "github.com/colour-science" '
+            'egrep -v "colour-demosaicing=" '
             '> requirements.txt')
 
 
