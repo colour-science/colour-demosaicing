@@ -20,9 +20,9 @@ Features
 
 The following CFA (Colour Filter Array) demosaicing algorithms are implemented:
 
--   Bilinear
--   Malvar (2004)
--   DDFAPD - Menon (2007)
+- Bilinear
+- Malvar (2004)
+- DDFAPD - Menon (2007)
 
 Installation
 ------------
@@ -39,9 +39,8 @@ Primary Dependencies
 
 **Colour - Demosaicing** requires various dependencies in order to run:
 
--   `python>=2.7 <https://www.python.org/download/releases/>`__ or
-    `python>=3.5 <https://www.python.org/download/releases/>`__
--   `colour-science <https://pypi.org/project/colour-science/>`__
+- `python>=3.5 <https://www.python.org/download/releases/>`__
+- `colour-science <https://pypi.org/project/colour-science/>`__
 
 Pypi
 ^^^^
@@ -50,7 +49,7 @@ Once the dependencies are satisfied, **Colour - Demosaicing** can be installed f
 the `Python Package Index <http://pypi.python.org/pypi/colour-demosaicing>`__ by
 issuing this command in a shell::
 
-	pip install --user colour-demosaicing
+    pip install --user colour-demosaicing
 
 The tests suite dependencies are installed as follows::
 
