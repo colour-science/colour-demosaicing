@@ -48,7 +48,7 @@ exclude = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.7"
 colour-science = "^0.3.16"
 
 biblib-simple = { version = "*", optional = true }  # Development dependency.
