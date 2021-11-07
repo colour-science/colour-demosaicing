@@ -58,7 +58,7 @@ def demosaicing_CFA_Bayer_Menon2007(CFA, pattern='RGGB', refining_step=True):
     ----------
     CFA : array_like
         *Bayer* CFA.
-    pattern : unicode, optional
+    pattern : str, optional
         **{'RGGB', 'BGGR', 'GRBG', 'GBRG'}**,
         Arrangement of the colour filters on the pixel array.
     refining_step : bool

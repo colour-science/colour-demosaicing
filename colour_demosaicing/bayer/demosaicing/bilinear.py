@@ -37,7 +37,7 @@ def demosaicing_CFA_Bayer_bilinear(CFA, pattern='RGGB'):
     ----------
     CFA : array_like
         *Bayer* CFA.
-    pattern : unicode, optional
+    pattern : str, optional
         **{'RGGB', 'BGGR', 'GRBG', 'GBRG'}**,
         Arrangement of the colour filters on the pixel array.
 
