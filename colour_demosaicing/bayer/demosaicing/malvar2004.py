@@ -28,7 +28,9 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['demosaicing_CFA_Bayer_Malvar2004']
+__all__ = [
+    'demosaicing_CFA_Bayer_Malvar2004',
+]
 
 
 def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
@@ -40,7 +42,7 @@ def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
     ----------
     CFA : array_like
         *Bayer* CFA.
-    pattern : unicode, optional
+    pattern : str, optional
         **{'RGGB', 'BGGR', 'GRBG', 'GBRG'}**,
         Arrangement of the colour filters on the pixel array.
 

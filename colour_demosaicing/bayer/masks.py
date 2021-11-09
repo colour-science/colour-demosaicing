@@ -15,7 +15,9 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['masks_CFA_Bayer']
+__all__ = [
+    'masks_CFA_Bayer',
+]
 
 
 def masks_CFA_Bayer(shape, pattern='RGGB'):
@@ -26,7 +28,7 @@ def masks_CFA_Bayer(shape, pattern='RGGB'):
     ----------
     shape : array_like
         Dimensions of the *Bayer* CFA.
-    pattern : unicode, optional
+    pattern : str, optional
         **{'RGGB', 'BGGR', 'GRBG', 'GBRG'}**,
         Arrangement of the colour filters on the pixel array.
 

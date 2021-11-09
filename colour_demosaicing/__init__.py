@@ -29,9 +29,12 @@ __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'demosaicing_CFA_Bayer_bilinear', 'demosaicing_CFA_Bayer_DDFAPD',
-    'demosaicing_CFA_Bayer_Malvar2004', 'demosaicing_CFA_Bayer_Menon2007',
-    'masks_CFA_Bayer', 'mosaicing_CFA_Bayer'
+    'demosaicing_CFA_Bayer_bilinear',
+    'demosaicing_CFA_Bayer_DDFAPD',
+    'demosaicing_CFA_Bayer_Malvar2004',
+    'demosaicing_CFA_Bayer_Menon2007',
+    'masks_CFA_Bayer',
+    'mosaicing_CFA_Bayer',
 ]
 
 RESOURCES_DIRECTORY = os.path.join(os.path.dirname(__file__), 'resources')
