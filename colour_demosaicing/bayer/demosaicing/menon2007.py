@@ -28,8 +28,9 @@ __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
 __all__ = [
-    'demosaicing_CFA_Bayer_Menon2007', 'demosaicing_CFA_Bayer_DDFAPD',
-    'refining_step_Menon2007'
+    'demosaicing_CFA_Bayer_Menon2007',
+    'demosaicing_CFA_Bayer_DDFAPD',
+    'refining_step_Menon2007',
 ]
 
 

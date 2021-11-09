@@ -25,7 +25,9 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['demosaicing_CFA_Bayer_bilinear']
+__all__ = [
+    'demosaicing_CFA_Bayer_bilinear',
+]
 
 
 def demosaicing_CFA_Bayer_bilinear(CFA, pattern='RGGB'):

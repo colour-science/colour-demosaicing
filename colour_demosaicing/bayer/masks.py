@@ -15,7 +15,9 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['masks_CFA_Bayer']
+__all__ = [
+    'masks_CFA_Bayer',
+]
 
 
 def masks_CFA_Bayer(shape, pattern='RGGB'):

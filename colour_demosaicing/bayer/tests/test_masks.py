@@ -21,7 +21,10 @@ __maintainer__ = 'Colour Developers'
 __email__ = 'colour-developers@colour-science.org'
 __status__ = 'Production'
 
-__all__ = ['BAYER_DIRECTORY', 'TestMasks_CFA_Bayer']
+__all__ = [
+    'BAYER_DIRECTORY',
+    'TestMasks_CFA_Bayer',
+]
 
 BAYER_DIRECTORY = os.path.join(TESTS_RESOURCES_DIRECTORY, 'colour_demosaicing',
                                'bayer')
