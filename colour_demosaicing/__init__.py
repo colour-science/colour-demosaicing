@@ -17,9 +17,13 @@ import subprocess  # nosec
 import colour
 
 from .bayer import (
-    demosaicing_CFA_Bayer_bilinear, demosaicing_CFA_Bayer_DDFAPD,
-    demosaicing_CFA_Bayer_Malvar2004, demosaicing_CFA_Bayer_Menon2007,
-    masks_CFA_Bayer, mosaicing_CFA_Bayer)
+    demosaicing_CFA_Bayer_bilinear,
+    demosaicing_CFA_Bayer_DDFAPD,
+    demosaicing_CFA_Bayer_Malvar2004,
+    demosaicing_CFA_Bayer_Menon2007,
+    masks_CFA_Bayer,
+    mosaicing_CFA_Bayer,
+)
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2015-2021 - Colour Developers'
