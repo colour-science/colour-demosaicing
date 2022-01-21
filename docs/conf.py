@@ -19,13 +19,6 @@ import colour_demosaicing as package
 basename = re.sub('_(\\w)', lambda x: x.group(1).upper(),
                   package.__name__.title())
 
-autodoc_member_order = 'bysource'
-autodoc_mock_imports = ['colour', 'scipy', 'scipy.ndimage.filters']
-
-autosummary_generate = True
-
-napoleon_custom_sections = ['Attributes', 'Methods']
-
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
@@ -40,14 +33,58 @@ napoleon_custom_sections = ['Attributes', 'Methods']
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.autodoc', 'sphinx.ext.autosummary', 'sphinx.ext.coverage',
-    'sphinx.ext.ifconfig', 'sphinx.ext.intersphinx', 'sphinx.ext.mathjax',
-    'sphinx.ext.napoleon', 'sphinx.ext.todo', 'sphinx.ext.viewcode',
-    'sphinxcontrib.bibtex'
+    'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
+    'sphinx.ext.coverage',
+    'sphinx.ext.ifconfig',
+    'sphinx.ext.inheritance_diagram',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.todo',
+    'sphinx.ext.viewcode',
+    'sphinxcontrib.bibtex',
 ]
+
+autodoc_member_order = 'bysource'
+autodoc_mock_imports = [
+    'colour',
+    'scipy',
+    'scipy.ndimage.filters',
+]
+autodoc_typehints = 'both'
+autodoc_type_aliases = {
+    'ArrayLike': 'ArrayLike',
+    'Boolean': 'Boolean',
+    'BooleanOrArrayLike': 'BooleanOrArrayLike',
+    'BooleanOrNDArray': 'BooleanOrNDArray',
+    'DType': 'DType',
+    'DTypeBoolean': 'DTypeBoolean',
+    'DTypeComplex': 'DTypeComplex',
+    'DTypeFloating': 'DTypeFloating',
+    'DTypeInteger': 'DTypeInteger',
+    'DTypeNumber': 'DTypeNumber',
+    'Floating': 'Floating',
+    'FloatingOrArrayLike': 'FloatingOrArrayLike',
+    'FloatingOrNDArray': 'FloatingOrNDArray',
+    'Integer': 'Integer',
+    'IntegerOrArrayLike': 'IntegerOrArrayLike',
+    'IntegerOrNDArray': 'IntegerOrNDArray',
+    'NestedSequence': 'NestedSequence',
+    'Number': 'Number',
+    'NumberOrArrayLike': 'NumberOrArrayLike',
+    'NumberOrNDArray': 'NumberOrNDArray',
+    'StrOrArrayLike': 'StrOrArrayLike',
+    'StrOrNDArray': 'StrOrNDArray',
+}
+autodoc_preserve_defaults = True
+
+autosummary_generate = True
 
 bibtex_bibfiles = ['bibliography.bib']
 bibtex_encoding = 'utf8'
+
+napoleon_custom_sections = ['Attributes', 'Methods']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -362,7 +399,13 @@ epub_exclude_files = ['search.html']
 
 autoclass_content = 'both'
 
-intersphinx_mapping = {'python': ('https://docs.python.org/3.7', None)}
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3.7', None),
+    'matplotlib': ('http://matplotlib.org/stable', None),
+    'numpy': ('http://docs.scipy.org/doc/numpy', None),
+    'pandas': ('http://pandas.pydata.org/pandas-docs/dev', None),
+    'scipy': ('http://docs.scipy.org/doc/scipy/reference', None)
+}
 
 
 def _autodoc_process_docstring(app, what, name, obj, options, lines):

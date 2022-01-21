@@ -1,6 +1,7 @@
 *.pyc
 .DS_Store
 .coverage
+.dmypy.json
 .idea
 .ipynb_checkpoints/
 __pycache__
