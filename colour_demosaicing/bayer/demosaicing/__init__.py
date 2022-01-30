@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from .bilinear import demosaicing_CFA_Bayer_bilinear
 from .malvar2004 import demosaicing_CFA_Bayer_Malvar2004
 from .menon2007 import (
@@ -9,12 +7,12 @@ from .menon2007 import (
 
 __all__ = []
 __all__ += [
-    'demosaicing_CFA_Bayer_bilinear',
+    "demosaicing_CFA_Bayer_bilinear",
 ]
 __all__ += [
-    'demosaicing_CFA_Bayer_Malvar2004',
+    "demosaicing_CFA_Bayer_Malvar2004",
 ]
 __all__ += [
-    'demosaicing_CFA_Bayer_DDFAPD',
-    'demosaicing_CFA_Bayer_Menon2007',
+    "demosaicing_CFA_Bayer_DDFAPD",
+    "demosaicing_CFA_Bayer_Menon2007",
 ]

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Invoke - Tasks
 ==============
@@ -18,33 +17,34 @@ from colour.hints import Boolean
 import colour_demosaicing
 from colour.utilities import message_box
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2015-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'APPLICATION_NAME',
-    'APPLICATION_VERSION',
-    'PYTHON_PACKAGE_NAME',
-    'PYPI_PACKAGE_NAME',
-    'BIBLIOGRAPHY_NAME',
-    'clean',
-    'formatting',
-    'tests',
-    'quality',
-    'examples',
-    'preflight',
-    'docs',
-    'todo',
-    'requirements',
-    'build',
-    'virtualise',
-    'tag',
-    'release',
-    'sha256',
+    "APPLICATION_NAME",
+    "APPLICATION_VERSION",
+    "PYTHON_PACKAGE_NAME",
+    "PYPI_PACKAGE_NAME",
+    "BIBLIOGRAPHY_NAME",
+    "clean",
+    "formatting",
+    "quality",
+    "precommit",
+    "tests",
+    "examples",
+    "preflight",
+    "docs",
+    "todo",
+    "requirements",
+    "build",
+    "virtualise",
+    "tag",
+    "release",
+    "sha256",
 ]
 
 APPLICATION_NAME: str = colour_demosaicing.__application_name__
@@ -53,9 +53,9 @@ APPLICATION_VERSION: str = colour_demosaicing.__version__
 
 PYTHON_PACKAGE_NAME: str = colour_demosaicing.__name__
 
-PYPI_PACKAGE_NAME: str = 'colour-demosaicing'
+PYPI_PACKAGE_NAME: str = "colour-demosaicing"
 
-BIBLIOGRAPHY_NAME: str = 'BIBLIOGRAPHY.bib'
+BIBLIOGRAPHY_NAME: str = "BIBLIOGRAPHY.bib"
 
 
 def _patch_invoke_annotations_support():
@@ -75,7 +75,8 @@ def _patch_invoke_annotations_support():
 
     def patched_task_argspec(*args, **kwargs):
         with patch(
-                target="inspect.getargspec", new=patched_inspect_getargspec):
+            target="inspect.getargspec", new=patched_inspect_getargspec
+        ):
             return org_task_argspec(*args, **kwargs)
 
     invoke.tasks.Task.argspec = patched_task_argspec
@@ -85,11 +86,13 @@ _patch_invoke_annotations_support()
 
 
 @task
-def clean(ctx: Context,
-          docs: Boolean = True,
-          bytecode: Boolean = False,
-          mypy: Boolean = True,
-          pytest: Boolean = True):
+def clean(
+    ctx: Context,
+    docs: Boolean = True,
+    bytecode: Boolean = False,
+    mypy: Boolean = True,
+    pytest: Boolean = True,
+):
     """
     Cleans the project.
 
@@ -107,115 +110,83 @@ def clean(ctx: Context,
         Whether to clean the *Pytest* cache directory.
     """
 
-    message_box('Cleaning project...')
+    message_box("Cleaning project...")
 
-    patterns = ['build', '*.egg-info', 'dist']
+    patterns = ["build", "*.egg-info", "dist"]
 
     if docs:
-        patterns.append('docs/_build')
-        patterns.append('docs/generated')
+        patterns.append("docs/_build")
+        patterns.append("docs/generated")
 
     if bytecode:
-        patterns.append('**/__pycache__')
-        patterns.append('**/*.pyc')
+        patterns.append("**/__pycache__")
+        patterns.append("**/*.pyc")
 
     if mypy:
-        patterns.append('.mypy_cache')
+        patterns.append(".mypy_cache")
 
     if pytest:
-        patterns.append('.pytest_cache')
+        patterns.append(".pytest_cache")
 
     for pattern in patterns:
-        ctx.run("rm -rf {}".format(pattern))
+        ctx.run(f"rm -rf {pattern}")
 
 
 @task
-def formatting(ctx: Context,
-               yapf: Boolean = True,
-               asciify: Boolean = True,
-               bibtex: Boolean = True):
+def formatting(
+    ctx: Context,
+    asciify: Boolean = True,
+    bibtex: Boolean = True,
+):
     """
-    Formats the codebase with *Yapf*, converts unicode characters to ASCII and
-    cleanup the "BibTeX" file.
+    Converts unicode characters to ASCII and cleanup the *BibTeX* file.
 
     Parameters
     ----------
     ctx
         Context.
-    yapf
-        Whether to format the codebase with *Yapf*.
     asciify
         Whether to convert unicode characters to ASCII.
     bibtex
         Whether to cleanup the *BibTeX* file.
     """
 
-    if yapf:
-        message_box('Formatting codebase with "Yapf"...')
-        ctx.run('yapf -p -i -r --exclude \'.git\' .')
-
     if asciify:
-        message_box('Converting unicode characters to ASCII...')
-        with ctx.cd('utilities'):
-            ctx.run('./unicode_to_ascii.py')
+        message_box("Converting unicode characters to ASCII...")
+        with ctx.cd("utilities"):
+            ctx.run("./unicode_to_ascii.py")
 
     if bibtex:
         message_box('Cleaning up "BibTeX" file...')
         bibtex_path = BIBLIOGRAPHY_NAME
         with open(bibtex_path) as bibtex_file:
-            entries = biblib.bib.Parser().parse(
-                bibtex_file.read()).get_entries()
+            entries = (
+                biblib.bib.Parser().parse(bibtex_file.read()).get_entries()
+            )
 
         for entry in sorted(entries.values(), key=lambda x: x.key):
             try:
-                del entry['file']
+                del entry["file"]
             except KeyError:
                 pass
 
             for key, value in entry.items():
-                entry[key] = re.sub('(?<!\\\\)\\&', '\\&', value)
+                entry[key] = re.sub("(?<!\\\\)\\&", "\\&", value)
 
-        with open(bibtex_path, 'w') as bibtex_file:
+        with open(bibtex_path, "w") as bibtex_file:
             for entry in sorted(entries.values(), key=lambda x: x.key):
                 bibtex_file.write(entry.to_bib())
-                bibtex_file.write('\n')
+                bibtex_file.write("\n")
 
 
 @task
-def tests(ctx: Context, nose: Boolean = True):
+def quality(
+    ctx: Context,
+    mypy: Boolean = True,
+    rstlint: Boolean = True,
+):
     """
-    Runs the unit tests with *Nose* or *Pytest*.
-
-    Parameters
-    ----------
-    ctx
-        Context.
-    nose
-        Whether to use *Nose* or *Pytest*.
-    """
-
-    if nose:
-        message_box('Running "Nosetests"...')
-        ctx.run(
-            'nosetests --with-doctest --with-coverage '
-            '--traverse-namespace --cover-package={0} {0}'.format(
-                PYTHON_PACKAGE_NAME),
-            env={'MPLBACKEND': 'AGG'})
-    else:
-        message_box('Running "Pytest"...')
-        ctx.run(
-            'py.test --disable-warnings --doctest-modules '
-            '--ignore={0}/examples {0}'.format(PYTHON_PACKAGE_NAME),
-            env={'MPLBACKEND': 'AGG'})
-
-
-@task
-def quality(ctx: Context,
-            flake8: Boolean = True,
-            mypy: Boolean = True,
-            rstlint: Boolean = True):
-    """
-    Checks the codebase with *Flake8* and lints various *restructuredText*
+    Checks the codebase with *Mypy* and lints various *restructuredText*
     files with *rst-lint*.
 
     Parameters
@@ -230,23 +201,59 @@ def quality(ctx: Context,
         Whether to lint various *restructuredText* files with *rst-lint*.
     """
 
-    if flake8:
-        message_box('Checking codebase with "Flake8"...')
-        ctx.run('flake8 {0} --exclude=examples'.format(PYTHON_PACKAGE_NAME))
-
     if mypy:
         message_box('Checking codebase with "Mypy"...')
-        ctx.run('mypy '
-                '--install-types '
-                '--non-interactive '
-                '--show-error-codes '
-                '--warn-unused-ignores '
-                '--warn-redundant-casts '
-                '-p {0}'.format(PYTHON_PACKAGE_NAME))
+        ctx.run(
+            f"mypy "
+            f"--install-types "
+            f"--non-interactive "
+            f"--show-error-codes "
+            f"--warn-unused-ignores "
+            f"--warn-redundant-casts "
+            f"-p {PYTHON_PACKAGE_NAME} "
+            f"|| true"
+        )
 
     if rstlint:
         message_box('Linting "README.rst" file...')
-        ctx.run('rst-lint README.rst')
+        ctx.run("rst-lint README.rst")
+
+
+@task
+def precommit(ctx: Context):
+    """
+    Runs the "pre-commit" hooks on the codebase.
+
+    Parameters
+    ----------
+    ctx
+        Context.
+    """
+
+    message_box('Running "pre-commit" hooks on the codebase...')
+    ctx.run("pre-commit run --all-files")
+
+
+@task
+def tests(ctx: Context):
+    """
+    Runs the unit tests with *Pytest*.
+
+    Parameters
+    ----------
+    ctx
+        Context.
+    """
+
+    message_box('Running "Pytest"...')
+    ctx.run(
+        "py.test "
+        "--disable-warnings "
+        "--doctest-modules "
+        f"--ignore={PYTHON_PACKAGE_NAME}/examples "
+        f"{PYTHON_PACKAGE_NAME}",
+        env={"MPLBACKEND": "AGG"},
+    )
 
 
 @task
@@ -260,15 +267,16 @@ def examples(ctx: Context):
         Context.
     """
 
-    message_box('Running examples...')
+    message_box("Running examples...")
 
     for root, dirnames, filenames in os.walk(
-            os.path.join(PYTHON_PACKAGE_NAME, 'examples')):
-        for filename in fnmatch.filter(filenames, '*.py'):
-            ctx.run('python {0}'.format(os.path.join(root, filename)))
+        os.path.join(PYTHON_PACKAGE_NAME, "examples")
+    ):
+        for filename in fnmatch.filter(filenames, "*.py"):
+            ctx.run(f"python {os.path.join(root, filename)}")
 
 
-@task(formatting, tests, quality, examples)
+@task(formatting, quality, precommit, tests, examples)
 def preflight(ctx: Context):
     """
     Performs the preflight tasks, i.e. *formatting*, *tests*, *quality*, and
@@ -299,15 +307,16 @@ def docs(ctx: Context, html: Boolean = True, pdf: Boolean = True):
     """
 
     with ctx.prefix(
-            'export COLOUR_SCIENCE__DOCUMENTATION_BUILD: Boolean=True'):
-        with ctx.cd('docs'):
+        "export COLOUR_SCIENCE__DOCUMENTATION_BUILD: Boolean=True"
+    ):
+        with ctx.cd("docs"):
             if html:
                 message_box('Building "HTML" documentation...')
-                ctx.run('make html')
+                ctx.run("make html")
 
             if pdf:
                 message_box('Building "PDF" documentation...')
-                ctx.run('make latexpdf')
+                ctx.run("make latexpdf")
 
 
 @task
@@ -323,8 +332,8 @@ def todo(ctx: Context):
 
     message_box('Exporting "TODO" items...')
 
-    with ctx.cd('utilities'):
-        ctx.run('./export_todo.py')
+    with ctx.cd("utilities"):
+        ctx.run("./export_todo.py")
 
 
 @task
@@ -339,9 +348,11 @@ def requirements(ctx: Context):
     """
 
     message_box('Exporting "requirements.txt" file...')
-    ctx.run('poetry run pip list --format=freeze | '
-            'egrep -v "colour-demosaicing=" '
-            '> requirements.txt')
+    ctx.run(
+        "poetry run pip list --format=freeze | "
+        'egrep -v "colour-demosaicing=" '
+        "> requirements.txt"
+    )
 
 
 @task(clean, preflight, docs, todo, requirements)
@@ -356,19 +367,16 @@ def build(ctx: Context):
         Context.
     """
 
-    message_box('Building...')
-    ctx.run('poetry build')
+    message_box("Building...")
+    ctx.run("poetry build")
 
-    with ctx.cd('dist'):
-        ctx.run('tar -xvf {0}-{1}.tar.gz'.format(PYPI_PACKAGE_NAME,
-                                                 APPLICATION_VERSION))
-        ctx.run('cp {0}-{1}/setup.py ../'.format(PYPI_PACKAGE_NAME,
-                                                 APPLICATION_VERSION))
+    with ctx.cd("dist"):
+        ctx.run(f"tar -xvf {PYPI_PACKAGE_NAME}-{APPLICATION_VERSION}.tar.gz")
+        ctx.run(f"cp {PYPI_PACKAGE_NAME}-{APPLICATION_VERSION}/setup.py ../")
 
-        ctx.run('rm -rf {0}-{1}'.format(PYPI_PACKAGE_NAME,
-                                        APPLICATION_VERSION))
+        ctx.run(f"rm -rf {PYPI_PACKAGE_NAME}-{APPLICATION_VERSION}")
 
-    with open('setup.py') as setup_file:
+    with open("setup.py") as setup_file:
         source = setup_file.read()
 
     setup_kwargs = []
@@ -376,34 +384,40 @@ def build(ctx: Context):
     def sub_callable(match):
         setup_kwargs.append(match)
 
-        return ''
+        return ""
 
     template = """
 setup({0}
 )
 """
 
-    source = re.sub('from setuptools import setup',
-                    'import codecs\nfrom setuptools import setup', source)
     source = re.sub(
-        'setup_kwargs = {(.*)}.*setup\\(\\*\\*setup_kwargs\\)',
+        "from setuptools import setup",
+        "import codecs\nfrom setuptools import setup",
+        source,
+    )
+    source = re.sub(
+        "setup_kwargs = {(.*)}.*setup\\(\\*\\*setup_kwargs\\)",
         sub_callable,
         source,
-        flags=re.DOTALL)[:-2]
+        flags=re.DOTALL,
+    )[:-2]
     setup_kwargs = setup_kwargs[0].group(1).splitlines()
     for i, line in enumerate(setup_kwargs):
-        setup_kwargs[i] = re.sub('^\\s*(\'(\\w+)\':\\s?)', '    \\2=', line)
-        if setup_kwargs[i].strip().startswith('long_description'):
-            setup_kwargs[i] = ('    long_description='
-                               'codecs.open(\'README.rst\', encoding=\'utf8\')'
-                               '.read(),')
+        setup_kwargs[i] = re.sub("^\\s*('(\\w+)':\\s?)", "    \\2=", line)
+        if setup_kwargs[i].strip().startswith("long_description"):
+            setup_kwargs[i] = (
+                "    long_description="
+                "codecs.open('README.rst', encoding='utf8')"
+                ".read(),"
+            )
 
-    source += template.format('\n'.join(setup_kwargs))
+    source += template.format("\n".join(setup_kwargs))
 
-    with open('setup.py', 'w') as setup_file:
+    with open("setup.py", "w") as setup_file:
         setup_file.write(source)
 
-    ctx.run('twine check dist/*')
+    ctx.run("twine check dist/*")
 
 
 @task
@@ -419,25 +433,27 @@ def virtualise(ctx: Context, tests: Boolean = True):
         Whether to run tests on the virtual environment.
     """
 
-    unique_name = '{0}-{1}'.format(PYPI_PACKAGE_NAME, uuid.uuid1())
-    with ctx.cd('dist'):
-        ctx.run('tar -xvf {0}-{1}.tar.gz'.format(PYPI_PACKAGE_NAME,
-                                                 APPLICATION_VERSION))
-        ctx.run('mv {0}-{1} {2}'.format(PYPI_PACKAGE_NAME, APPLICATION_VERSION,
-                                        unique_name))
-        ctx.run('rm -rf {0}/{1}/resources'.format(unique_name,
-                                                  PYTHON_PACKAGE_NAME))
-        ctx.run('ln -s ../../../{0}/resources {1}/{0}'.format(
-            PYTHON_PACKAGE_NAME, unique_name))
+    unique_name = f"{PYPI_PACKAGE_NAME}-{uuid.uuid1()}"
+    with ctx.cd("dist"):
+        ctx.run(f"tar -xvf {PYPI_PACKAGE_NAME}-{APPLICATION_VERSION}.tar.gz")
+        ctx.run(f"mv {PYPI_PACKAGE_NAME}-{APPLICATION_VERSION} {unique_name}")
+        ctx.run(f"rm -rf {unique_name}/{PYTHON_PACKAGE_NAME}/resources")
+        ctx.run(
+            "ln -s ../../../{0}/resources {1}/{0}".format(
+                PYTHON_PACKAGE_NAME, unique_name
+            )
+        )
 
         with ctx.cd(unique_name):
-            ctx.run('poetry env use 3')
-            ctx.run('poetry install')
-            ctx.run('source $(poetry env info -p)/bin/activate')
-            ctx.run('python -c "import imageio;'
-                    'imageio.plugins.freeimage.download()"')
+            ctx.run("poetry env use 3")
+            ctx.run("poetry install")
+            ctx.run("source $(poetry env info -p)/bin/activate")
+            ctx.run(
+                'python -c "import imageio;'
+                'imageio.plugins.freeimage.download()"'
+            )
             if tests:
-                ctx.run('poetry run nosetests', env={'MPLBACKEND': 'AGG'})
+                ctx.run("poetry run nosetests", env={"MPLBACKEND": "AGG"})
 
 
 @task
@@ -451,42 +467,48 @@ def tag(ctx: Context):
         Context.
     """
 
-    message_box('Tagging...')
-    result = ctx.run('git rev-parse --abbrev-ref HEAD', hide='both')
+    message_box("Tagging...")
+    result = ctx.run("git rev-parse --abbrev-ref HEAD", hide="both")
 
-    assert result.stdout.strip() == 'develop', (
-        'Are you still on a feature or master branch?')
+    assert (
+        result.stdout.strip() == "develop"
+    ), "Are you still on a feature or master branch?"
 
-    with open(os.path.join(PYTHON_PACKAGE_NAME, '__init__.py')) as file_handle:
+    with open(os.path.join(PYTHON_PACKAGE_NAME, "__init__.py")) as file_handle:
         file_content = file_handle.read()
         major_version = re.search(
-            "__major_version__\\s+=\\s+'(.*)'",
-            file_content).group(  # type: ignore[union-attr]
-                1)
+            "__major_version__\\s+=\\s+'(.*)'", file_content
+        ).group(  # type: ignore[union-attr]
+            1
+        )
         minor_version = re.search(
-            "__minor_version__\\s+=\\s+'(.*)'",
-            file_content).group(  # type: ignore[union-attr]
-                1)
+            "__minor_version__\\s+=\\s+'(.*)'", file_content
+        ).group(  # type: ignore[union-attr]
+            1
+        )
         change_version = re.search(
-            "__change_version__\\s+=\\s+'(.*)'",
-            file_content).group(  # type: ignore[union-attr]
-                1)
+            "__change_version__\\s+=\\s+'(.*)'", file_content
+        ).group(  # type: ignore[union-attr]
+            1
+        )
 
-        version = '.'.join((major_version, minor_version, change_version))
+        version = ".".join((major_version, minor_version, change_version))
 
-        result = ctx.run('git ls-remote --tags upstream', hide='both')
-        remote_tags = result.stdout.strip().split('\n')
+        result = ctx.run("git ls-remote --tags upstream", hide="both")
+        remote_tags = result.stdout.strip().split("\n")
         tags = set()
         for remote_tag in remote_tags:
             tags.add(
-                remote_tag.split('refs/tags/')[1].replace('refs/tags/', '^{}'))
+                remote_tag.split("refs/tags/")[1].replace("refs/tags/", "^{}")
+            )
         version_tags = sorted(list(tags))
-        assert 'v{0}'.format(version) not in version_tags, (
-            'A "{0}" "v{1}" tag already exists in remote repository!'.format(
-                PYTHON_PACKAGE_NAME, version))
+        assert f"v{version}" not in version_tags, (
+            f'A "{PYTHON_PACKAGE_NAME}" "v{version}" tag already exists in '
+            f"remote repository!"
+        )
 
-        ctx.run('git flow release start v{0}'.format(version))
-        ctx.run('git flow release finish v{0}'.format(version))
+        ctx.run(f"git flow release start v{version}")
+        ctx.run(f"git flow release finish v{version}")
 
 
 @task(build)
@@ -500,10 +522,10 @@ def release(ctx: Context):
         Context.
     """
 
-    message_box('Releasing...')
-    with ctx.cd('dist'):
-        ctx.run('twine upload *.tar.gz')
-        ctx.run('twine upload *.whl')
+    message_box("Releasing...")
+    with ctx.cd("dist"):
+        ctx.run("twine upload *.tar.gz")
+        ctx.run("twine upload *.whl")
 
 
 @task
@@ -518,5 +540,5 @@ def sha256(ctx: Context):
     """
 
     message_box('Computing "sha256"...')
-    with ctx.cd('dist'):
-        ctx.run('openssl sha256 {0}-*.tar.gz'.format(PYPI_PACKAGE_NAME))
+    with ctx.cd("dist"):
+        ctx.run(f"openssl sha256 {PYPI_PACKAGE_NAME}-*.tar.gz")

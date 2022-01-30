@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Bayer CFA Masks
 ===============
@@ -13,21 +12,21 @@ import numpy as np
 from colour.hints import Literal, NDArray, Tuple, Union
 from colour.utilities import validate_method
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2015-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'masks_CFA_Bayer',
+    "masks_CFA_Bayer",
 ]
 
 
 def masks_CFA_Bayer(
-        shape: Union[int, Tuple[int, ...]],
-        pattern: Union[Literal['RGGB', 'BGGR', 'GRBG', 'GBRG'], str] = 'RGGB'
+    shape: Union[int, Tuple[int, ...]],
+    pattern: Union[Literal["RGGB", "BGGR", "GRBG", "GBRG"], str] = "RGGB",
 ) -> Tuple[NDArray, ...]:
     """
     Returns the *Bayer* CFA red, green and blue masks for given pattern.
@@ -71,11 +70,13 @@ def masks_CFA_Bayer(
     """
 
     pattern = validate_method(
-        pattern, ['RGGB', 'BGGR', 'GRBG', 'GBRG'],
-        '"{0}" CFA pattern is invalid, it must be one of {1}!').upper()
+        pattern,
+        ["RGGB", "BGGR", "GRBG", "GBRG"],
+        '"{0}" CFA pattern is invalid, it must be one of {1}!',
+    ).upper()
 
-    channels = dict((channel, np.zeros(shape)) for channel in 'RGB')
+    channels = {channel: np.zeros(shape) for channel in "RGB"}
     for channel, (y, x) in zip(pattern, [(0, 0), (0, 1), (1, 0), (1, 1)]):
         channels[channel][y::2, x::2] = 1
 
-    return tuple(channels[c].astype(bool) for c in 'RGB')
+    return tuple(channels[c].astype(bool) for c in "RGB")

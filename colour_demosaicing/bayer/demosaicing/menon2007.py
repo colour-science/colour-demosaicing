@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 DDFAPD - Menon (2007) Bayer CFA Demosaicing
 ===========================================
@@ -23,17 +22,17 @@ from colour.utilities import as_float_array, tsplit, tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2015-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'demosaicing_CFA_Bayer_Menon2007',
-    'demosaicing_CFA_Bayer_DDFAPD',
-    'refining_step_Menon2007',
+    "demosaicing_CFA_Bayer_Menon2007",
+    "demosaicing_CFA_Bayer_DDFAPD",
+    "refining_step_Menon2007",
 ]
 
 
@@ -42,7 +41,7 @@ def _cnv_h(x: ArrayLike, y: ArrayLike) -> NDArray:
     Helper function for horizontal convolution.
     """
 
-    return convolve1d(x, y, mode='mirror')
+    return convolve1d(x, y, mode="mirror")
 
 
 def _cnv_v(x: ArrayLike, y: ArrayLike) -> NDArray:
@@ -50,13 +49,14 @@ def _cnv_v(x: ArrayLike, y: ArrayLike) -> NDArray:
     Helper function for vertical convolution.
     """
 
-    return convolve1d(x, y, mode='mirror', axis=0)
+    return convolve1d(x, y, mode="mirror", axis=0)
 
 
 def demosaicing_CFA_Bayer_Menon2007(
-        CFA: ArrayLike,
-        pattern: Union[Literal['RGGB', 'BGGR', 'GRBG', 'GBRG'], str] = 'RGGB',
-        refining_step: Boolean = True):
+    CFA: ArrayLike,
+    pattern: Union[Literal["RGGB", "BGGR", "GRBG", "GBRG"], str] = "RGGB",
+    refining_step: Boolean = True,
+):
     """
     Returns the demosaiced *RGB* colourspace array from given *Bayer* CFA using
     DDFAPD - *Menon (2007)* demosaicing algorithm.
@@ -142,16 +142,18 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
 
     del h_0, h_1, CFA, C_V, C_H
 
-    k = as_float_array([
-        [0.0, 0.0, 1.0, 0.0, 1.0],
-        [0.0, 0.0, 0.0, 1.0, 0.0],
-        [0.0, 0.0, 3.0, 0.0, 3.0],
-        [0.0, 0.0, 0.0, 1.0, 0.0],
-        [0.0, 0.0, 1.0, 0.0, 1.0],
-    ])
+    k = as_float_array(
+        [
+            [0.0, 0.0, 1.0, 0.0, 1.0],
+            [0.0, 0.0, 0.0, 1.0, 0.0],
+            [0.0, 0.0, 3.0, 0.0, 3.0],
+            [0.0, 0.0, 0.0, 1.0, 0.0],
+            [0.0, 0.0, 1.0, 0.0, 1.0],
+        ]
+    )
 
-    d_H = convolve(D_H, k, mode='constant')
-    d_V = convolve(D_V, np.transpose(k), mode='constant')
+    d_H = convolve(D_H, k, mode="constant")
+    d_V = convolve(D_V, np.transpose(k), mode="constant")
 
     del D_H, D_V
 
@@ -227,8 +229,9 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
 demosaicing_CFA_Bayer_DDFAPD = demosaicing_CFA_Bayer_Menon2007
 
 
-def refining_step_Menon2007(RGB: ArrayLike, RGB_m: ArrayLike,
-                            M: ArrayLike) -> NDArray:
+def refining_step_Menon2007(
+    RGB: ArrayLike, RGB_m: ArrayLike, M: ArrayLike
+) -> NDArray:
     """
     Performs the refining step on given *RGB* colourspace array.
 

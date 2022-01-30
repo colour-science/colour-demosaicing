@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Bayer CFA Mosaicing
 ===================
@@ -13,21 +12,21 @@ from colour.utilities import as_float_array, tsplit
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2015-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'mosaicing_CFA_Bayer',
+    "mosaicing_CFA_Bayer",
 ]
 
 
 def mosaicing_CFA_Bayer(
-        RGB: ArrayLike,
-        pattern: Union[Literal['RGGB', 'BGGR', 'GRBG', 'GBRG'], str] = 'RGGB'
+    RGB: ArrayLike,
+    pattern: Union[Literal["RGGB", "BGGR", "GRBG", "GBRG"], str] = "RGGB",
 ) -> NDArray:
     """
     Returns the *Bayer* CFA mosaic for a given *RGB* colourspace array.

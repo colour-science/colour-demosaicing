@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Bilinear Bayer CFA Demosaicing
 ==============================
@@ -21,21 +20,21 @@ from colour.utilities import as_float_array, tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2015-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'demosaicing_CFA_Bayer_bilinear',
+    "demosaicing_CFA_Bayer_bilinear",
 ]
 
 
 def demosaicing_CFA_Bayer_bilinear(
-        CFA: ArrayLike,
-        pattern: Union[Literal['RGGB', 'BGGR', 'GRBG', 'GBRG'], str] = 'RGGB'
+    CFA: ArrayLike,
+    pattern: Union[Literal["RGGB", "BGGR", "GRBG", "GBRG"], str] = "RGGB",
 ) -> NDArray:
     """
     Returns the demosaiced *RGB* colourspace array from given *Bayer* CFA using
@@ -100,17 +99,27 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
     CFA = as_float_array(CFA)
     R_m, G_m, B_m = masks_CFA_Bayer(CFA.shape, pattern)
 
-    H_G = as_float_array([
-        [0, 1, 0],
-        [1, 4, 1],
-        [0, 1, 0],
-    ]) / 4
+    H_G = (
+        as_float_array(
+            [
+                [0, 1, 0],
+                [1, 4, 1],
+                [0, 1, 0],
+            ]
+        )
+        / 4
+    )
 
-    H_RB = as_float_array([
-        [1, 2, 1],
-        [2, 4, 2],
-        [1, 2, 1],
-    ]) / 4
+    H_RB = (
+        as_float_array(
+            [
+                [1, 2, 1],
+                [2, 4, 2],
+                [1, 2, 1],
+            ]
+        )
+        / 4
+    )
 
     R = convolve(CFA * R_m, H_RB)
     G = convolve(CFA * G_m, H_G)
