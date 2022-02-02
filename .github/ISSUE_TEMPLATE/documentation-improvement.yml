@@ -13,9 +13,9 @@ body:
     attributes:
       label: Documentation Link
       description: >
-        Please link to any documentation or examples that you are referencing. Suggested improvements should be based on the [development version of the documentation](https://colour.readthedocs.io/en/develop/).
+        Please link to any documentation or examples that you are referencing. Suggested improvements should be based on the [development version of the documentation](https://colour-demosaicing.readthedocs.io/en/develop/).
       placeholder: >
-        << https://colour.readthedocs.io/en/develop/... >>
+        << https://colour-demosaicing.readthedocs.io/en/develop/... >>
     validations:
       required: true
 
