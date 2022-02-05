@@ -29,7 +29,7 @@ def mosaicing_CFA_Bayer(
     pattern: Union[Literal["RGGB", "BGGR", "GRBG", "GBRG"], str] = "RGGB",
 ) -> NDArray:
     """
-    Returns the *Bayer* CFA mosaic for a given *RGB* colourspace array.
+    Return the *Bayer* CFA mosaic for a given *RGB* colourspace array.
 
     Parameters
     ----------

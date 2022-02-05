@@ -40,7 +40,7 @@ def demosaicing_CFA_Bayer_Malvar2004(
     pattern: Union[Literal["RGGB", "BGGR", "GRBG", "GBRG"], str] = "RGGB",
 ) -> NDArray:
     """
-    Returns the demosaiced *RGB* colourspace array from given *Bayer* CFA using
+    Return the demosaiced *RGB* colourspace array from given *Bayer* CFA using
     *Malvar (2004)* demosaicing algorithm.
 
     Parameters

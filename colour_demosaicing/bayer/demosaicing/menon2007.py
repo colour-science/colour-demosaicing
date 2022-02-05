@@ -58,7 +58,7 @@ def demosaicing_CFA_Bayer_Menon2007(
     refining_step: Boolean = True,
 ):
     """
-    Returns the demosaiced *RGB* colourspace array from given *Bayer* CFA using
+    Return the demosaiced *RGB* colourspace array from given *Bayer* CFA using
     DDFAPD - *Menon (2007)* demosaicing algorithm.
 
     Parameters
@@ -233,7 +233,7 @@ def refining_step_Menon2007(
     RGB: ArrayLike, RGB_m: ArrayLike, M: ArrayLike
 ) -> NDArray:
     """
-    Performs the refining step on given *RGB* colourspace array.
+    Perform the refining step on given *RGB* colourspace array.
 
     Parameters
     ----------

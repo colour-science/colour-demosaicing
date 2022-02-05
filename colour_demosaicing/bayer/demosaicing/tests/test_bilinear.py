@@ -34,13 +34,13 @@ BAYER_DIRECTORY: str = os.path.join(
 
 class TestDemosaicing_CFA_Bayer_bilinear(unittest.TestCase):
     """
-    Defines :func:`colour_demosaicing.bayer.demosaicing.bilinear.\
+    Define :func:`colour_demosaicing.bayer.demosaicing.bilinear.\
 demosaicing_CFA_Bayer_bilinear` definition unit tests methods.
     """
 
     def test_demosaicing_CFA_Bayer_bilinear(self):
         """
-        Tests :func:`colour_demosaicing.bayer.demosaicing.bilinear.\
+        Test :func:`colour_demosaicing.bayer.demosaicing.bilinear.\
 demosaicing_CFA_Bayer_bilinear` definition.
         """
 

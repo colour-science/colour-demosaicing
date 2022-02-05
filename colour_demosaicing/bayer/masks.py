@@ -29,7 +29,7 @@ def masks_CFA_Bayer(
     pattern: Union[Literal["RGGB", "BGGR", "GRBG", "GBRG"], str] = "RGGB",
 ) -> Tuple[NDArray, ...]:
     """
-    Returns the *Bayer* CFA red, green and blue masks for given pattern.
+    Return the *Bayer* CFA red, green and blue masks for given pattern.
 
     Parameters
     ----------

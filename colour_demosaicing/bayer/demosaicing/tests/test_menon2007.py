@@ -34,13 +34,13 @@ BAYER_DIRECTORY: str = os.path.join(
 
 class TestDemosaicing_CFA_Bayer_Menon2007(unittest.TestCase):
     """
-    Defines :func:`colour_demosaicing.bayer.demosaicing.menon2007.\
+    Define :func:`colour_demosaicing.bayer.demosaicing.menon2007.\
 demosaicing_CFA_Bayer_Menon2007` definition unit tests methods.
     """
 
     def test_demosaicing_CFA_Bayer_Menon2007(self):
         """
-        Tests :func:`colour_demosaicing.bayer.demosaicing.menon2007.\
+        Test :func:`colour_demosaicing.bayer.demosaicing.menon2007.\
 demosaicing_CFA_Bayer_Menon2007` definition.
         """
 

@@ -37,7 +37,7 @@ def demosaicing_CFA_Bayer_bilinear(
     pattern: Union[Literal["RGGB", "BGGR", "GRBG", "GBRG"], str] = "RGGB",
 ) -> NDArray:
     """
-    Returns the demosaiced *RGB* colourspace array from given *Bayer* CFA using
+    Return the demosaiced *RGB* colourspace array from given *Bayer* CFA using
     bilinear interpolation.
 
     Parameters

@@ -34,13 +34,13 @@ BAYER_DIRECTORY: str = os.path.join(
 
 class TestDemosaicing_CFA_Bayer_Malvar2004(unittest.TestCase):
     """
-    Defines :func:`colour_demosaicing.bayer.demosaicing.malvar2004.\
+    Define :func:`colour_demosaicing.bayer.demosaicing.malvar2004.\
 demosaicing_CFA_Bayer_Malvar2004` definition unit tests methods.
     """
 
     def test_demosaicing_CFA_Bayer_Malvar2004(self):
         """
-        Tests :func:`colour_demosaicing.bayer.demosaicing.malvar2004.\
+        Test :func:`colour_demosaicing.bayer.demosaicing.malvar2004.\
 demosaicing_CFA_Bayer_Malvar2004` definition.
         """
 
