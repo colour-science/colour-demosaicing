@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Malvar (2004) Bayer CFA Demosaicing
 ===================================
@@ -14,41 +13,46 @@ References
     http://research.microsoft.com/apps/pubs/default.aspx?id=102068
 """
 
+from __future__ import annotations
+
 import numpy as np
 from scipy.ndimage.filters import convolve
 
+from colour.hints import ArrayLike, Literal, NDArray, Union
 from colour.utilities import as_float_array, tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
-__author__ = 'Colour Developers'
-__copyright__ = 'Copyright (C) 2015-2021 - Colour Developers'
-__license__ = 'New BSD License - https://opensource.org/licenses/BSD-3-Clause'
-__maintainer__ = 'Colour Developers'
-__email__ = 'colour-developers@colour-science.org'
-__status__ = 'Production'
+__author__ = "Colour Developers"
+__copyright__ = "Copyright (C) 2015-2021 - Colour Developers"
+__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__maintainer__ = "Colour Developers"
+__email__ = "colour-developers@colour-science.org"
+__status__ = "Production"
 
 __all__ = [
-    'demosaicing_CFA_Bayer_Malvar2004',
+    "demosaicing_CFA_Bayer_Malvar2004",
 ]
 
 
-def demosaicing_CFA_Bayer_Malvar2004(CFA, pattern='RGGB'):
+def demosaicing_CFA_Bayer_Malvar2004(
+    CFA: ArrayLike,
+    pattern: Union[Literal["RGGB", "BGGR", "GRBG", "GBRG"], str] = "RGGB",
+) -> NDArray:
     """
-    Returns the demosaiced *RGB* colourspace array from given *Bayer* CFA using
+    Return the demosaiced *RGB* colourspace array from given *Bayer* CFA using
     *Malvar (2004)* demosaicing algorithm.
 
     Parameters
     ----------
-    CFA : array_like
+    CFA
         *Bayer* CFA.
-    pattern : str, optional
-        **{'RGGB', 'BGGR', 'GRBG', 'GBRG'}**,
+    pattern
         Arrangement of the colour filters on the pixel array.
 
     Returns
     -------
-    ndarray
+    :class:`numpy.ndarray`
         *RGB* colourspace array.
 
     Notes
@@ -97,28 +101,46 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
     CFA = as_float_array(CFA)
     R_m, G_m, B_m = masks_CFA_Bayer(CFA.shape, pattern)
 
-    GR_GB = as_float_array(
-        [[0, 0, -1, 0, 0],
-         [0, 0, 2, 0, 0],
-         [-1, 2, 4, 2, -1],
-         [0, 0, 2, 0, 0],
-         [0, 0, -1, 0, 0]]) / 8  # yapf: disable
+    GR_GB = (
+        as_float_array(
+            [
+                [0.0, 0.0, -1.0, 0.0, 0.0],
+                [0.0, 0.0, 2.0, 0.0, 0.0],
+                [-1.0, 2.0, 4.0, 2.0, -1.0],
+                [0.0, 0.0, 2.0, 0.0, 0.0],
+                [0.0, 0.0, -1.0, 0.0, 0.0],
+            ]
+        )
+        / 8
+    )
 
-    Rg_RB_Bg_BR = as_float_array(
-        [[0, 0, 0.5, 0, 0],
-         [0, -1, 0, -1, 0],
-         [-1, 4, 5, 4, - 1],
-         [0, -1, 0, -1, 0],
-         [0, 0, 0.5, 0, 0]]) / 8  # yapf: disable
+    Rg_RB_Bg_BR = (
+        as_float_array(
+            [
+                [0.0, 0.0, 0.5, 0.0, 0.0],
+                [0.0, -1.0, 0.0, -1.0, 0.0],
+                [-1.0, 4.0, 5.0, 4.0, -1.0],
+                [0.0, -1.0, 0.0, -1.0, 0.0],
+                [0.0, 0.0, 0.5, 0.0, 0.0],
+            ]
+        )
+        / 8
+    )
 
     Rg_BR_Bg_RB = np.transpose(Rg_RB_Bg_BR)
 
-    Rb_BB_Br_RR = as_float_array(
-        [[0, 0, -1.5, 0, 0],
-         [0, 2, 0, 2, 0],
-         [-1.5, 0, 6, 0, -1.5],
-         [0, 2, 0, 2, 0],
-         [0, 0, -1.5, 0, 0]]) / 8  # yapf: disable
+    Rb_BB_Br_RR = (
+        as_float_array(
+            [
+                [0.0, 0.0, -1.5, 0.0, 0.0],
+                [0.0, 2.0, 0.0, 2.0, 0.0],
+                [-1.5, 0.0, 6.0, 0.0, -1.5],
+                [0.0, 2.0, 0.0, 2.0, 0.0],
+                [0.0, 0.0, -1.5, 0.0, 0.0],
+            ]
+        )
+        / 8
+    )
 
     R = CFA * R_m
     G = CFA * G_m
