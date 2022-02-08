@@ -6,7 +6,12 @@ Bayer CFA Masks
 *Bayer* CFA (Colour Filter Array) masks generation.
 """
 
+from __future__ import annotations
+
 import numpy as np
+
+from colour.hints import Literal, NDArray, Tuple, Union
+from colour.utilities import validate_method
 
 __author__ = 'Colour Developers'
 __copyright__ = 'Copyright (C) 2015-2021 - Colour Developers'
@@ -20,21 +25,23 @@ __all__ = [
 ]
 
 
-def masks_CFA_Bayer(shape, pattern='RGGB'):
+def masks_CFA_Bayer(
+        shape: Union[int, Tuple[int, ...]],
+        pattern: Union[Literal['RGGB', 'BGGR', 'GRBG', 'GBRG'], str] = 'RGGB'
+) -> Tuple[NDArray, ...]:
     """
     Returns the *Bayer* CFA red, green and blue masks for given pattern.
 
     Parameters
     ----------
-    shape : array_like
+    shape
         Dimensions of the *Bayer* CFA.
-    pattern : str, optional
-        **{'RGGB', 'BGGR', 'GRBG', 'GBRG'}**,
+    pattern
         Arrangement of the colour filters on the pixel array.
 
     Returns
     -------
-    tuple
+    :class:`tuple`
         *Bayer* CFA red, green and blue masks.
 
     Examples
@@ -63,7 +70,9 @@ def masks_CFA_Bayer(shape, pattern='RGGB'):
            [ True, False,  True]], dtype=bool))
     """
 
-    pattern = pattern.upper()
+    pattern = validate_method(
+        pattern, ['RGGB', 'BGGR', 'GRBG', 'GBRG'],
+        '"{0}" CFA pattern is invalid, it must be one of {1}!').upper()
 
     channels = dict((channel, np.zeros(shape)) for channel in 'RGB')
     for channel, (y, x) in zip(pattern, [(0, 0), (0, 1), (1, 0), (1, 1)]):

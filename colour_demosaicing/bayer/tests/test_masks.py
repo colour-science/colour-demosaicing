@@ -4,6 +4,8 @@
 Defines the unit tests for the :mod:`colour_demosaicing.bayer.masks` module.
 """
 
+from __future__ import annotations
+
 import numpy as np
 import os
 import unittest
@@ -26,8 +28,8 @@ __all__ = [
     'TestMasks_CFA_Bayer',
 ]
 
-BAYER_DIRECTORY = os.path.join(TESTS_RESOURCES_DIRECTORY, 'colour_demosaicing',
-                               'bayer')
+BAYER_DIRECTORY: str = os.path.join(TESTS_RESOURCES_DIRECTORY,
+                                    'colour_demosaicing', 'bayer')
 
 
 class TestMasks_CFA_Bayer(unittest.TestCase):

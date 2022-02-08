@@ -12,8 +12,11 @@ References
     Electron Physics (Vol. 162, pp. 173-265). doi:10.1016/S1076-5670(10)62005-8
 """
 
+from __future__ import annotations
+
 from scipy.ndimage.filters import convolve
 
+from colour.hints import ArrayLike, Literal, NDArray, Union
 from colour.utilities import as_float_array, tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
@@ -30,22 +33,24 @@ __all__ = [
 ]
 
 
-def demosaicing_CFA_Bayer_bilinear(CFA, pattern='RGGB'):
+def demosaicing_CFA_Bayer_bilinear(
+        CFA: ArrayLike,
+        pattern: Union[Literal['RGGB', 'BGGR', 'GRBG', 'GBRG'], str] = 'RGGB'
+) -> NDArray:
     """
     Returns the demosaiced *RGB* colourspace array from given *Bayer* CFA using
     bilinear interpolation.
 
     Parameters
     ----------
-    CFA : array_like
+    CFA
         *Bayer* CFA.
-    pattern : str, optional
-        **{'RGGB', 'BGGR', 'GRBG', 'GBRG'}**,
+    pattern
         Arrangement of the colour filters on the pixel array.
 
     Returns
     -------
-    ndarray
+    :class:`numpy.ndarray`
         *RGB* colourspace array.
 
     Notes
@@ -95,15 +100,17 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
     CFA = as_float_array(CFA)
     R_m, G_m, B_m = masks_CFA_Bayer(CFA.shape, pattern)
 
-    H_G = as_float_array(
-        [[0, 1, 0],
-         [1, 4, 1],
-         [0, 1, 0]]) / 4  # yapf: disable
+    H_G = as_float_array([
+        [0, 1, 0],
+        [1, 4, 1],
+        [0, 1, 0],
+    ]) / 4
 
-    H_RB = as_float_array(
-        [[1, 2, 1],
-         [2, 4, 2],
-         [1, 2, 1]]) / 4  # yapf: disable
+    H_RB = as_float_array([
+        [1, 2, 1],
+        [2, 4, 2],
+        [1, 2, 1],
+    ]) / 4
 
     R = convolve(CFA * R_m, H_RB)
     G = convolve(CFA * G_m, H_G)

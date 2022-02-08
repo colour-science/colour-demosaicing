@@ -5,6 +5,8 @@ Defines the unit tests for the
 :mod:`colour_demosaicing.bayer.demosaicing.bilinear` module.
 """
 
+from __future__ import annotations
+
 import numpy as np
 import os
 import unittest
@@ -26,8 +28,8 @@ __all__ = [
     'TestDemosaicing_CFA_Bayer_bilinear',
 ]
 
-BAYER_DIRECTORY = os.path.join(TESTS_RESOURCES_DIRECTORY, 'colour_demosaicing',
-                               'bayer')
+BAYER_DIRECTORY: str = os.path.join(TESTS_RESOURCES_DIRECTORY,
+                                    'colour_demosaicing', 'bayer')
 
 
 class TestDemosaicing_CFA_Bayer_bilinear(unittest.TestCase):

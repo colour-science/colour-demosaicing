@@ -6,6 +6,9 @@ Bayer CFA Mosaicing
 *Bayer* CFA (Colour Filter Array) data generation.
 """
 
+from __future__ import annotations
+
+from colour.hints import ArrayLike, Literal, NDArray, Union
 from colour.utilities import as_float_array, tsplit
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
@@ -22,21 +25,23 @@ __all__ = [
 ]
 
 
-def mosaicing_CFA_Bayer(RGB, pattern='RGGB'):
+def mosaicing_CFA_Bayer(
+        RGB: ArrayLike,
+        pattern: Union[Literal['RGGB', 'BGGR', 'GRBG', 'GBRG'], str] = 'RGGB'
+) -> NDArray:
     """
     Returns the *Bayer* CFA mosaic for a given *RGB* colourspace array.
 
     Parameters
     ----------
-    RGB : array_like
+    RGB
         *RGB* colourspace array.
-    pattern : str, optional
-        **{'RGGB', 'BGGR', 'GRBG', 'GBRG'}**,
+    pattern
         Arrangement of the colour filters on the pixel array.
 
     Returns
     -------
-    ndarray
+    :class:`numpy.ndarray`
         *Bayer* CFA mosaic.
 
     Examples

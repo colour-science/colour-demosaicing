@@ -10,6 +10,8 @@ Subpackages
 -   bayer: *Bayer* CFA mosaicing and demosaicing computations.
 """
 
+from __future__ import annotations
+
 import numpy as np
 import os
 import subprocess  # nosec
@@ -41,11 +43,11 @@ __all__ = [
     'mosaicing_CFA_Bayer',
 ]
 
-RESOURCES_DIRECTORY = os.path.join(os.path.dirname(__file__), 'resources')
-EXAMPLES_RESOURCES_DIRECTORY = os.path.join(
+RESOURCES_DIRECTORY: str = os.path.join(os.path.dirname(__file__), 'resources')
+EXAMPLES_RESOURCES_DIRECTORY: str = os.path.join(
     RESOURCES_DIRECTORY, 'colour-demosaicing-examples-datasets')
-TESTS_RESOURCES_DIRECTORY = os.path.join(RESOURCES_DIRECTORY,
-                                         'colour-demosaicing-tests-datasets')
+TESTS_RESOURCES_DIRECTORY: str = os.path.join(
+    RESOURCES_DIRECTORY, 'colour-demosaicing-tests-datasets')
 
 __application_name__ = 'Colour - Demosaicing'
 
@@ -58,16 +60,17 @@ __version__ = '.'.join(
      __change_version__))  # yapf: disable
 
 try:
-    version = subprocess.check_output(  # nosec
+    _version: str = subprocess.check_output(  # nosec
         ['git', 'describe'],
         cwd=os.path.dirname(__file__),
-        stderr=subprocess.STDOUT).strip()
-    version = version.decode('utf-8')
+        stderr=subprocess.STDOUT).strip().decode('utf-8')
 except Exception:
-    version = __version__
+    _version: str = __version__  # type: ignore[no-redef]
 
 colour.utilities.ANCILLARY_COLOUR_SCIENCE_PACKAGES['colour-demosaicing'] = (
-    version)
+    _version)
+
+del _version
 
 # TODO: Remove legacy printing support when deemed appropriate.
 try:
