@@ -1,8 +1,6 @@
 Bayer CFA Demosaicing and Mosaicing
 ===================================
 
-.. contents:: :local:
-
 Demosaicing
 -----------
 

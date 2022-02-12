@@ -18,7 +18,7 @@ import colour_demosaicing
 from colour.utilities import message_box
 
 __author__ = "Colour Developers"
-__copyright__ = "Copyright (C) 2015-2021 - Colour Developers"
+__copyright__ = "Copyright 2015 Colour Developers"
 __license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
@@ -306,9 +306,7 @@ def docs(ctx: Context, html: Boolean = True, pdf: Boolean = True):
         Whether to build the *PDF* documentation.
     """
 
-    with ctx.prefix(
-        "export COLOUR_SCIENCE__DOCUMENTATION_BUILD: Boolean=True"
-    ):
+    with ctx.prefix("export COLOUR_SCIENCE__DOCUMENTATION_BUILD=True"):
         with ctx.cd("docs"):
             if html:
                 message_box('Building "HTML" documentation...')
