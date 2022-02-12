@@ -306,9 +306,7 @@ def docs(ctx: Context, html: Boolean = True, pdf: Boolean = True):
         Whether to build the *PDF* documentation.
     """
 
-    with ctx.prefix(
-        "export COLOUR_SCIENCE__DOCUMENTATION_BUILD: Boolean=True"
-    ):
+    with ctx.prefix("export COLOUR_SCIENCE__DOCUMENTATION_BUILD=True"):
         with ctx.cd("docs"):
             if html:
                 message_box('Building "HTML" documentation...')
