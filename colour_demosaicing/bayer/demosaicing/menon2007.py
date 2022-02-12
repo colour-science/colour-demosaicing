@@ -37,17 +37,13 @@ __all__ = [
 
 
 def _cnv_h(x: ArrayLike, y: ArrayLike) -> NDArray:
-    """
-    Helper function for horizontal convolution.
-    """
+    """Perform horizontal convolution."""
 
     return convolve1d(x, y, mode="mirror")
 
 
 def _cnv_v(x: ArrayLike, y: ArrayLike) -> NDArray:
-    """
-    Helper function for vertical convolution.
-    """
+    """Perform vertical convolution."""
 
     return convolve1d(x, y, mode="mirror", axis=0)
 
