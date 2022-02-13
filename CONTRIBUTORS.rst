@@ -4,7 +4,7 @@ Contributors
 Development & Technical Support
 -------------------------------
 
--   **Thomas Mansencal**, *Visual Effects Artist @ Weta Digital*
+-   **Thomas Mansencal**, *Lead Pipeline Developer @ WetaFX*
 
     Project coordination, overall development.
 
