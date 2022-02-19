@@ -4,6 +4,7 @@
 .dmypy.json
 .idea
 .ipynb_checkpoints/
+.mypy_cache
 __pycache__
 build
 colour_demosaicing.egg-info
