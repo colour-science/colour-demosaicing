@@ -49,10 +49,12 @@ class TestMosaicing_CFA_Bayer(unittest.TestCase):
         )
 
         for pattern in ("RGGB", "BGGR", "GRBG", "GBRG"):
-            CFA = os.path.join(BAYER_DIRECTORY, "Lighthouse_CFA_{0}.exr")
+            CFA = os.path.join(
+                BAYER_DIRECTORY, f"Lighthouse_CFA_{pattern}.exr"
+            )
             np.testing.assert_almost_equal(
                 mosaicing_CFA_Bayer(image, pattern),
-                read_image(str(CFA.format(pattern)))[..., 0],
+                read_image(str(CFA))[..., 0],
                 decimal=7,
             )
 

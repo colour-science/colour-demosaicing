@@ -45,14 +45,18 @@ demosaicing_CFA_Bayer_Menon2007` definition.
         """
 
         for pattern in ("RGGB", "BGGR", "GRBG", "GBRG"):
-            CFA = os.path.join(BAYER_DIRECTORY, "Lighthouse_CFA_{0}.exr")
-            RGB = os.path.join(BAYER_DIRECTORY, "Lighthouse_Menon2007_{0}.exr")
+            CFA = os.path.join(
+                BAYER_DIRECTORY, f"Lighthouse_CFA_{pattern}.exr"
+            )
+            RGB = os.path.join(
+                BAYER_DIRECTORY, f"Lighthouse_Menon2007_{pattern}.exr"
+            )
 
             np.testing.assert_almost_equal(
                 demosaicing_CFA_Bayer_Menon2007(
-                    read_image(str(CFA.format(pattern)))[..., 0], pattern
+                    read_image(str(CFA))[..., 0], pattern
                 ),
-                read_image(str(RGB.format(pattern))),
+                read_image(str(RGB)),
                 decimal=7,
             )
 
@@ -61,11 +65,11 @@ demosaicing_CFA_Bayer_Menon2007` definition.
             )
             np.testing.assert_almost_equal(
                 demosaicing_CFA_Bayer_Menon2007(
-                    read_image(str(CFA.format(pattern)))[..., 0],
+                    read_image(str(CFA))[..., 0],
                     pattern,
                     refining_step=False,
                 ),
-                read_image(str(RGB.format(pattern))),
+                read_image(str(RGB)),
                 decimal=7,
             )
 
