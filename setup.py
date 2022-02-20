@@ -23,30 +23,38 @@ package_data = {
     ],
 }
 
-install_requires = ["colour-science>=0.3.16,<0.4.0"]
+install_requires = ["colour-science>=0.4.0"]
 
 extras_require = {
     "development": [
         "biblib-simple",
-        "coverage",
+        "black",
+        "coverage!=6.3",
         "coveralls",
         "flake8",
+        "flynt",
         "invoke",
         "jupyter",
-        "mock",
-        "nose",
+        "mypy",
         "pre-commit",
+        "pydata-sphinx-theme",
+        "pydocstyle",
         "pytest",
+        "pytest-cov",
+        "pyupgrade",
         "restructuredtext-lint",
-        "sphinx<=3.1.2",
-        "sphinx_rtd_theme",
+        "sphinx>=4,<5",
         "sphinxcontrib-bibtex",
         "toml",
         "twine",
-        "yapf==0.23",
     ],
-    "plotting": ["matplotlib"],
-    "read-the-docs": ["mock", "numpy", "sphinxcontrib-bibtex"],
+    "plotting": ["matplotlib>=3.2,!=3.5.0,!=3.5.1"],
+    "read-the-docs": [
+        "matplotlib>=3.2,!=3.5.0,!=3.5.1",
+        "numpy>=1.19,<2",
+        "pydata-sphinx-theme",
+        "sphinxcontrib-bibtex",
+    ],
 }
 
 setup(
@@ -63,5 +71,5 @@ setup(
     package_data=package_data,
     install_requires=install_requires,
     extras_require=extras_require,
-    python_requires=">=3.6,<4.0",
+    python_requires=">=3.8,<3.11",
 )
