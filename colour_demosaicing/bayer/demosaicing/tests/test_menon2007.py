@@ -61,7 +61,7 @@ demosaicing_CFA_Bayer_Menon2007` definition.
             )
 
             RGB = os.path.join(
-                BAYER_DIRECTORY, "Lighthouse_Menon2007_NR_{0}.exr"
+                BAYER_DIRECTORY, f"Lighthouse_Menon2007_NR_{pattern}.exr"
             )
             np.testing.assert_almost_equal(
                 demosaicing_CFA_Bayer_Menon2007(
