@@ -389,7 +389,14 @@ setup({0}
 
     source = re.sub(
         "from setuptools import setup",
-        "import codecs\nfrom setuptools import setup",
+        (
+            '"""\n'
+            "Colour - Demosaicing - Setup\n"
+            "============================\n"
+            '"""\n\n'
+            "import codecs\n"
+            "from setuptools import setup"
+        ),
         source,
     )
     source = re.sub(
@@ -412,6 +419,8 @@ setup({0}
 
     with open("setup.py", "w") as setup_file:
         setup_file.write(source)
+
+    ctx.run("poetry run pre-commit run --files setup.py || true")
 
     ctx.run("twine check dist/*")
 
@@ -441,15 +450,21 @@ def virtualise(ctx: Context, tests: Boolean = True):
         )
 
         with ctx.cd(unique_name):
-            ctx.run("poetry env use 3")
-            ctx.run("poetry install")
+            ctx.run('poetry install --extras "plotting"')
             ctx.run("source $(poetry env info -p)/bin/activate")
             ctx.run(
                 'python -c "import imageio;'
                 'imageio.plugins.freeimage.download()"'
             )
             if tests:
-                ctx.run("poetry run nosetests", env={"MPLBACKEND": "AGG"})
+                ctx.run(
+                    "poetry run py.test "
+                    "--disable-warnings "
+                    "--doctest-modules "
+                    f"--ignore={PYTHON_PACKAGE_NAME}/examples "
+                    f"{PYTHON_PACKAGE_NAME}",
+                    env={"MPLBACKEND": "AGG"},
+                )
 
 
 @task
@@ -473,17 +488,17 @@ def tag(ctx: Context):
     with open(os.path.join(PYTHON_PACKAGE_NAME, "__init__.py")) as file_handle:
         file_content = file_handle.read()
         major_version = re.search(
-            "__major_version__\\s+=\\s+'(.*)'", file_content
+            '__major_version__\\s+=\\s+"(.*)"', file_content
         ).group(  # type: ignore[union-attr]
             1
         )
         minor_version = re.search(
-            "__minor_version__\\s+=\\s+'(.*)'", file_content
+            '__minor_version__\\s+=\\s+"(.*)"', file_content
         ).group(  # type: ignore[union-attr]
             1
         )
         change_version = re.search(
-            "__change_version__\\s+=\\s+'(.*)'", file_content
+            '__change_version__\\s+=\\s+"(.*)"', file_content
         ).group(  # type: ignore[union-attr]
             1
         )

@@ -8,7 +8,6 @@ from __future__ import annotations
 
 import codecs
 import os
-from collections import OrderedDict
 
 __copyright__ = "Copyright 2015 Colour Developers"
 __license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
@@ -46,7 +45,7 @@ https://opensource.org/licenses/BSD-3-Clause
 ]
 
 
-def extract_todo_items(root_directory: str) -> OrderedDict:
+def extract_todo_items(root_directory: str) -> dict:
     """
     Extract the TODO items from given directory.
 
@@ -57,12 +56,12 @@ def extract_todo_items(root_directory: str) -> OrderedDict:
 
     Returns
     -------
-    :class:`collections.OrderedDict`
+    :class:`dict`
         TODO items.
     """
 
-    todo_items = OrderedDict()
-    for root, dirnames, filenames in os.walk(root_directory):
+    todo_items = {}
+    for root, _dirnames, filenames in os.walk(root_directory):
         for filename in filenames:
             if not filename.endswith(".py"):
                 continue
@@ -72,13 +71,13 @@ def extract_todo_items(root_directory: str) -> OrderedDict:
                 content = file_handle.readlines()
 
             in_todo = False
-            line_number = -1
+            line_number = 1
             todo_item = []
             for i, line in enumerate(content):
                 line = line.strip()
                 if line.startswith("# TODO:"):
                     in_todo = True
-                    line_number = i
+                    line_number = i + 1
                     todo_item.append(line)
                     continue
 
@@ -91,13 +90,12 @@ def extract_todo_items(root_directory: str) -> OrderedDict:
 
                     todo_items[key].append((line_number, " ".join(todo_item)))
                     in_todo = False
-                    line_number
                     todo_item = []
 
     return todo_items
 
 
-def export_todo_items(todo_items: OrderedDict, file_path: str):
+def export_todo_items(todo_items: dict, file_path: str):
     """
     Export TODO items to given file.
 

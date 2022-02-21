@@ -35,7 +35,7 @@ jobs:
     - name: Install Poetry
       run: |
         curl -L https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py -o get-poetry.py
-        python get-poetry.py
+        python get-poetry.py --version 1.1.12
         echo "$HOME/.poetry/bin" >> $GITHUB_PATH
       shell: bash
     - name: Install Package Dependencies
@@ -44,9 +44,9 @@ jobs:
         poetry install
         poetry run python -c "import imageio;imageio.plugins.freeimage.download()"
       shell: bash
-    - name: Lint with flake8
+    - name: Pre-Commit (All Files)
       run: |
-        poetry run flake8 $CI_PACKAGE --count --show-source --statistics
+        poetry run pre-commit run --all-files
       shell: bash
     - name: Test Optimised Python Execution
       run: |
