@@ -59,7 +59,7 @@ extras_require = {
 
 setup(
     name="colour-demosaicing",
-    version="0.1.6",
+    version="0.2.0",
     description="CFA (Colour Filter Array) Demosaicing Algorithms for Python",
     long_description=codecs.open("README.rst", encoding="utf8").read(),
     author="Colour Developers",
