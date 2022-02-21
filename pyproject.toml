@@ -50,6 +50,12 @@ exclude = [
 [tool.poetry.dependencies]
 python = ">= 3.8, < 3.11"
 colour-science = ">= 0.4.0"
+imageio = ">= 2, < 3"
+numpy = ">= 1.19, < 2"
+scipy = ">= 1.5, < 2"
+typing-extensions = ">= 4, < 5"  # Convenience for Google Colab.
+
+matplotlib = { version = ">= 3.2, != 3.5.0, != 3.5.1", optional = true }
 
 biblib-simple = { version = "*", optional = true }  # Development dependency.
 black = { version = "*", optional = true }  # Development dependency.
@@ -59,9 +65,7 @@ flake8 = { version = "*", optional = true }  # Development dependency.
 flynt = { version = "*", optional = true }  # Development dependency.
 invoke = { version = "*", optional = true }  # Development dependency.
 jupyter = { version = "*", optional = true }  # Development dependency.
-matplotlib = { version = ">= 3.2, != 3.5.0, != 3.5.1", optional = true }
 mypy = { version = "*", optional = true }  # Development dependency.
-numpy = { version = ">= 1.19, < 2", optional = true }
 pre-commit = { version = "*", optional = true }  # Development dependency.
 pydata-sphinx-theme = { version = "*", optional = true }  # Development dependency.
 pydocstyle = { version = "*", optional = true }  # Development dependency.
