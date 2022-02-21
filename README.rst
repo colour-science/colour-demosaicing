@@ -30,7 +30,7 @@ It is open source and freely available under the
 
 .. contents:: **Table of Contents**
     :backlinks: none
-    :depth: 3
+    :depth: 2
 
 .. sectnum::
 
@@ -39,12 +39,21 @@ Features
 
 The following CFA (Colour Filter Array) demosaicing algorithms are implemented:
 
--   Bilinear
--   Malvar (2004)
--   DDFAPD - Menon (2007)
+- Bilinear
+- Malvar (2004)
+- DDFAPD - Menon (2007)
+
+Examples
+^^^^^^^^
+
+Various usage examples are available from the
+`examples directory <https://github.com/colour-science/colour-demosaicing/tree/master/colour_demosaicing/examples>`__.
+
+User Guide
+----------
 
 Installation
-------------
+^^^^^^^^^^^^
 
 Because of their size, the resources dependencies needed to run the various
 examples and unit tests are not provided within the Pypi package. They are
@@ -54,55 +63,45 @@ when cloning the
 `repository <https://github.com/colour-science/colour-demosaicing>`__.
 
 Primary Dependencies
-^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~
 
 **Colour - Demosaicing** requires various dependencies in order to run:
 
--   `python>=2.7 <https://www.python.org/download/releases/>`__ or
-    `python>=3.5 <https://www.python.org/download/releases/>`__
--   `colour-science <https://pypi.org/project/colour-science/>`__
+- `python >= 3.8, < 4 <https://www.python.org/download/releases/>`__
+- `colour-science <https://pypi.org/project/colour-science/>`__
 
 Pypi
-^^^^
+~~~~
 
 Once the dependencies are satisfied, **Colour - Demosaicing** can be installed from
 the `Python Package Index <http://pypi.python.org/pypi/colour-demosaicing>`__ by
 issuing this command in a shell::
 
-	pip install --user colour-demosaicing
+    pip install --user colour-demosaicing
 
 The overall development dependencies are installed as follows::
 
     pip install --user 'colour-demosaicing[development]'
 
-Usage
------
-
-API
-^^^
-
-The main reference for `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`__
-is the `Colour - Demosaicing Manual <https://colour-demosaicing.readthedocs.io/en/latest/manual.html>`__.
-
-Examples
-^^^^^^^^
-
-Various usage examples are available from the
-`examples directory <https://github.com/colour-science/colour-demosaicing/tree/master/colour_demosaicing/examples>`__.
-
 Contributing
-------------
+^^^^^^^^^^^^
 
 If you would like to contribute to `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`__,
 please refer to the following `Contributing <https://www.colour-science.org/contributing/>`__
 guide for `Colour <https://github.com/colour-science/colour>`__.
 
 Bibliography
-------------
+^^^^^^^^^^^^
 
 The bibliography is available in the repository in
 `BibTeX <https://github.com/colour-science/colour-demosaicing/blob/develop/BIBLIOGRAPHY.bib>`__
 format.
+
+API Reference
+-------------
+
+The main technical reference for `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`__
+is the `API Reference <https://colour-demosaicing.readthedocs.io/en/latest/reference.html>`__.
 
 Code of Conduct
 ---------------
@@ -110,10 +109,21 @@ Code of Conduct
 The *Code of Conduct*, adapted from the `Contributor Covenant 1.4 <https://www.contributor-covenant.org/version/1/4/code-of-conduct.html>`__,
 is available on the `Code of Conduct <https://www.colour-science.org/code-of-conduct/>`__ page.
 
+Contact & Social
+----------------
+
+The *Colour Developers* can be reached via different means:
+
+- `Email <mailto:colour-developers@colour-science.org>`__
+- `Facebook <https://www.facebook.com/python.colour.science>`__
+- `Github Discussions <https://github.com/colour-science/colour-demosaicing/discussions>`__
+- `Gitter <https://gitter.im/colour-science/colour>`__
+- `Twitter <https://twitter.com/colour_science>`__
+
 About
 -----
 
 | **Colour - Demosaicing** by Colour Developers
-| Copyright © 2015-2020 – Colour Developers – `colour-developers@colour-science.org <colour-developers@colour-science.org>`__
+| Copyright 2015 Colour Developers – `colour-developers@colour-science.org <colour-developers@colour-science.org>`__
 | This software is released under terms of New BSD License: https://opensource.org/licenses/BSD-3-Clause
 | `https://github.com/colour-science/colour-demosaicing <https://github.com/colour-science/colour-demosaicing>`__
