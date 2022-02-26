@@ -23,7 +23,13 @@ package_data = {
     ],
 }
 
-install_requires = ["colour-science>=0.4.0"]
+install_requires = [
+    "colour-science>=0.4.0",
+    "imageio>=2,<3",
+    "numpy>=1.19,<2",
+    "scipy>=1.5,<2",
+    "typing-extensions>=4,<5",
+]
 
 extras_require = {
     "development": [
@@ -51,7 +57,6 @@ extras_require = {
     "plotting": ["matplotlib>=3.2,!=3.5.0,!=3.5.1"],
     "read-the-docs": [
         "matplotlib>=3.2,!=3.5.0,!=3.5.1",
-        "numpy>=1.19,<2",
         "pydata-sphinx-theme",
         "sphinxcontrib-bibtex",
     ],
