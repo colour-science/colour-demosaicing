@@ -14,7 +14,7 @@ Primary Dependencies
 **Colour - Demosaicing** requires various dependencies in order to run:
 
 - `python >= 3.8, < 4 <https://www.python.org/download/releases/>`__
-- `colour-science <https://pypi.org/project/colour-science/>`__
+- `colour-science >= 4 <https://pypi.org/project/colour-science/>`__
 
 Pypi
 ----
