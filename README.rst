@@ -11,7 +11,7 @@ Colour - Demosaicing
 .. |coveralls| image:: http://img.shields.io/coveralls/colour-science/colour-demosaicing/develop.svg?style=flat-square
     :target: https://coveralls.io/r/colour-science/colour-demosaicing
     :alt: Coverage Status
-.. |codacy| image:: https://img.shields.io/codacy/grade/984900e3a85e40239a0f8f633dd1ebcb/develop.svg?style=flat-square
+.. |codacy| image:: https://img.shields.io/codacy/grade/2862b4f2217742ae83c972d7e3af44d7/develop.svg?style=flat-square
     :target: https://www.codacy.com/app/colour-science/colour-demosaicing
     :alt: Code Grade
 .. |version| image:: https://img.shields.io/pypi/v/colour-demosaicing.svg?style=flat-square
@@ -68,7 +68,7 @@ Primary Dependencies
 **Colour - Demosaicing** requires various dependencies in order to run:
 
 - `python >= 3.8, < 4 <https://www.python.org/download/releases/>`__
-- `colour-science <https://pypi.org/project/colour-science/>`__
+- `colour-science >= 4 <https://pypi.org/project/colour-science/>`__
 
 Pypi
 ~~~~
