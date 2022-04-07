@@ -1,6 +1,6 @@
 # !/usr/bin/env python
 """
-Defines the unit tests for the :mod:`colour_demosaicing.bayer.mosaicing`
+Define the unit tests for the :mod:`colour_demosaicing.bayer.mosaicing`
 module.
 """
 
