@@ -73,8 +73,8 @@ def masks_CFA_Bayer(
         '"{0}" CFA pattern is invalid, it must be one of {1}!',
     ).upper()
 
-    channels = {channel: zeros(shape) for channel in "RGB"}
+    channels = {channel: zeros(shape, dtype="bool") for channel in "RGB"}
     for channel, (y, x) in zip(pattern, [(0, 0), (0, 1), (1, 0), (1, 1)]):
         channels[channel][y::2, x::2] = 1
 
-    return tuple(channels[c].astype(bool) for c in "RGB")
+    return tuple(channels.values())
