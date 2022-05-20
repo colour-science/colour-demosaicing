@@ -26,12 +26,6 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install Dependencies (macOS)
-      if: matrix.os == 'macOS-latest'
-      run: |
-        brew install gnu-sed
-        ln -s /usr/local/bin/gsed /usr/local/bin/sed
-      shell: bash
     - name: Install Poetry
       run: |
         curl -L https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py -o get-poetry.py
