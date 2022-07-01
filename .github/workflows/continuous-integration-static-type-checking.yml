@@ -3,7 +3,7 @@ name: Continuous Integration - Static Type Checking
 on: [push, pull_request]
 
 jobs:
-  continuous-integration-package:
+  continuous-integration-static-type-checking:
     name: ${{ matrix.os }} - Python ${{ matrix.python-version }}
     strategy:
       matrix:
@@ -21,11 +21,6 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install Dependencies (macOS)
-      run: |
-        brew install gnu-sed graphviz
-        ln -s /usr/local/bin/gsed /usr/local/bin/sed
-      shell: bash
     - name: Static Type Checking
       run: |
         pip install -r requirements.txt

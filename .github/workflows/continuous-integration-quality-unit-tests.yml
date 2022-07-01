@@ -3,7 +3,7 @@ name: Continuous Integration - Quality & Unit Tests
 on: [push, pull_request]
 
 jobs:
-  continuous-integration-package:
+  continuous-integration-quality-unit-tests:
     name: ${{ matrix.os }} - Python ${{ matrix.python-version }}
     strategy:
       matrix:
@@ -26,12 +26,6 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install Dependencies (macOS)
-      if: matrix.os == 'macOS-latest'
-      run: |
-        brew install gnu-sed
-        ln -s /usr/local/bin/gsed /usr/local/bin/sed
-      shell: bash
     - name: Install Poetry
       run: |
         curl -L https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py -o get-poetry.py
@@ -54,7 +48,7 @@ jobs:
       shell: bash
     - name: Test with Pytest
       run: |
-        poetry run python -W ignore -m py.test --disable-warnings --doctest-modules --ignore=$CI_PACKAGE/examples --cov=$CI_PACKAGE $CI_PACKAGE
+        poetry run python -W ignore -m pytest --disable-warnings --doctest-modules --ignore=$CI_PACKAGE/examples --cov=$CI_PACKAGE $CI_PACKAGE
       shell: bash
     - name: Upload Coverage to coveralls.io
       run: |

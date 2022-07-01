@@ -5,7 +5,11 @@
 .idea
 .ipynb_checkpoints/
 .mypy_cache
+.vscode
+.sandbox
+
 __pycache__
+
 build
 colour_demosaicing.egg-info
 dist

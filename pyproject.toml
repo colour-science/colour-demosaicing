@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "colour-demosaicing"
-version = "0.2.1"
+version = "0.2.2"
 description = "CFA (Colour Filter Array) Demosaicing Algorithms for Python"
 license = "BSD-3-Clause"
 authors = [ "Colour Developers <colour-developers@colour-science.org>" ]
@@ -71,6 +71,7 @@ pydata-sphinx-theme = { version = "*", optional = true }  # Development dependen
 pydocstyle = { version = "*", optional = true }  # Development dependency.
 pytest = { version = "*", optional = true }  # Development dependency.
 pytest-cov = { version = "*", optional = true }  # Development dependency.
+pytest-xdist = { version = "*", optional = true} #Development dependency
 pyupgrade = { version = "*", optional = true }  # Development dependency.
 restructuredtext-lint = { version = "*", optional = true }  # Development dependency.
 sphinx = { version = ">= 4, < 5", optional = true }  # Development dependency.
@@ -93,6 +94,7 @@ pydata-sphinx-theme = "*"
 pydocstyle = "*"
 pytest = "*"
 pytest-cov = "*"
+pytest-xdist = "*"
 pyupgrade = "*"
 restructuredtext-lint = "*"
 sphinx = ">= 4, < 5"
@@ -148,6 +150,9 @@ ignore_missing_imports = true
 convention = "numpy"
 add-ignore = "D104,D200,D202,D205,D301,D400"
 
+[tool.pytest.ini_options]
+addopts = "-n auto --durations=5"
+
 [build-system]
-requires = ["poetry_core>=1.0.0"]
+requires = [ "poetry_core>=1.0.0" ]
 build-backend = "poetry.core.masonry.api"
