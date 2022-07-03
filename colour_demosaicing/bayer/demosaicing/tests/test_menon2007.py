@@ -52,7 +52,7 @@ demosaicing_CFA_Bayer_Menon2007` definition.
                 BAYER_DIRECTORY, f"Lighthouse_Menon2007_{pattern}.exr"
             )
 
-            np.testing.assert_almost_equal(
+            np.testing.assert_array_almost_equal(
                 demosaicing_CFA_Bayer_Menon2007(
                     read_image(str(CFA))[..., 0], pattern
                 ),
@@ -63,7 +63,7 @@ demosaicing_CFA_Bayer_Menon2007` definition.
             RGB = os.path.join(
                 BAYER_DIRECTORY, f"Lighthouse_Menon2007_NR_{pattern}.exr"
             )
-            np.testing.assert_almost_equal(
+            np.testing.assert_array_almost_equal(
                 demosaicing_CFA_Bayer_Menon2007(
                     read_image(str(CFA))[..., 0],
                     pattern,

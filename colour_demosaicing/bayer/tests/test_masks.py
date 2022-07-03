@@ -44,7 +44,7 @@ class TestMasks_CFA_Bayer(unittest.TestCase):
 
         for pattern in ("RGGB", "BGGR", "GRBG", "GBRG"):
             mask = os.path.join(BAYER_DIRECTORY, f"{pattern}_Masks.exr")
-            np.testing.assert_almost_equal(
+            np.testing.assert_array_almost_equal(
                 tstack(masks_CFA_Bayer((8, 8), pattern)),
                 read_image(str(mask)),
                 decimal=7,

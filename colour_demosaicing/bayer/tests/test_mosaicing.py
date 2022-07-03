@@ -52,7 +52,7 @@ class TestMosaicing_CFA_Bayer(unittest.TestCase):
             CFA = os.path.join(
                 BAYER_DIRECTORY, f"Lighthouse_CFA_{pattern}.exr"
             )
-            np.testing.assert_almost_equal(
+            np.testing.assert_array_almost_equal(
                 mosaicing_CFA_Bayer(image, pattern),
                 read_image(str(CFA))[..., 0],
                 decimal=7,

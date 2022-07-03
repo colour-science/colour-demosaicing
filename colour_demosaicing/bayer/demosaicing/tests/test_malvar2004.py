@@ -52,7 +52,7 @@ demosaicing_CFA_Bayer_Malvar2004` definition.
                 BAYER_DIRECTORY, f"Lighthouse_Malvar2004_{pattern}.exr"
             )
 
-            np.testing.assert_almost_equal(
+            np.testing.assert_array_almost_equal(
                 demosaicing_CFA_Bayer_Malvar2004(
                     read_image(str(CFA))[..., 0], pattern
                 ),
