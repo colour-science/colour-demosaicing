@@ -160,9 +160,9 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
     del d_H, d_V, G_H, G_V
 
     # Red rows.
-    R_r = np.transpose(np.any(R_m == 1, axis=1)[np.newaxis]) * ones(R.shape)
+    R_r = np.transpose(np.any(R_m == 1, axis=1)[None]) * ones(R.shape)
     # Blue rows.
-    B_r = np.transpose(np.any(B_m == 1, axis=1)[np.newaxis]) * ones(B.shape)
+    B_r = np.transpose(np.any(B_m == 1, axis=1)[None]) * ones(B.shape)
 
     k_b = as_float_array([0.5, 0, 0.5])
 
@@ -310,13 +310,13 @@ def refining_step_Menon2007(
 
     # Updating of the red and blue components in the green locations.
     # Red rows.
-    R_r = np.transpose(np.any(R_m == 1, axis=1)[np.newaxis]) * ones(R.shape)
+    R_r = np.transpose(np.any(R_m == 1, axis=1)[None]) * ones(R.shape)
     # Red columns.
-    R_c = np.any(R_m == 1, axis=0)[np.newaxis] * ones(R.shape)
+    R_c = np.any(R_m == 1, axis=0)[None] * ones(R.shape)
     # Blue rows.
-    B_r = np.transpose(np.any(B_m == 1, axis=1)[np.newaxis]) * ones(B.shape)
+    B_r = np.transpose(np.any(B_m == 1, axis=1)[None]) * ones(B.shape)
     # Blue columns.
-    B_c = np.any(B_m == 1, axis=0)[np.newaxis] * ones(B.shape)
+    B_c = np.any(B_m == 1, axis=0)[None] * ones(B.shape)
 
     R_G = R - G
     B_G = B - G
