@@ -9,6 +9,9 @@ jobs:
       matrix:
         os: [macOS-latest, ubuntu-20.04, windows-latest]
         python-version: [3.8, 3.9, '3.10']
+        exclude:
+          - os: windows-latest
+            python-version: 3.8
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
