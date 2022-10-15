@@ -74,7 +74,7 @@ def demosaicing_CFA_Bayer_Menon2007(
     Notes
     -----
     -   The definition output is not clipped in range [0, 1] : this allows for
-        direct HDRI / radiance image generation on *Bayer* CFA data and post
+        direct HDRI image generation on *Bayer* CFA data and post
         demosaicing of the high dynamic range data as showcased in this
         `Jupyter Notebook <https://github.com/colour-science/colour-hdri/\
 blob/develop/colour_hdri/examples/\
