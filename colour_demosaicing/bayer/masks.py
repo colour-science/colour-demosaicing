@@ -55,7 +55,7 @@ def masks_CFA_Bayer(
      array([[False, False, False],
            [False,  True, False],
            [False, False, False]], dtype=bool))
-    >>> pprint(masks_CFA_Bayer(shape, 'BGGR'))
+    >>> pprint(masks_CFA_Bayer(shape, "BGGR"))
     (array([[False, False, False],
            [False,  True, False],
            [False, False, False]], dtype=bool),
