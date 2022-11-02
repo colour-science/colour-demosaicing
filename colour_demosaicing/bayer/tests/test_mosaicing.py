@@ -12,7 +12,7 @@ import unittest
 
 from colour import read_image
 
-from colour_demosaicing import TESTS_RESOURCES_DIRECTORY
+from colour_demosaicing import ROOT_RESOURCES_TESTS
 from colour_demosaicing.bayer import mosaicing_CFA_Bayer
 
 __author__ = "Colour Developers"
@@ -23,12 +23,12 @@ __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
 
 __all__ = [
-    "BAYER_DIRECTORY",
+    "ROOT_RESOURCES_BAYER",
     "TestMosaicing_CFA_Bayer",
 ]
 
-BAYER_DIRECTORY: str = os.path.join(
-    TESTS_RESOURCES_DIRECTORY, "colour_demosaicing", "bayer"
+ROOT_RESOURCES_BAYER: str = os.path.join(
+    ROOT_RESOURCES_TESTS, "colour_demosaicing", "bayer"
 )
 
 
@@ -45,12 +45,12 @@ class TestMosaicing_CFA_Bayer(unittest.TestCase):
         """
 
         image = read_image(
-            str(os.path.join(BAYER_DIRECTORY, "Lighthouse.exr"))
+            str(os.path.join(ROOT_RESOURCES_BAYER, "Lighthouse.exr"))
         )
 
         for pattern in ("RGGB", "BGGR", "GRBG", "GBRG"):
             CFA = os.path.join(
-                BAYER_DIRECTORY, f"Lighthouse_CFA_{pattern}.exr"
+                ROOT_RESOURCES_BAYER, f"Lighthouse_CFA_{pattern}.exr"
             )
             np.testing.assert_array_almost_equal(
                 mosaicing_CFA_Bayer(image, pattern),
