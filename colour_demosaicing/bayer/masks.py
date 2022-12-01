@@ -7,8 +7,10 @@ Bayer CFA Masks
 
 from __future__ import annotations
 
+import numpy as np
+
 from colour.hints import Literal, NDArray, Tuple, Union
-from colour.utilities import validate_method, zeros
+from colour.utilities import validate_method
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2015 Colour Developers"
@@ -73,7 +75,7 @@ def masks_CFA_Bayer(
         '"{0}" CFA pattern is invalid, it must be one of {1}!',
     ).upper()
 
-    channels = {channel: zeros(shape, dtype="bool") for channel in "RGB"}
+    channels = {channel: np.zeros(shape, dtype="bool") for channel in "RGB"}
     for channel, (y, x) in zip(pattern, [(0, 0), (0, 1), (1, 0), (1, 1)]):
         channels[channel][y::2, x::2] = 1
 

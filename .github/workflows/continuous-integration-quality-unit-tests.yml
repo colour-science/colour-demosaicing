@@ -7,11 +7,8 @@ jobs:
     name: ${{ matrix.os }} - Python ${{ matrix.python-version }}
     strategy:
       matrix:
-        os: [macOS-latest, ubuntu-20.04, windows-latest]
-        python-version: [3.8, 3.9, '3.10']
-        exclude:
-          - os: windows-latest
-            python-version: 3.8
+        os: [macOS-latest, ubuntu-22.04, windows-latest]
+        python-version: [3.9, '3.10', 3.11]
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
@@ -25,14 +22,17 @@ jobs:
         echo "CI_SHA=${{ github.sha }}" >> $GITHUB_ENV
         echo "COVERALLS_REPO_TOKEN=${{ secrets.COVERALLS_REPO_TOKEN }}" >> $GITHUB_ENV
       shell: bash
+    - name: Set up Python 3.9 for Pre-Commit
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.9
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install Poetry
       run: |
-        curl -L https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py -o get-poetry.py
-        python get-poetry.py --version 1.1.12
+        curl -sSL https://install.python-poetry.org | POETRY_HOME=$HOME/.poetry python3 -
         echo "$HOME/.poetry/bin" >> $GITHUB_PATH
       shell: bash
     - name: Install Package Dependencies
