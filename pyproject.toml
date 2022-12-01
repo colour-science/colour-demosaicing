@@ -48,17 +48,18 @@ exclude = [
 ]
 
 [tool.poetry.dependencies]
-python = ">= 3.8, < 3.11"
-colour-science = ">= 0.4.0"
+python = ">= 3.9, < 3.12"
+colour-science = ">= 0.4.2"
 imageio = ">= 2, < 3"
-numpy = ">= 1.19, < 2"
-scipy = ">= 1.5, < 2"
+numpy = ">= 1.20, < 2"
+scipy = ">= 1.7, < 2"
 typing-extensions = ">= 4, < 5"  # Convenience for Google Colab.
 
-matplotlib = { version = ">= 3.2, != 3.5.0, != 3.5.1", optional = true }
+matplotlib = { version = ">= 3.5, != 3.5.0, != 3.5.1", optional = true }
 
 biblib-simple = { version = "*", optional = true }  # Development dependency.
 black = { version = "*", optional = true }  # Development dependency.
+blackdoc = { version = "*", optional = true }  # Development dependency.
 coverage = { version = "!= 6.3", optional = true }  # Development dependency.
 coveralls = { version = "*", optional = true }  # Development dependency.
 flake8 = { version = "*", optional = true }  # Development dependency.
@@ -82,6 +83,7 @@ twine = { version = "*", optional = true }  # Development dependency.
 [tool.poetry.dev-dependencies]
 biblib-simple = "*"
 black = "*"
+blackdoc = "*"
 coverage = "!= 6.3"
 coveralls = "*"
 flake8 = "*"
@@ -106,6 +108,7 @@ twine = "*"
 development = [
     "biblib-simple",
     "black",
+    "blackdoc",
     "coverage",
     "coveralls",
     "flake8",
@@ -151,7 +154,7 @@ convention = "numpy"
 add-ignore = "D104,D200,D202,D205,D301,D400"
 
 [tool.pytest.ini_options]
-addopts = "-n auto --durations=5"
+addopts = "-n auto --dist=loadscope --durations=5"
 
 [build-system]
 requires = [ "poetry_core>=1.0.0" ]

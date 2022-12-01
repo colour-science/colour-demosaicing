@@ -24,10 +24,10 @@ package_data = {
 }
 
 install_requires = [
-    "colour-science>=0.4.0",
+    "colour-science>=0.4.2",
     "imageio>=2,<3",
-    "numpy>=1.19,<2",
-    "scipy>=1.5,<2",
+    "numpy>=1.20,<2",
+    "scipy>=1.7,<2",
     "typing-extensions>=4,<5",
 ]
 
@@ -35,6 +35,7 @@ extras_require = {
     "development": [
         "biblib-simple",
         "black",
+        "blackdoc",
         "coverage!=6.3",
         "coveralls",
         "flake8",
@@ -54,9 +55,9 @@ extras_require = {
         "toml",
         "twine",
     ],
-    "plotting": ["matplotlib>=3.2,!=3.5.0,!=3.5.1"],
+    "plotting": ["matplotlib>=3.5,!=3.5.0,!=3.5.1"],
     "read-the-docs": [
-        "matplotlib>=3.2,!=3.5.0,!=3.5.1",
+        "matplotlib>=3.5,!=3.5.0,!=3.5.1",
         "pydata-sphinx-theme",
         "sphinxcontrib-bibtex",
     ],
@@ -76,5 +77,5 @@ setup(
     package_data=package_data,
     install_requires=install_requires,
     extras_require=extras_require,
-    python_requires=">=3.8,<3.11",
+    python_requires=">=3.9,<3.12",
 )

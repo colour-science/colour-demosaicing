@@ -58,7 +58,7 @@ def demosaicing_CFA_Bayer_Malvar2004(
     Notes
     -----
     -   The definition output is not clipped in range [0, 1] : this allows for
-        direct HDRI / radiance image generation on *Bayer* CFA data and post
+        direct HDRI image generation on *Bayer* CFA data and post
         demosaicing of the high dynamic range data as showcased in this
         `Jupyter Notebook <https://github.com/colour-science/colour-hdri/\
 blob/develop/colour_hdri/examples/\
@@ -71,8 +71,11 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
     Examples
     --------
     >>> CFA = np.array(
-    ...     [[0.30980393, 0.36078432, 0.30588236, 0.3764706],
-    ...      [0.35686275, 0.39607844, 0.36078432, 0.40000001]])
+    ...     [
+    ...         [0.30980393, 0.36078432, 0.30588236, 0.3764706],
+    ...         [0.35686275, 0.39607844, 0.36078432, 0.40000001],
+    ...     ]
+    ... )
     >>> demosaicing_CFA_Bayer_Malvar2004(CFA)
     array([[[ 0.30980393,  0.31666668,  0.32941177],
             [ 0.33039216,  0.36078432,  0.38112746],
@@ -84,9 +87,12 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
             [ 0.3379902 ,  0.36078432,  0.3754902 ],
             [ 0.37769609,  0.39558825,  0.40000001]]])
     >>> CFA = np.array(
-    ...     [[0.3764706, 0.360784320, 0.40784314, 0.3764706],
-    ...      [0.35686275, 0.30980393, 0.36078432, 0.29803923]])
-    >>> demosaicing_CFA_Bayer_Malvar2004(CFA, 'BGGR')
+    ...     [
+    ...         [0.3764706, 0.360784320, 0.40784314, 0.3764706],
+    ...         [0.35686275, 0.30980393, 0.36078432, 0.29803923],
+    ...     ]
+    ... )
+    >>> demosaicing_CFA_Bayer_Malvar2004(CFA, "BGGR")
     array([[[ 0.35539217,  0.37058825,  0.3764706 ],
             [ 0.34264707,  0.36078432,  0.37450981],
             [ 0.36568628,  0.39607844,  0.40784314],
@@ -157,13 +163,13 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
     del GR_GB, Rg_RB_Bg_BR, Rg_BR_Bg_RB, Rb_BB_Br_RR
 
     # Red rows.
-    R_r = np.transpose(np.any(R_m == 1, axis=1)[np.newaxis]) * ones(R.shape)
+    R_r = np.transpose(np.any(R_m == 1, axis=1)[None]) * ones(R.shape)
     # Red columns.
-    R_c = np.any(R_m == 1, axis=0)[np.newaxis] * ones(R.shape)
+    R_c = np.any(R_m == 1, axis=0)[None] * ones(R.shape)
     # Blue rows.
-    B_r = np.transpose(np.any(B_m == 1, axis=1)[np.newaxis]) * ones(B.shape)
+    B_r = np.transpose(np.any(B_m == 1, axis=1)[None]) * ones(B.shape)
     # Blue columns
-    B_c = np.any(B_m == 1, axis=0)[np.newaxis] * ones(B.shape)
+    B_c = np.any(B_m == 1, axis=0)[None] * ones(B.shape)
 
     del R_m, B_m
 

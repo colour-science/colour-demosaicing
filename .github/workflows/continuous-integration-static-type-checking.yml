@@ -8,20 +8,22 @@ jobs:
     strategy:
       matrix:
         os: [macOS-latest]
-        python-version: [3.9]
+        python-version: [3.11]
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v1
     - name: Environment Variables
       run: |
-        echo "CI_PACKAGE=colour" >> $GITHUB_ENV
+        echo "CI_PACKAGE=colour_demosaicing" >> $GITHUB_ENV
       shell: bash
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Static Type Checking
+    - name: Install Package Dependencies
       run: |
         pip install -r requirements.txt
-        mypy --install-types --non-interactive --show-error-codes --warn-unused-ignores --warn-redundant-casts -p $CI_PACKAGE
+    - name: Static Type Checking
+      run: |
+        mypy --install-types --non-interactive --show-error-codes --warn-unused-ignores --warn-redundant-casts $CI_PACKAGE
