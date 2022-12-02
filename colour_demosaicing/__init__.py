@@ -42,19 +42,19 @@ __all__ = [
     "mosaicing_CFA_Bayer",
 ]
 
-RESOURCES_DIRECTORY: str = os.path.join(os.path.dirname(__file__), "resources")
-EXAMPLES_RESOURCES_DIRECTORY: str = os.path.join(
-    RESOURCES_DIRECTORY, "colour-demosaicing-examples-datasets"
+ROOT_RESOURCES: str = os.path.join(os.path.dirname(__file__), "resources")
+ROOT_RESOURCES_EXAMPLES: str = os.path.join(
+    ROOT_RESOURCES, "colour-demosaicing-examples-datasets"
 )
-TESTS_RESOURCES_DIRECTORY: str = os.path.join(
-    RESOURCES_DIRECTORY, "colour-demosaicing-tests-datasets"
+ROOT_RESOURCES_TESTS: str = os.path.join(
+    ROOT_RESOURCES, "colour-demosaicing-tests-datasets"
 )
 
 __application_name__ = "Colour - Demosaicing"
 
 __major_version__ = "0"
 __minor_version__ = "2"
-__change_version__ = "2"
+__change_version__ = "3"
 __version__ = ".".join(
     (__major_version__, __minor_version__, __change_version__)
 )

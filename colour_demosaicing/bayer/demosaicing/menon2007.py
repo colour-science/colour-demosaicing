@@ -74,7 +74,7 @@ def demosaicing_CFA_Bayer_Menon2007(
     Notes
     -----
     -   The definition output is not clipped in range [0, 1] : this allows for
-        direct HDRI / radiance image generation on *Bayer* CFA data and post
+        direct HDRI image generation on *Bayer* CFA data and post
         demosaicing of the high dynamic range data as showcased in this
         `Jupyter Notebook <https://github.com/colour-science/colour-hdri/\
 blob/develop/colour_hdri/examples/\
@@ -87,8 +87,11 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
     Examples
     --------
     >>> CFA = np.array(
-    ...     [[ 0.30980393,  0.36078432,  0.30588236,  0.3764706 ],
-    ...      [ 0.35686275,  0.39607844,  0.36078432,  0.40000001]])
+    ...     [
+    ...         [0.30980393, 0.36078432, 0.30588236, 0.3764706],
+    ...         [0.35686275, 0.39607844, 0.36078432, 0.40000001],
+    ...     ]
+    ... )
     >>> demosaicing_CFA_Bayer_Menon2007(CFA)
     array([[[ 0.30980393,  0.35686275,  0.39215687],
             [ 0.30980393,  0.36078432,  0.39607844],
@@ -100,9 +103,12 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
             [ 0.30588236,  0.36078432,  0.39019609],
             [ 0.32156864,  0.3764706 ,  0.40000001]]])
     >>> CFA = np.array(
-    ...     [[ 0.3764706 ,  0.36078432,  0.40784314,  0.3764706 ],
-    ...      [ 0.35686275,  0.30980393,  0.36078432,  0.29803923]])
-    >>> demosaicing_CFA_Bayer_Menon2007(CFA, 'BGGR')
+    ...     [
+    ...         [0.3764706, 0.36078432, 0.40784314, 0.3764706],
+    ...         [0.35686275, 0.30980393, 0.36078432, 0.29803923],
+    ...     ]
+    ... )
+    >>> demosaicing_CFA_Bayer_Menon2007(CFA, "BGGR")
     array([[[ 0.30588236,  0.35686275,  0.3764706 ],
             [ 0.30980393,  0.36078432,  0.39411766],
             [ 0.29607844,  0.36078432,  0.40784314],
@@ -160,9 +166,9 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
     del d_H, d_V, G_H, G_V
 
     # Red rows.
-    R_r = np.transpose(np.any(R_m == 1, axis=1)[np.newaxis]) * ones(R.shape)
+    R_r = np.transpose(np.any(R_m == 1, axis=1)[None]) * ones(R.shape)
     # Blue rows.
-    B_r = np.transpose(np.any(B_m == 1, axis=1)[np.newaxis]) * ones(B.shape)
+    B_r = np.transpose(np.any(B_m == 1, axis=1)[None]) * ones(B.shape)
 
     k_b = as_float_array([0.5, 0, 0.5])
 
@@ -248,26 +254,28 @@ def refining_step_Menon2007(
     Examples
     --------
     >>> RGB = np.array(
-    ...     [[[0.30588236, 0.35686275, 0.3764706],
-    ...       [0.30980393, 0.36078432, 0.39411766],
-    ...       [0.29607844, 0.36078432, 0.40784314],
-    ...       [0.29803923, 0.37647060, 0.42352942]],
-    ...      [[0.30588236, 0.35686275, 0.3764706],
-    ...       [0.30980393, 0.36078432, 0.39411766],
-    ...       [0.29607844, 0.36078432, 0.40784314],
-    ...       [0.29803923, 0.37647060, 0.42352942]]])
+    ...     [
+    ...         [
+    ...             [0.30588236, 0.35686275, 0.3764706],
+    ...             [0.30980393, 0.36078432, 0.39411766],
+    ...             [0.29607844, 0.36078432, 0.40784314],
+    ...             [0.29803923, 0.37647060, 0.42352942],
+    ...         ],
+    ...         [
+    ...             [0.30588236, 0.35686275, 0.3764706],
+    ...             [0.30980393, 0.36078432, 0.39411766],
+    ...             [0.29607844, 0.36078432, 0.40784314],
+    ...             [0.29803923, 0.37647060, 0.42352942],
+    ...         ],
+    ...     ]
+    ... )
     >>> RGB_m = np.array(
-    ...     [[[0, 0, 1],
-    ...       [0, 1, 0],
-    ...       [0, 0, 1],
-    ...       [0, 1, 0]],
-    ...      [[0, 1, 0],
-    ...       [1, 0, 0],
-    ...       [0, 1, 0],
-    ...       [1, 0, 0]]])
-    >>> M = np.array(
-    ...     [[0, 1, 0, 1],
-    ...      [1, 0, 1, 0]])
+    ...     [
+    ...         [[0, 0, 1], [0, 1, 0], [0, 0, 1], [0, 1, 0]],
+    ...         [[0, 1, 0], [1, 0, 0], [0, 1, 0], [1, 0, 0]],
+    ...     ]
+    ... )
+    >>> M = np.array([[0, 1, 0, 1], [1, 0, 1, 0]])
     >>> refining_step_Menon2007(RGB, RGB_m, M)
     array([[[ 0.30588236,  0.35686275,  0.3764706 ],
             [ 0.30980393,  0.36078432,  0.39411765],
@@ -310,13 +318,13 @@ def refining_step_Menon2007(
 
     # Updating of the red and blue components in the green locations.
     # Red rows.
-    R_r = np.transpose(np.any(R_m == 1, axis=1)[np.newaxis]) * ones(R.shape)
+    R_r = np.transpose(np.any(R_m == 1, axis=1)[None]) * ones(R.shape)
     # Red columns.
-    R_c = np.any(R_m == 1, axis=0)[np.newaxis] * ones(R.shape)
+    R_c = np.any(R_m == 1, axis=0)[None] * ones(R.shape)
     # Blue rows.
-    B_r = np.transpose(np.any(B_m == 1, axis=1)[np.newaxis]) * ones(B.shape)
+    B_r = np.transpose(np.any(B_m == 1, axis=1)[None]) * ones(B.shape)
     # Blue columns.
-    B_c = np.any(B_m == 1, axis=0)[np.newaxis] * ones(B.shape)
+    B_c = np.any(B_m == 1, axis=0)[None] * ones(B.shape)
 
     R_G = R - G
     B_G = B - G
