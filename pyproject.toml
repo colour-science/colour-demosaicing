@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "colour-demosaicing"
-version = "0.2.2"
+version = "0.2.3"
 description = "CFA (Colour Filter Array) Demosaicing Algorithms for Python"
 license = "BSD-3-Clause"
 authors = [ "Colour Developers <colour-developers@colour-science.org>" ]
