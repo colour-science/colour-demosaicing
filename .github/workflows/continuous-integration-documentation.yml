@@ -16,7 +16,7 @@ jobs:
     - name: Environment Variables
       run: |
         echo "CI_PYTHON_VERSION=${{ matrix.python-version }}" >> $GITHUB_ENV
-        echo "CI_PACKAGE=colour" >> $GITHUB_ENV
+        echo "CI_PACKAGE=colour_demosaicing" >> $GITHUB_ENV
         echo "CI_SHA=${{ github.sha }}" >> $GITHUB_ENV
         echo "MPLBACKEND=AGG" >> $GITHUB_ENV
         echo "COLOUR_SCIENCE__DOCUMENTATION_BUILD=True" >> $GITHUB_ENV
