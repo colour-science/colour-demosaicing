@@ -18,7 +18,7 @@ from __future__ import annotations
 import numpy as np
 from scipy.ndimage.filters import convolve
 
-from colour.hints import ArrayLike, Literal, NDArray, Union
+from colour.hints import ArrayLike, Literal, NDArrayFloat, Union
 from colour.utilities import as_float_array, ones, tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
@@ -38,7 +38,7 @@ __all__ = [
 def demosaicing_CFA_Bayer_Malvar2004(
     CFA: ArrayLike,
     pattern: Union[Literal["RGGB", "BGGR", "GRBG", "GBRG"], str] = "RGGB",
-) -> NDArray:
+) -> NDArrayFloat:
     """
     Return the demosaiced *RGB* colourspace array from given *Bayer* CFA using
     *Malvar (2004)* demosaicing algorithm.
