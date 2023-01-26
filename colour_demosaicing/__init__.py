@@ -70,9 +70,9 @@ try:
         .decode("utf-8")
     )
 except Exception:
-    _version: str = __version__  # type: ignore[no-redef]
+    _version: str = __version__
 
-colour.utilities.ANCILLARY_COLOUR_SCIENCE_PACKAGES[
+colour.utilities.ANCILLARY_COLOUR_SCIENCE_PACKAGES[  # pyright: ignore
     "colour-demosaicing"
 ] = _version
 

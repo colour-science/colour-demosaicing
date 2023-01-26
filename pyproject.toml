@@ -53,7 +53,7 @@ colour-science = ">= 0.4.2"
 imageio = ">= 2, < 3"
 numpy = ">= 1.20, < 2"
 scipy = ">= 1.7, < 2"
-typing-extensions = ">= 4, < 5"  # Convenience for Google Colab.
+typing-extensions = ">= 4, < 5"
 
 matplotlib = { version = ">= 3.5, != 3.5.0, != 3.5.1", optional = true }
 
@@ -66,10 +66,10 @@ flake8 = { version = "*", optional = true }  # Development dependency.
 flynt = { version = "*", optional = true }  # Development dependency.
 invoke = { version = "*", optional = true }  # Development dependency.
 jupyter = { version = "*", optional = true }  # Development dependency.
-mypy = { version = "*", optional = true }  # Development dependency.
 pre-commit = { version = "*", optional = true }  # Development dependency.
 pydata-sphinx-theme = { version = "*", optional = true }  # Development dependency.
 pydocstyle = { version = "*", optional = true }  # Development dependency.
+pyright = { version = "*", optional = true }  # Development dependency.
 pytest = { version = "*", optional = true }  # Development dependency.
 pytest-cov = { version = "*", optional = true }  # Development dependency.
 pytest-xdist = { version = "*", optional = true} #Development dependency
@@ -90,10 +90,10 @@ flake8 = "*"
 flynt = "*"
 invoke = "*"
 jupyter = "*"
-mypy = "*"
 pre-commit = "*"
 pydata-sphinx-theme = "*"
 pydocstyle = "*"
+pyright = "*"
 pytest = "*"
 pytest-cov = "*"
 pytest-xdist = "*"
@@ -115,10 +115,10 @@ development = [
     "flynt",
     "invoke",
     "jupyter",
-    "mypy",
     "pre-commit",
     "pydata-sphinx-theme",
     "pydocstyle",
+    "pyright",
     "pytest",
     "pytest-cov",
     "pytest-xdist",
@@ -137,7 +137,6 @@ line-length = 79
 exclude = '''
 /(
     \.git
-  | \.mypy_cache
   | build
   | dist
 )/
@@ -146,13 +145,18 @@ exclude = '''
 [tool.flynt]
 line_length=999
 
-[tool.mypy]
-plugins = "numpy.typing.mypy_plugin"
-ignore_missing_imports = true
-
 [tool.pydocstyle]
 convention = "numpy"
 add-ignore = "D104,D200,D202,D205,D301,D400"
+
+[tool.pyright]
+reportMissingImports = false
+reportMissingModuleSource = false
+reportUnboundVariable = false
+reportUnnecessaryCast = true
+reportUnnecessaryTypeIgnoreComment = true
+reportUnsupportedDunderAll = false
+reportUnusedExpression = false
 
 [tool.pytest.ini_options]
 addopts = "-n auto --dist=loadscope --durations=5"

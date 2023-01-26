@@ -17,7 +17,7 @@ from __future__ import annotations
 import numpy as np
 from scipy.ndimage.filters import convolve, convolve1d
 
-from colour.hints import ArrayLike, Boolean, Literal, NDArray, Union
+from colour.hints import ArrayLike, Literal, NDArrayFloat, Union
 from colour.utilities import as_float_array, ones, tsplit, tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
@@ -36,13 +36,13 @@ __all__ = [
 ]
 
 
-def _cnv_h(x: ArrayLike, y: ArrayLike) -> NDArray:
+def _cnv_h(x: ArrayLike, y: ArrayLike) -> NDArrayFloat:
     """Perform horizontal convolution."""
 
     return convolve1d(x, y, mode="mirror")
 
 
-def _cnv_v(x: ArrayLike, y: ArrayLike) -> NDArray:
+def _cnv_v(x: ArrayLike, y: ArrayLike) -> NDArrayFloat:
     """Perform vertical convolution."""
 
     return convolve1d(x, y, mode="mirror", axis=0)
@@ -51,7 +51,7 @@ def _cnv_v(x: ArrayLike, y: ArrayLike) -> NDArray:
 def demosaicing_CFA_Bayer_Menon2007(
     CFA: ArrayLike,
     pattern: Union[Literal["RGGB", "BGGR", "GRBG", "GBRG"], str] = "RGGB",
-    refining_step: Boolean = True,
+    refining_step: bool = True,
 ):
     """
     Return the demosaiced *RGB* colourspace array from given *Bayer* CFA using
@@ -140,7 +140,12 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
     C_V = np.where(B_m == 1, B - G_V, C_V)
 
     D_H = np.abs(C_H - np.pad(C_H, ((0, 0), (0, 2)), mode="reflect")[:, 2:])
-    D_V = np.abs(C_V - np.pad(C_V, ((0, 2), (0, 0)), mode="reflect")[2:, :])
+    D_V = np.abs(
+        C_V
+        - np.pad(C_V, ((0, 2), (0, 0)), mode="reflect")[  # pyright: ignore
+            2:, :
+        ]
+    )
 
     del h_0, h_1, CFA, C_V, C_H
 
@@ -233,7 +238,7 @@ demosaicing_CFA_Bayer_DDFAPD = demosaicing_CFA_Bayer_Menon2007
 
 def refining_step_Menon2007(
     RGB: ArrayLike, RGB_m: ArrayLike, M: ArrayLike
-) -> NDArray:
+) -> NDArrayFloat:
     """
     Perform the refining step on given *RGB* colourspace array.
 
