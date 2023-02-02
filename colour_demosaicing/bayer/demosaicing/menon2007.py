@@ -17,7 +17,7 @@ from __future__ import annotations
 import numpy as np
 from scipy.ndimage.filters import convolve, convolve1d
 
-from colour.hints import ArrayLike, Literal, NDArrayFloat, Union
+from colour.hints import ArrayLike, Literal, NDArrayFloat
 from colour.utilities import as_float_array, ones, tsplit, tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
@@ -50,7 +50,7 @@ def _cnv_v(x: ArrayLike, y: ArrayLike) -> NDArrayFloat:
 
 def demosaicing_CFA_Bayer_Menon2007(
     CFA: ArrayLike,
-    pattern: Union[Literal["RGGB", "BGGR", "GRBG", "GBRG"], str] = "RGGB",
+    pattern: Literal["RGGB", "BGGR", "GRBG", "GBRG"] | str = "RGGB",
     refining_step: bool = True,
 ):
     """

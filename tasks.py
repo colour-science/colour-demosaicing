@@ -6,6 +6,7 @@ Invoke - Tasks
 from __future__ import annotations
 
 import biblib.bib
+import contextlib
 import fnmatch
 import os
 import re
@@ -138,10 +139,8 @@ def formatting(
             )
 
         for entry in sorted(entries.values(), key=lambda x: x.key):
-            try:
+            with contextlib.suppress(KeyError):
                 del entry["file"]
-            except KeyError:
-                pass
 
             for key, value in entry.items():
                 entry[key] = re.sub("(?<!\\\\)\\&", "\\&", value)
@@ -238,7 +237,7 @@ def examples(ctx: Context):
 
 
 @task(formatting, quality, precommit, tests, examples)
-def preflight(ctx: Context):
+def preflight(ctx: Context):  # noqa: ARG001
     """
     Perform the preflight tasks, i.e. *formatting*, *tests*, *quality*, and
     *examples*.
@@ -267,15 +266,16 @@ def docs(ctx: Context, html: bool = True, pdf: bool = True):
         Whether to build the *PDF* documentation.
     """
 
-    with ctx.prefix("export COLOUR_SCIENCE__DOCUMENTATION_BUILD=True"):
-        with ctx.cd("docs"):
-            if html:
-                message_box('Building "HTML" documentation...')
-                ctx.run("make html")
+    with ctx.prefix("export COLOUR_SCIENCE__DOCUMENTATION_BUILD=True"), ctx.cd(
+        "docs"
+    ):
+        if html:
+            message_box('Building "HTML" documentation...')
+            ctx.run("make html")
 
-            if pdf:
-                message_box('Building "PDF" documentation...')
-                ctx.run("make latexpdf")
+        if pdf:
+            message_box('Building "PDF" documentation...')
+            ctx.run("make latexpdf")
 
 
 @task
@@ -443,9 +443,8 @@ def tag(ctx: Context):
     message_box("Tagging...")
     result = ctx.run("git rev-parse --abbrev-ref HEAD", hide="both")
 
-    assert (
-        result.stdout.strip() == "develop"
-    ), "Are you still on a feature or master branch?"
+    if result.stdout.strip() == "develop":
+        raise RuntimeError("Are you still on a feature or master branch?")
 
     with open(os.path.join(PYTHON_PACKAGE_NAME, "__init__.py")) as file_handle:
         file_content = file_handle.read()
@@ -474,11 +473,12 @@ def tag(ctx: Context):
             tags.add(
                 remote_tag.split("refs/tags/")[1].replace("refs/tags/", "^{}")
             )
-        version_tags = sorted(list(tags))
-        assert f"v{version}" not in version_tags, (
-            f'A "{PYTHON_PACKAGE_NAME}" "v{version}" tag already exists in '
-            f"remote repository!"
-        )
+        version_tags = sorted(tags)
+        if f"v{version}" not in version_tags:
+            raise RuntimeError(
+                f'A "{PYTHON_PACKAGE_NAME}" "v{version}" tag already exists in '
+                f"remote repository!"
+            )
 
         ctx.run(f"git flow release start v{version}")
         ctx.run(f"git flow release finish v{version}")

@@ -7,7 +7,7 @@ Bayer CFA Mosaicing
 
 from __future__ import annotations
 
-from colour.hints import ArrayLike, Literal, NDArray, Union
+from colour.hints import ArrayLike, Literal, NDArray
 from colour.utilities import as_float_array, tsplit
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
@@ -26,7 +26,7 @@ __all__ = [
 
 def mosaicing_CFA_Bayer(
     RGB: ArrayLike,
-    pattern: Union[Literal["RGGB", "BGGR", "GRBG", "GBRG"], str] = "RGGB",
+    pattern: Literal["RGGB", "BGGR", "GRBG", "GBRG"] | str = "RGGB",
 ) -> NDArray:
     """
     Return the *Bayer* CFA mosaic for a given *RGB* colourspace array.

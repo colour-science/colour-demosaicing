@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from colour.hints import Literal, NDArray, Tuple, Union
+from colour.hints import Literal, NDArray, Tuple
 from colour.utilities import validate_method
 
 __author__ = "Colour Developers"
@@ -25,8 +25,8 @@ __all__ = [
 
 
 def masks_CFA_Bayer(
-    shape: Union[int, Tuple[int, ...]],
-    pattern: Union[Literal["RGGB", "BGGR", "GRBG", "GBRG"], str] = "RGGB",
+    shape: int | Tuple[int, ...],
+    pattern: Literal["RGGB", "BGGR", "GRBG", "GBRG"] | str = "RGGB",
 ) -> Tuple[NDArray, ...]:
     """
     Return the *Bayer* CFA red, green and blue masks for given pattern.
