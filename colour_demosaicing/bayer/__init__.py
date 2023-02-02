@@ -1,6 +1,6 @@
 from .masks import masks_CFA_Bayer
 from .mosaicing import mosaicing_CFA_Bayer
-from .demosaicing import *  # noqa
+from .demosaicing import *  # noqa: F403
 from . import demosaicing
 
 __all__ = []
