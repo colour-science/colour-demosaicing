@@ -31,6 +31,8 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install Poetry
+      env:
+        POETRY_VERSION: 1.4.0
       run: |
         curl -sSL https://install.python-poetry.org | POETRY_HOME=$HOME/.poetry python3 -
         echo "$HOME/.poetry/bin" >> $GITHUB_PATH
@@ -54,6 +56,7 @@ jobs:
         poetry run python -W ignore -m pytest --doctest-modules --ignore=$CI_PACKAGE/examples --cov=$CI_PACKAGE $CI_PACKAGE
       shell: bash
     - name: Upload Coverage to coveralls.io
+      if: matrix.os == 'macOS-latest' && matrix.python-version == '3.11'
       run: |
         if [ -z "$COVERALLS_REPO_TOKEN" ]; then echo \"COVERALLS_REPO_TOKEN\" secret is undefined!; else poetry run coveralls; fi
       shell: bash
