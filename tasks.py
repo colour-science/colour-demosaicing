@@ -20,7 +20,8 @@ import inspect
 if not hasattr(inspect, "getargspec"):
     inspect.getargspec = inspect.getfullargspec  # pyright: ignore
 
-from invoke import Context, task
+from invoke.tasks import task
+from invoke.context import Context
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2015 Colour Developers"
