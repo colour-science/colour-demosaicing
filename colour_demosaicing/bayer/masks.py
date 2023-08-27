@@ -71,7 +71,7 @@ def masks_CFA_Bayer(
 
     pattern = validate_method(
         pattern,
-        ["RGGB", "BGGR", "GRBG", "GBRG"],
+        ("RGGB", "BGGR", "GRBG", "GBRG"),
         '"{0}" CFA pattern is invalid, it must be one of {1}!',
     ).upper()
 
