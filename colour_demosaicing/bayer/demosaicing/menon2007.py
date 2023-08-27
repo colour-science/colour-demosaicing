@@ -140,12 +140,7 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
     C_V = np.where(B_m == 1, B - G_V, C_V)
 
     D_H = np.abs(C_H - np.pad(C_H, ((0, 0), (0, 2)), mode="reflect")[:, 2:])
-    D_V = np.abs(
-        C_V
-        - np.pad(C_V, ((0, 2), (0, 0)), mode="reflect")[  # pyright: ignore
-            2:, :
-        ]
-    )
+    D_V = np.abs(C_V - np.pad(C_V, ((0, 2), (0, 0)), mode="reflect")[2:, :])
 
     del h_0, h_1, CFA, C_V, C_H
 
