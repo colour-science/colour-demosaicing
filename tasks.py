@@ -395,7 +395,7 @@ def tag(ctx: Context):
     message_box("Tagging...")
     result = ctx.run("git rev-parse --abbrev-ref HEAD", hide="both")
 
-    if result.stdout.strip() == "develop":  # pyright: ignore
+    if result.stdout.strip() != "develop":  # pyright: ignore
         raise RuntimeError("Are you still on a feature or master branch?")
 
     with open(os.path.join(PYTHON_PACKAGE_NAME, "__init__.py")) as file_handle:
