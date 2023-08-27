@@ -17,14 +17,14 @@ from __future__ import annotations
 import numpy as np
 from scipy.ndimage.filters import convolve, convolve1d
 
-from colour.hints import ArrayLike, Boolean, Literal, NDArray, Union
+from colour.hints import ArrayLike, Literal, NDArrayFloat
 from colour.utilities import as_float_array, ones, tsplit, tstack
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2015 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -36,13 +36,13 @@ __all__ = [
 ]
 
 
-def _cnv_h(x: ArrayLike, y: ArrayLike) -> NDArray:
+def _cnv_h(x: ArrayLike, y: ArrayLike) -> NDArrayFloat:
     """Perform horizontal convolution."""
 
     return convolve1d(x, y, mode="mirror")
 
 
-def _cnv_v(x: ArrayLike, y: ArrayLike) -> NDArray:
+def _cnv_v(x: ArrayLike, y: ArrayLike) -> NDArrayFloat:
     """Perform vertical convolution."""
 
     return convolve1d(x, y, mode="mirror", axis=0)
@@ -50,8 +50,8 @@ def _cnv_v(x: ArrayLike, y: ArrayLike) -> NDArray:
 
 def demosaicing_CFA_Bayer_Menon2007(
     CFA: ArrayLike,
-    pattern: Union[Literal["RGGB", "BGGR", "GRBG", "GBRG"], str] = "RGGB",
-    refining_step: Boolean = True,
+    pattern: Literal["RGGB", "BGGR", "GRBG", "GBRG"] | str = "RGGB",
+    refining_step: bool = True,
 ):
     """
     Return the demosaiced *RGB* colourspace array from given *Bayer* CFA using
@@ -233,7 +233,7 @@ demosaicing_CFA_Bayer_DDFAPD = demosaicing_CFA_Bayer_Menon2007
 
 def refining_step_Menon2007(
     RGB: ArrayLike, RGB_m: ArrayLike, M: ArrayLike
-) -> NDArray:
+) -> NDArrayFloat:
     """
     Perform the refining step on given *RGB* colourspace array.
 

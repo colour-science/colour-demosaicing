@@ -9,12 +9,12 @@ from __future__ import annotations
 
 import numpy as np
 
-from colour.hints import Literal, NDArray, Tuple, Union
+from colour.hints import Literal, NDArray, Tuple
 from colour.utilities import validate_method
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2015 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -25,8 +25,8 @@ __all__ = [
 
 
 def masks_CFA_Bayer(
-    shape: Union[int, Tuple[int, ...]],
-    pattern: Union[Literal["RGGB", "BGGR", "GRBG", "GBRG"], str] = "RGGB",
+    shape: int | Tuple[int, ...],
+    pattern: Literal["RGGB", "BGGR", "GRBG", "GBRG"] | str = "RGGB",
 ) -> Tuple[NDArray, ...]:
     """
     Return the *Bayer* CFA red, green and blue masks for given pattern.
@@ -71,7 +71,7 @@ def masks_CFA_Bayer(
 
     pattern = validate_method(
         pattern,
-        ["RGGB", "BGGR", "GRBG", "GBRG"],
+        ("RGGB", "BGGR", "GRBG", "GBRG"),
         '"{0}" CFA pattern is invalid, it must be one of {1}!',
     ).upper()
 

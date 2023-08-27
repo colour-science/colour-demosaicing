@@ -1,5 +1,6 @@
 [run]
 source = colour_demosaicing
+sigterm = True
 [report]
 exclude_lines =
     pragma: no cover
