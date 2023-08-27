@@ -20,11 +20,12 @@ import inspect
 if not hasattr(inspect, "getargspec"):
     inspect.getargspec = inspect.getfullargspec  # pyright: ignore
 
-from invoke import Context, task
+from invoke.tasks import task
+from invoke.context import Context
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2015 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -209,9 +210,9 @@ def tests(ctx: Context):
     message_box('Running "Pytest"...')
     ctx.run(
         "pytest "
-        "--disable-warnings "
         "--doctest-modules "
         f"--ignore={PYTHON_PACKAGE_NAME}/examples "
+        f"--cov={PYTHON_PACKAGE_NAME} "
         f"{PYTHON_PACKAGE_NAME}"
     )
 
@@ -308,9 +309,18 @@ def requirements(ctx: Context):
 
     message_box('Exporting "requirements.txt" file...')
     ctx.run(
-        "poetry run pip list --format=freeze | "
-        'egrep -v "colour-demosaicing=" '
-        "> requirements.txt"
+        "poetry export -f requirements.txt "
+        "--without-hashes "
+        "--with dev,docs,optional "
+        "--output requirements.txt"
+    )
+
+    message_box('Exporting "docs/requirements.txt" file...')
+    ctx.run(
+        "poetry export -f requirements.txt "
+        "--without-hashes "
+        "--with docs,optional "
+        "--output docs/requirements.txt"
     )
 
 
@@ -328,63 +338,6 @@ def build(ctx: Context):
 
     message_box("Building...")
     ctx.run("poetry build")
-
-    with ctx.cd("dist"):
-        ctx.run(f"tar -xvf {PYPI_ARCHIVE_NAME}-{APPLICATION_VERSION}.tar.gz")
-        ctx.run(f"cp {PYPI_ARCHIVE_NAME}-{APPLICATION_VERSION}/setup.py ../")
-
-        ctx.run(f"rm -rf {PYPI_ARCHIVE_NAME}-{APPLICATION_VERSION}")
-
-    with open("setup.py") as setup_file:
-        source = setup_file.read()
-
-    setup_kwargs = []
-
-    def sub_callable(match):
-        setup_kwargs.append(match)
-
-        return ""
-
-    template = """
-setup({0}
-)
-"""
-
-    source = re.sub(
-        "from setuptools import setup",
-        (
-            '"""\n'
-            "Colour - Demosaicing - Setup\n"
-            "============================\n"
-            '"""\n\n'
-            "import codecs\n"
-            "from setuptools import setup"
-        ),
-        source,
-    )
-    source = re.sub(
-        "setup_kwargs = {(.*)}.*setup\\(\\*\\*setup_kwargs\\)",
-        sub_callable,
-        source,
-        flags=re.DOTALL,
-    )[:-2]
-    setup_kwargs = setup_kwargs[0].group(1).splitlines()
-    for i, line in enumerate(setup_kwargs):
-        setup_kwargs[i] = re.sub("^\\s*('(\\w+)':\\s?)", "    \\2=", line)
-        if setup_kwargs[i].strip().startswith("long_description"):
-            setup_kwargs[i] = (
-                "    long_description="
-                "codecs.open('README.rst', encoding='utf8')"
-                ".read(),"
-            )
-
-    source += template.format("\n".join(setup_kwargs))
-
-    with open("setup.py", "w") as setup_file:
-        setup_file.write(source)
-
-    ctx.run("poetry run pre-commit run --files setup.py || true")
-
     ctx.run("twine check dist/*")
 
 
@@ -413,7 +366,7 @@ def virtualise(ctx: Context, tests: bool = True):
         )
 
         with ctx.cd(unique_name):
-            ctx.run('poetry install --extras "plotting"')
+            ctx.run("poetry install")
             ctx.run("source $(poetry env info -p)/bin/activate")
             ctx.run(
                 'python -c "import imageio;'
@@ -422,7 +375,6 @@ def virtualise(ctx: Context, tests: bool = True):
             if tests:
                 ctx.run(
                     "poetry run pytest "
-                    "--disable-warnings "
                     "--doctest-modules "
                     f"--ignore={PYTHON_PACKAGE_NAME}/examples "
                     f"{PYTHON_PACKAGE_NAME}",
@@ -443,7 +395,7 @@ def tag(ctx: Context):
     message_box("Tagging...")
     result = ctx.run("git rev-parse --abbrev-ref HEAD", hide="both")
 
-    if result.stdout.strip() == "develop":
+    if result.stdout.strip() == "develop":  # pyright: ignore
         raise RuntimeError("Are you still on a feature or master branch?")
 
     with open(os.path.join(PYTHON_PACKAGE_NAME, "__init__.py")) as file_handle:
@@ -467,14 +419,14 @@ def tag(ctx: Context):
         version = ".".join((major_version, minor_version, change_version))
 
         result = ctx.run("git ls-remote --tags upstream", hide="both")
-        remote_tags = result.stdout.strip().split("\n")
+        remote_tags = result.stdout.strip().split("\n")  # pyright: ignore
         tags = set()
         for remote_tag in remote_tags:
             tags.add(
                 remote_tag.split("refs/tags/")[1].replace("refs/tags/", "^{}")
             )
         version_tags = sorted(tags)
-        if f"v{version}" not in version_tags:
+        if f"v{version}" in version_tags:
             raise RuntimeError(
                 f'A "{PYTHON_PACKAGE_NAME}" "v{version}" tag already exists in '
                 f"remote repository!"

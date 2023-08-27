@@ -20,11 +20,11 @@ Colour - Demosaicing
 
 .. end-badges
 
-A `Python <https://www.python.org/>`__ package implementing various
+A `Python <https://www.python.org>`__ package implementing various
 CFA (Colour Filter Array) demosaicing algorithms and related utilities.
 
 It is open source and freely available under the
-`New BSD License <https://opensource.org/licenses/BSD-3-Clause>`__ terms.
+`BSD-3-Clause <https://opensource.org/licenses/BSD-3-Clause>`__ terms.
 
 ..  image:: https://raw.githubusercontent.com/colour-science/colour-demosaicing/master/docs/_static/Demosaicing_001.png
 
@@ -67,11 +67,11 @@ Primary Dependencies
 
 **Colour - Demosaicing** requires various dependencies in order to run:
 
-- `python >= 3.8, < 4 <https://www.python.org/download/releases/>`__
-- `colour-science >= 4 <https://pypi.org/project/colour-science/>`__
-- `imageio >= 2, < 3 <https://imageio.github.io/>`__
-- `numpy >= 1.19, < 2 <https://pypi.org/project/numpy/>`__
-- `scipy >= 1.5, < 2 <https://pypi.org/project/scipy/>`__
+- `python >= 3.9, < 4 <https://www.python.org/download/releases>`__
+- `colour-science >= 4.3 <https://pypi.org/project/colour-science>`__
+- `imageio >= 2, < 3 <https://imageio.github.io>`__
+- `numpy >= 1.22, < 2 <https://pypi.org/project/numpy>`__
+- `scipy >= 1.8, < 2 <https://pypi.org/project/scipy>`__
 
 Pypi
 ~~~~
@@ -90,7 +90,7 @@ Contributing
 ^^^^^^^^^^^^
 
 If you would like to contribute to `Colour - Demosaicing <https://github.com/colour-science/colour-demosaicing>`__,
-please refer to the following `Contributing <https://www.colour-science.org/contributing/>`__
+please refer to the following `Contributing <https://www.colour-science.org/contributing>`__
 guide for `Colour <https://github.com/colour-science/colour>`__.
 
 Bibliography
@@ -110,7 +110,7 @@ Code of Conduct
 ---------------
 
 The *Code of Conduct*, adapted from the `Contributor Covenant 1.4 <https://www.contributor-covenant.org/version/1/4/code-of-conduct.html>`__,
-is available on the `Code of Conduct <https://www.colour-science.org/code-of-conduct/>`__ page.
+is available on the `Code of Conduct <https://www.colour-science.org/code-of-conduct>`__ page.
 
 Contact & Social
 ----------------
@@ -128,5 +128,5 @@ About
 
 | **Colour - Demosaicing** by Colour Developers
 | Copyright 2015 Colour Developers – `colour-developers@colour-science.org <colour-developers@colour-science.org>`__
-| This software is released under terms of New BSD License: https://opensource.org/licenses/BSD-3-Clause
+| This software is released under terms of BSD-3-Clause: https://opensource.org/licenses/BSD-3-Clause
 | `https://github.com/colour-science/colour-demosaicing <https://github.com/colour-science/colour-demosaicing>`__

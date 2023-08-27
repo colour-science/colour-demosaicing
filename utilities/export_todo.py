@@ -10,7 +10,7 @@ import codecs
 import os
 
 __copyright__ = "Copyright 2015 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -36,7 +36,7 @@ About
 | **Colour - Demosaicing** by Colour Developers
 | Copyright 2015 Colour Developers - \
 `colour-developers@colour-science.org <colour-developers@colour-science.org>`__
-| This software is released under terms of New BSD License: \
+| This software is released under terms of BSD-3-Clause: \
 https://opensource.org/licenses/BSD-3-Clause
 | `https://github.com/colour-science/colour-demosaicing \
 <https://github.com/colour-science/colour-demosaicing>`__
@@ -66,7 +66,7 @@ def extract_todo_items(root_directory: str) -> dict:
             if not filename.endswith(".py"):
                 continue
 
-            filename = os.path.join(root, filename)
+            filename = os.path.join(root, filename)  # noqa: PLW2901
             with codecs.open(filename, encoding="utf8") as file_handle:
                 content = file_handle.readlines()
 
@@ -74,7 +74,7 @@ def extract_todo_items(root_directory: str) -> dict:
             line_number = 1
             todo_item = []
             for i, line in enumerate(content):
-                line = line.strip()
+                line = line.strip()  # noqa: PLW2901
                 if line.startswith("# TODO:"):
                     in_todo = True
                     line_number = i + 1
@@ -120,6 +120,8 @@ def export_todo_items(todo_items: dict, file_path: str):
 
 
 if __name__ == "__main__":
+    os.chdir(os.path.dirname(__file__))
+
     export_todo_items(
         extract_todo_items(os.path.join("..", "colour_demosaicing")),
         os.path.join("..", "TODO.rst"),

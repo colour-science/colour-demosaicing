@@ -14,7 +14,7 @@ from __future__ import annotations
 import contextlib
 import numpy as np
 import os
-import subprocess  # nosec
+import subprocess
 
 import colour
 
@@ -29,7 +29,7 @@ from .bayer import (
 
 __author__ = "Colour Developers"
 __copyright__ = "Copyright 2015 Colour Developers"
-__license__ = "New BSD License - https://opensource.org/licenses/BSD-3-Clause"
+__license__ = "BSD-3-Clause - https://opensource.org/licenses/BSD-3-Clause"
 __maintainer__ = "Colour Developers"
 __email__ = "colour-developers@colour-science.org"
 __status__ = "Production"
@@ -62,8 +62,8 @@ __version__ = ".".join(
 
 try:
     _version: str = (
-        subprocess.check_output(  # nosec
-            ["git", "describe"],
+        subprocess.check_output(
+            ["git", "describe"],  # noqa: S603, S607
             cwd=os.path.dirname(__file__),
             stderr=subprocess.STDOUT,
         )
