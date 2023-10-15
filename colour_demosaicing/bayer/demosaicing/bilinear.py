@@ -13,6 +13,7 @@ References
 
 from __future__ import annotations
 
+import numpy as np
 from scipy.ndimage.filters import convolve
 
 from colour.hints import ArrayLike, Literal, NDArrayFloat
@@ -102,7 +103,7 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
             [ 0.67058827,  0.18431373,  0.10196078]]])
     """
 
-    CFA = as_float_array(CFA)
+    CFA = np.squeeze(as_float_array(CFA))
     R_m, G_m, B_m = masks_CFA_Bayer(CFA.shape, pattern)
 
     H_G = (

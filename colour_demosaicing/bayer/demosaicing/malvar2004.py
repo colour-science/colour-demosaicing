@@ -104,7 +104,7 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
             [ 0.29803923,  0.30441178,  0.31740197]]])
     """
 
-    CFA = as_float_array(CFA)
+    CFA = np.squeeze(as_float_array(CFA))
     R_m, G_m, B_m = masks_CFA_Bayer(CFA.shape, pattern)
 
     GR_GB = (
