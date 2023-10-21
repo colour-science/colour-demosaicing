@@ -6,10 +6,10 @@ module.
 
 from __future__ import annotations
 
-import numpy as np
 import os
 import unittest
 
+import numpy as np
 from colour import read_image
 
 from colour_demosaicing import ROOT_RESOURCES_TESTS

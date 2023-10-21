@@ -15,10 +15,9 @@ References
 from __future__ import annotations
 
 import numpy as np
-from scipy.ndimage.filters import convolve, convolve1d
-
 from colour.hints import ArrayLike, Literal, NDArrayFloat
 from colour.utilities import as_float_array, ones, tsplit, tstack
+from scipy.ndimage.filters import convolve, convolve1d
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
 

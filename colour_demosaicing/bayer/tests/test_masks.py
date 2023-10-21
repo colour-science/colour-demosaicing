@@ -3,10 +3,10 @@
 
 from __future__ import annotations
 
-import numpy as np
 import os
 import unittest
 
+import numpy as np
 from colour import read_image
 from colour.utilities import tstack
 
