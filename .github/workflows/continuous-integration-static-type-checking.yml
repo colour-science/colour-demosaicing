@@ -12,18 +12,18 @@ jobs:
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v1
-    - name: Environment Variables
-      run: |
-        echo "CI_PACKAGE=colour_demosaicing" >> $GITHUB_ENV
-      shell: bash
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install Package Dependencies
-      run: |
-        pip install -r requirements.txt
-    - name: Static Type Checking
-      run: |
-        pyright --skipunannotated
+      - uses: actions/checkout@v1
+      - name: Environment Variables
+        run: |
+          echo "CI_PACKAGE=colour_demosaicing" >> $GITHUB_ENV
+        shell: bash
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install Package Dependencies
+        run: |
+          pip install -r requirements.txt
+      - name: Static Type Checking
+        run: |
+          pyright --skipunannotated
