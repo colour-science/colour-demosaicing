@@ -12,11 +12,11 @@ Subpackages
 from __future__ import annotations
 
 import contextlib
-import numpy as np
 import os
 import subprocess
 
 import colour
+import numpy as np
 
 from .bayer import (
     demosaicing_CFA_Bayer_bilinear,
@@ -55,7 +55,7 @@ __application_name__ = "Colour - Demosaicing"
 
 __major_version__ = "0"
 __minor_version__ = "2"
-__change_version__ = "4"
+__change_version__ = "5"
 __version__ = ".".join(
     (__major_version__, __minor_version__, __change_version__)
 )

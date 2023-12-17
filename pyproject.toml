@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "colour-demosaicing"
-version = "0.2.4"
+version = "0.2.5"
 description = "CFA (Colour Filter Array) Demosaicing Algorithms for Python"
 license = "BSD-3-Clause"
 authors = [ "Colour Developers <colour-developers@colour-science.org>" ]
@@ -48,8 +48,8 @@ exclude = [
 ]
 
 [tool.poetry.dependencies]
-python = ">= 3.9, < 3.12"
-colour-science = ">= 0.4.3"
+python = ">= 3.9, < 3.13"
+colour-science = ">= 0.4.4"
 imageio = ">= 2, < 3"
 numpy = ">= 1.22, < 2"
 scipy = ">= 1.8, < 2"
@@ -59,19 +59,15 @@ typing-extensions = ">= 4, < 5"
 matplotlib = ">= 3.5, != 3.5.0, != 3.5.1"
 
 [tool.poetry.group.dev.dependencies]
-black = "*"
-blackdoc = "*"
 coverage = "!= 6.3"
 coveralls = "*"
-flynt = "*"
 invoke = "*"
 jupyter = "*"
-pre-commit = "*"
+pre-commit = ">= 3.5"
 pyright = "*"
 pytest = "*"
 pytest-cov = "*"
 pytest-xdist = "*"
-ruff = "*"
 toml = "*"
 twine = "*"
 
@@ -79,7 +75,7 @@ twine = "*"
 biblib-simple = "*"
 pydata-sphinx-theme = "*"
 restructuredtext-lint = "*"
-sphinx = ">= 4, < 5"
+sphinx = "*"
 sphinxcontrib-bibtex = "*"
 
 [tool.black]
@@ -94,6 +90,16 @@ exclude = '''
 
 [tool.flynt]
 line_length=999
+
+[tool.isort]
+ensure_newline_before_comments = true
+force_grid_wrap = 0
+include_trailing_comma = true
+line_length = 88
+multi_line_output = 3
+skip_glob = ["colour_demosaicing/**/__init__.py"]
+split_on_trailing_comma = true
+use_parentheses = true
 
 [tool.pyright]
 reportMissingImports = false

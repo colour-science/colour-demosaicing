@@ -8,7 +8,6 @@ Bayer CFA Masks
 from __future__ import annotations
 
 import numpy as np
-
 from colour.hints import Literal, NDArray, Tuple
 from colour.utilities import validate_method
 
