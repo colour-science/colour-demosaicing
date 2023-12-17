@@ -12,11 +12,11 @@ Subpackages
 from __future__ import annotations
 
 import contextlib
-import numpy as np
 import os
 import subprocess
 
 import colour
+import numpy as np
 
 from .bayer import (
     demosaicing_CFA_Bayer_bilinear,
