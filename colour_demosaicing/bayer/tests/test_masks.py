@@ -8,6 +8,7 @@ import unittest
 
 import numpy as np
 from colour import read_image
+from colour.constants import TOLERANCE_ABSOLUTE_TESTS
 from colour.utilities import tstack
 
 from colour_demosaicing import ROOT_RESOURCES_TESTS
@@ -44,10 +45,10 @@ class TestMasks_CFA_Bayer(unittest.TestCase):
 
         for pattern in ("RGGB", "BGGR", "GRBG", "GBRG"):
             mask = os.path.join(ROOT_RESOURCES_BAYER, f"{pattern}_Masks.exr")
-            np.testing.assert_array_almost_equal(
+            np.testing.assert_allclose(
                 tstack(masks_CFA_Bayer((8, 8), pattern)),
                 read_image(str(mask)),
-                decimal=7,
+                atol=TOLERANCE_ABSOLUTE_TESTS,
             )
 
 

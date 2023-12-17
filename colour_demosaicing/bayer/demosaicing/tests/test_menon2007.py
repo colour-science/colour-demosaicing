@@ -11,6 +11,7 @@ import unittest
 
 import numpy as np
 from colour import read_image
+from colour.constants import TOLERANCE_ABSOLUTE_TESTS
 
 from colour_demosaicing import ROOT_RESOURCES_TESTS
 from colour_demosaicing.bayer import demosaicing_CFA_Bayer_Menon2007
@@ -52,25 +53,25 @@ demosaicing_CFA_Bayer_Menon2007` definition.
                 ROOT_RESOURCES_BAYER, f"Lighthouse_Menon2007_{pattern}.exr"
             )
 
-            np.testing.assert_array_almost_equal(
+            np.testing.assert_allclose(
                 demosaicing_CFA_Bayer_Menon2007(
                     read_image(str(CFA))[..., 0], pattern
                 ),
                 read_image(str(RGB)),
-                decimal=7,
+                atol=TOLERANCE_ABSOLUTE_TESTS,
             )
 
             RGB = os.path.join(
                 ROOT_RESOURCES_BAYER, f"Lighthouse_Menon2007_NR_{pattern}.exr"
             )
-            np.testing.assert_array_almost_equal(
+            np.testing.assert_allclose(
                 demosaicing_CFA_Bayer_Menon2007(
                     read_image(str(CFA))[..., 0],
                     pattern,
                     refining_step=False,
                 ),
                 read_image(str(RGB)),
-                decimal=7,
+                atol=TOLERANCE_ABSOLUTE_TESTS,
             )
 
 

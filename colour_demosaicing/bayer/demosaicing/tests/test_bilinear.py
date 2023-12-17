@@ -11,6 +11,7 @@ import unittest
 
 import numpy as np
 from colour import read_image
+from colour.constants import TOLERANCE_ABSOLUTE_TESTS
 
 from colour_demosaicing import ROOT_RESOURCES_TESTS
 from colour_demosaicing.bayer import demosaicing_CFA_Bayer_bilinear
@@ -52,12 +53,12 @@ demosaicing_CFA_Bayer_bilinear` definition.
                 ROOT_RESOURCES_BAYER, f"Lighthouse_Bilinear_{pattern}.exr"
             )
 
-            np.testing.assert_array_almost_equal(
+            np.testing.assert_allclose(
                 demosaicing_CFA_Bayer_bilinear(
                     read_image(str(CFA))[..., 0], pattern
                 ),
                 read_image(str(RGB)),
-                decimal=7,
+                atol=TOLERANCE_ABSOLUTE_TESTS,
             )
 
 
