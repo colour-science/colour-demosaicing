@@ -88,6 +88,9 @@ exclude = '''
 )/
 '''
 
+[tool.codespell]
+skip = 'BIBLIOGRAPHY.bib,CONTRIBUTORS.rst,*.ipynb'
+
 [tool.flynt]
 line_length=999
 
