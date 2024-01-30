@@ -208,6 +208,9 @@ convention = "numpy"
 "utilities/*" = ["EXE001", "INP"]
 "utilities/unicode_to_ascii.py" = ["RUF001"]
 
+[tool.ruff.format]
+docstring-code-format = true
+
 [build-system]
 requires = [ "poetry_core>=1.0.0" ]
 build-backend = "poetry.core.masonry.api"

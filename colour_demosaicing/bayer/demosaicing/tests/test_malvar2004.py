@@ -46,17 +46,13 @@ demosaicing_CFA_Bayer_Malvar2004` definition.
         """
 
         for pattern in ("RGGB", "BGGR", "GRBG", "GBRG"):
-            CFA = os.path.join(
-                ROOT_RESOURCES_BAYER, f"Lighthouse_CFA_{pattern}.exr"
-            )
+            CFA = os.path.join(ROOT_RESOURCES_BAYER, f"Lighthouse_CFA_{pattern}.exr")
             RGB = os.path.join(
                 ROOT_RESOURCES_BAYER, f"Lighthouse_Malvar2004_{pattern}.exr"
             )
 
             np.testing.assert_allclose(
-                demosaicing_CFA_Bayer_Malvar2004(
-                    read_image(str(CFA))[..., 0], pattern
-                ),
+                demosaicing_CFA_Bayer_Malvar2004(read_image(str(CFA))[..., 0], pattern),
                 read_image(str(RGB)),
                 atol=TOLERANCE_ABSOLUTE_TESTS,
             )

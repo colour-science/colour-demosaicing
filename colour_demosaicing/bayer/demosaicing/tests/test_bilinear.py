@@ -46,17 +46,13 @@ demosaicing_CFA_Bayer_bilinear` definition.
         """
 
         for pattern in ("RGGB", "BGGR", "GRBG", "GBRG"):
-            CFA = os.path.join(
-                ROOT_RESOURCES_BAYER, f"Lighthouse_CFA_{pattern}.exr"
-            )
+            CFA = os.path.join(ROOT_RESOURCES_BAYER, f"Lighthouse_CFA_{pattern}.exr")
             RGB = os.path.join(
                 ROOT_RESOURCES_BAYER, f"Lighthouse_Bilinear_{pattern}.exr"
             )
 
             np.testing.assert_allclose(
-                demosaicing_CFA_Bayer_bilinear(
-                    read_image(str(CFA))[..., 0], pattern
-                ),
+                demosaicing_CFA_Bayer_bilinear(read_image(str(CFA))[..., 0], pattern),
                 read_image(str(RGB)),
                 atol=TOLERANCE_ABSOLUTE_TESTS,
             )
