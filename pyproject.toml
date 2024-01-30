@@ -78,16 +78,6 @@ restructuredtext-lint = "*"
 sphinx = "*"
 sphinxcontrib-bibtex = "*"
 
-[tool.black]
-line-length = 79
-exclude = '''
-/(
-    \.git
-  | build
-  | dist
-)/
-'''
-
 [tool.codespell]
 skip = 'BIBLIOGRAPHY.bib,CONTRIBUTORS.rst,*.ipynb'
 
