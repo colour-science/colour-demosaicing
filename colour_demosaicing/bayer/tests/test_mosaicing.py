@@ -45,14 +45,10 @@ class TestMosaicing_CFA_Bayer(unittest.TestCase):
         definition.
         """
 
-        image = read_image(
-            str(os.path.join(ROOT_RESOURCES_BAYER, "Lighthouse.exr"))
-        )
+        image = read_image(str(os.path.join(ROOT_RESOURCES_BAYER, "Lighthouse.exr")))
 
         for pattern in ("RGGB", "BGGR", "GRBG", "GBRG"):
-            CFA = os.path.join(
-                ROOT_RESOURCES_BAYER, f"Lighthouse_CFA_{pattern}.exr"
-            )
+            CFA = os.path.join(ROOT_RESOURCES_BAYER, f"Lighthouse_CFA_{pattern}.exr")
             np.testing.assert_allclose(
                 mosaicing_CFA_Bayer(image, pattern),
                 read_image(str(CFA))[..., 0],

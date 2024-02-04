@@ -12,7 +12,7 @@ Colour - Demosaicing
     :target: https://coveralls.io/r/colour-science/colour-demosaicing
     :alt: Coverage Status
 .. |codacy| image:: https://img.shields.io/codacy/grade/2862b4f2217742ae83c972d7e3af44d7/develop.svg?style=flat-square
-    :target: https://www.codacy.com/app/colour-science/colour-demosaicing
+    :target: https://app.codacy.com/gh/colour-science/colour-demosaicing
     :alt: Code Grade
 .. |version| image:: https://img.shields.io/pypi/v/colour-demosaicing.svg?style=flat-square
     :target: https://pypi.org/project/colour-demosaicing
