@@ -155,9 +155,9 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
 
     G = np.where(np.logical_or(R_m == 1, B_m == 1), convolve(CFA, GR_GB), G)
 
-    RBg_RBBR = convolve(CFA, Rg_RB_Bg_BR)
-    RBg_BRRB = convolve(CFA, Rg_BR_Bg_RB)
-    RBgr_BBRR = convolve(CFA, Rb_BB_Br_RR)
+    RBg_RBBR = convolve(CFA, Rg_RB_Bg_BR, mode='mirror')
+    RBg_BRRB = convolve(CFA, Rg_BR_Bg_RB, mode='mirror')
+    RBgr_BBRR = convolve(CFA, Rb_BB_Br_RR, mode='mirror')
 
     del GR_GB, Rg_RB_Bg_BR, Rg_BR_Bg_RB, Rb_BB_Br_RR
 

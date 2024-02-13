@@ -127,9 +127,9 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
         / 4
     )
 
-    R = convolve(CFA * R_m, H_RB)
-    G = convolve(CFA * G_m, H_G)
-    B = convolve(CFA * B_m, H_RB)
+    R = convolve(CFA * R_m, H_RB, mode='mirror')
+    G = convolve(CFA * G_m, H_G, mode='mirror')
+    B = convolve(CFA * B_m, H_RB, mode='mirror')
 
     del R_m, G_m, B_m, H_RB, H_G
 
