@@ -1,4 +1,3 @@
-# !/usr/bin/env python
 """
 Define the unit tests for the
 :mod:`colour_demosaicing.bayer.demosaicing.malvar2004` module.
@@ -7,7 +6,6 @@ Define the unit tests for the
 from __future__ import annotations
 
 import os
-import unittest
 
 import numpy as np
 from colour import read_image
@@ -33,7 +31,7 @@ ROOT_RESOURCES_BAYER: str = os.path.join(
 )
 
 
-class TestDemosaicing_CFA_Bayer_Malvar2004(unittest.TestCase):
+class TestDemosaicing_CFA_Bayer_Malvar2004:
     """
     Define :func:`colour_demosaicing.bayer.demosaicing.malvar2004.\
 demosaicing_CFA_Bayer_Malvar2004` definition unit tests methods.
@@ -56,7 +54,3 @@ demosaicing_CFA_Bayer_Malvar2004` definition.
                 read_image(str(RGB)),
                 atol=TOLERANCE_ABSOLUTE_TESTS,
             )
-
-
-if __name__ == "__main__":
-    unittest.main()
