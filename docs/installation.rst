@@ -13,11 +13,11 @@ Primary Dependencies
 
 **Colour - Demosaicing** requires various dependencies in order to run:
 
-- `python >= 3.9, < 4 <https://www.python.org/download/releases>`__
-- `colour-science >= 4.3 <https://pypi.org/project/colour-science>`__
+- `python >= 3.10, < 3.14 <https://www.python.org/download/releases>`__
+- `colour-science >= 4.4 <https://pypi.org/project/colour-science>`__
 - `imageio >= 2, < 3 <https://imageio.github.io>`__
-- `numpy >= 1.22, < 2 <https://pypi.org/project/numpy>`__
-- `scipy >= 1.8, < 2 <https://pypi.org/project/scipy>`__
+- `numpy >= 1.24, < 3 <https://pypi.org/project/numpy>`__
+- `scipy >= 1.10, < 2 <https://pypi.org/project/scipy>`__
 
 Pypi
 ----
