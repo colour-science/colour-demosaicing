@@ -83,7 +83,7 @@ def clean(
     docs
         Whether to clean the *docs* directory.
     bytecode
-        Whether to clean the bytecode files, e.g. *.pyc* files.
+        Whether to clean the bytecode files, e.g., *.pyc* files.
     pytest
         Whether to clean the *Pytest* cache directory.
     """
@@ -238,7 +238,7 @@ def examples(ctx: Context):
 @task(formatting, quality, precommit, tests, examples)
 def preflight(ctx: Context):  # noqa: ARG001
     """
-    Perform the preflight tasks, i.e. *formatting*, *tests*, *quality*, and
+    Perform the preflight tasks, i.e., *formatting*, *tests*, *quality*, and
     *examples*.
 
     Parameters
@@ -323,7 +323,7 @@ def requirements(ctx: Context):
 @task(clean, preflight, docs, todo, requirements)
 def build(ctx: Context):
     """
-    Build the project and runs dependency tasks, i.e. *docs*, *todo*, and
+    Build the project and runs dependency tasks, i.e., *docs*, *todo*, and
     *preflight*.
 
     Parameters
