@@ -51,6 +51,8 @@ ROOT_RESOURCES_TESTS: str = os.path.join(
     ROOT_RESOURCES, "colour-demosaicing-tests-datasets"
 )
 
+__all__ += ["ROOT_RESOURCES", "ROOT_RESOURCES_EXAMPLES", "ROOT_RESOURCES_TESTS"]
+
 __application_name__ = "Colour - Demosaicing"
 
 __major_version__ = "0"
