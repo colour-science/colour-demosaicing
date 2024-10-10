@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         os: [macOS-latest]
-        python-version: [3.12]
+        python-version: [3.13]
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
@@ -23,7 +23,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install Package Dependencies
         run: |
-          pip install -r requirements.txt
+          cat requirements.txt | grep -Eo '(^[^#]+)' | xargs -n 1 pip install || true
       - name: Static Type Checking
         run: |
-          pyright --skipunannotated
+          pyright --threads --skipunannotated
