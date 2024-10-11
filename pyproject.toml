@@ -1,6 +1,6 @@
 [project]
 name = "colour-demosaicing"
-version = "0.2.5"
+version = "0.2.6"
 description = "CFA (Colour Filter Array) Demosaicing Algorithms for Python"
 readme = "README.rst"
 requires-python = ">=3.10,<3.14"
