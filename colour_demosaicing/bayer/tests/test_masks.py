@@ -1,10 +1,8 @@
-# !/usr/bin/env python
 """Define the unit tests for the :mod:`colour_demosaicing.bayer.masks` module."""
 
 from __future__ import annotations
 
 import os
-import unittest
 
 import numpy as np
 from colour import read_image
@@ -31,7 +29,7 @@ ROOT_RESOURCES_BAYER: str = os.path.join(
 )
 
 
-class TestMasks_CFA_Bayer(unittest.TestCase):
+class TestMasks_CFA_Bayer:
     """
     Define :func:`colour_demosaicing.bayer.masks.masks_CFA_Bayer` definition
     unit tests methods.
@@ -50,7 +48,3 @@ class TestMasks_CFA_Bayer(unittest.TestCase):
                 read_image(str(mask)),
                 atol=TOLERANCE_ABSOLUTE_TESTS,
             )
-
-
-if __name__ == "__main__":
-    unittest.main()

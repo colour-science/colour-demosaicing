@@ -1,4 +1,3 @@
-# !/usr/bin/env python
 """
 Define the unit tests for the :mod:`colour_demosaicing.bayer.mosaicing`
 module.
@@ -7,7 +6,6 @@ module.
 from __future__ import annotations
 
 import os
-import unittest
 
 import numpy as np
 from colour import read_image
@@ -33,7 +31,7 @@ ROOT_RESOURCES_BAYER: str = os.path.join(
 )
 
 
-class TestMosaicing_CFA_Bayer(unittest.TestCase):
+class TestMosaicing_CFA_Bayer:
     """
     Define :func:`colour_demosaicing.bayer.mosaicing.mosaicing_CFA_Bayer`
     definition unit tests methods.
@@ -45,20 +43,12 @@ class TestMosaicing_CFA_Bayer(unittest.TestCase):
         definition.
         """
 
-        image = read_image(
-            str(os.path.join(ROOT_RESOURCES_BAYER, "Lighthouse.exr"))
-        )
+        image = read_image(str(os.path.join(ROOT_RESOURCES_BAYER, "Lighthouse.exr")))
 
         for pattern in ("RGGB", "BGGR", "GRBG", "GBRG"):
-            CFA = os.path.join(
-                ROOT_RESOURCES_BAYER, f"Lighthouse_CFA_{pattern}.exr"
-            )
+            CFA = os.path.join(ROOT_RESOURCES_BAYER, f"Lighthouse_CFA_{pattern}.exr")
             np.testing.assert_allclose(
                 mosaicing_CFA_Bayer(image, pattern),
                 read_image(str(CFA))[..., 0],
                 atol=TOLERANCE_ABSOLUTE_TESTS,
             )
-
-
-if __name__ == "__main__":
-    unittest.main()

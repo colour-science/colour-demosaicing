@@ -12,7 +12,7 @@ Colour - Demosaicing
     :target: https://coveralls.io/r/colour-science/colour-demosaicing
     :alt: Coverage Status
 .. |codacy| image:: https://img.shields.io/codacy/grade/2862b4f2217742ae83c972d7e3af44d7/develop.svg?style=flat-square
-    :target: https://www.codacy.com/app/colour-science/colour-demosaicing
+    :target: https://app.codacy.com/gh/colour-science/colour-demosaicing
     :alt: Code Grade
 .. |version| image:: https://img.shields.io/pypi/v/colour-demosaicing.svg?style=flat-square
     :target: https://pypi.org/project/colour-demosaicing
@@ -67,11 +67,11 @@ Primary Dependencies
 
 **Colour - Demosaicing** requires various dependencies in order to run:
 
-- `python >= 3.9, < 4 <https://www.python.org/download/releases>`__
-- `colour-science >= 4.3 <https://pypi.org/project/colour-science>`__
+- `python >= 3.10, < 3.14 <https://www.python.org/download/releases>`__
+- `colour-science >= 4.4 <https://pypi.org/project/colour-science>`__
 - `imageio >= 2, < 3 <https://imageio.github.io>`__
-- `numpy >= 1.22, < 2 <https://pypi.org/project/numpy>`__
-- `scipy >= 1.8, < 2 <https://pypi.org/project/scipy>`__
+- `numpy >= 1.24, < 3 <https://pypi.org/project/numpy>`__
+- `scipy >= 1.10, < 2 <https://pypi.org/project/scipy>`__
 
 Pypi
 ~~~~

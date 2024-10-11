@@ -83,7 +83,7 @@ def clean(
     docs
         Whether to clean the *docs* directory.
     bytecode
-        Whether to clean the bytecode files, e.g. *.pyc* files.
+        Whether to clean the bytecode files, e.g., *.pyc* files.
     pytest
         Whether to clean the *Pytest* cache directory.
     """
@@ -135,9 +135,7 @@ def formatting(
         message_box('Cleaning up "BibTeX" file...')
         bibtex_path = BIBLIOGRAPHY_NAME
         with open(bibtex_path) as bibtex_file:
-            entries = (
-                biblib.bib.Parser().parse(bibtex_file.read()).get_entries()
-            )
+            entries = biblib.bib.Parser().parse(bibtex_file.read()).get_entries()
 
         for entry in sorted(entries.values(), key=lambda x: x.key):
             with contextlib.suppress(KeyError):
@@ -174,7 +172,7 @@ def quality(
 
     if pyright:
         message_box('Checking codebase with "Pyright"...')
-        ctx.run("pyright --skipunannotated --level warning")
+        ctx.run("pyright --threads --skipunannotated --level warning")
 
     if rstlint:
         message_box('Linting "README.rst" file...')
@@ -240,7 +238,7 @@ def examples(ctx: Context):
 @task(formatting, quality, precommit, tests, examples)
 def preflight(ctx: Context):  # noqa: ARG001
     """
-    Perform the preflight tasks, i.e. *formatting*, *tests*, *quality*, and
+    Perform the preflight tasks, i.e., *formatting*, *tests*, *quality*, and
     *examples*.
 
     Parameters
@@ -267,9 +265,7 @@ def docs(ctx: Context, html: bool = True, pdf: bool = True):
         Whether to build the *PDF* documentation.
     """
 
-    with ctx.prefix("export COLOUR_SCIENCE__DOCUMENTATION_BUILD=True"), ctx.cd(
-        "docs"
-    ):
+    with ctx.prefix("export COLOUR_SCIENCE__DOCUMENTATION_BUILD=True"), ctx.cd("docs"):
         if html:
             message_box('Building "HTML" documentation...')
             ctx.run("make html")
@@ -308,26 +304,19 @@ def requirements(ctx: Context):
     """
 
     message_box('Exporting "requirements.txt" file...')
-    ctx.run(
-        "poetry export -f requirements.txt "
-        "--without-hashes "
-        "--with dev,docs,optional "
-        "--output requirements.txt"
-    )
+    ctx.run('uv export --no-hashes --all-extras | grep -v "-e \\." > requirements.txt')
 
     message_box('Exporting "docs/requirements.txt" file...')
     ctx.run(
-        "poetry export -f requirements.txt "
-        "--without-hashes "
-        "--with docs,optional "
-        "--output docs/requirements.txt"
+        'uv export --no-hashes --all-extras --no-dev | grep -v "-e \\." > '
+        "docs/requirements.txt"
     )
 
 
 @task(clean, preflight, docs, todo, requirements)
 def build(ctx: Context):
     """
-    Build the project and runs dependency tasks, i.e. *docs*, *todo*, and
+    Build the project and runs dependency tasks, i.e., *docs*, *todo*, and
     *preflight*.
 
     Parameters
@@ -337,7 +326,7 @@ def build(ctx: Context):
     """
 
     message_box("Building...")
-    ctx.run("poetry build")
+    ctx.run("uv build")
     ctx.run("twine check dist/*")
 
 
@@ -366,18 +355,18 @@ def virtualise(ctx: Context, tests: bool = True):
         )
 
         with ctx.cd(unique_name):
-            ctx.run("poetry install")
-            ctx.run("source $(poetry env info -p)/bin/activate")
+            ctx.run("uv sync --all-extras --no-dev")
             ctx.run(
-                'python -c "import imageio;'
-                'imageio.plugins.freeimage.download()"'
+                'uv run python -c "import imageio;imageio.plugins.freeimage.download()"'
             )
             if tests:
                 ctx.run(
-                    "poetry run pytest "
+                    "source .venv/bin/activate && "
+                    "uv run pytest "
                     "--doctest-modules "
                     f"--ignore={PYTHON_PACKAGE_NAME}/examples "
                     f"{PYTHON_PACKAGE_NAME}",
+                    env={"MPLBACKEND": "AGG"},
                 )
 
 
@@ -422,9 +411,7 @@ def tag(ctx: Context):
         remote_tags = result.stdout.strip().split("\n")  # pyright: ignore
         tags = set()
         for remote_tag in remote_tags:
-            tags.add(
-                remote_tag.split("refs/tags/")[1].replace("refs/tags/", "^{}")
-            )
+            tags.add(remote_tag.split("refs/tags/")[1].replace("refs/tags/", "^{}"))
         version_tags = sorted(tags)
         if f"v{version}" in version_tags:
             raise RuntimeError(

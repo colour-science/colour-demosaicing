@@ -8,22 +8,22 @@ jobs:
     strategy:
       matrix:
         os: [macOS-latest]
-        python-version: [3.12]
+        python-version: [3.13]
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: Environment Variables
         run: |
           echo "CI_PACKAGE=colour_demosaicing" >> $GITHUB_ENV
         shell: bash
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install Package Dependencies
         run: |
-          pip install -r requirements.txt
+          cat requirements.txt | grep -Eo '(^[^#]+)' | xargs -n 1 pip install || true
       - name: Static Type Checking
         run: |
-          pyright --skipunannotated
+          pyright --threads --skipunannotated

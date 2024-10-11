@@ -4,7 +4,7 @@ Contributors
 Development & Technical Support
 -------------------------------
 
--   **Thomas Mansencal**, *Technology Supervisor @ Wētā FX*
+-   **Thomas Mansencal**, *Principal Pipeline Programmer @ Epic Games*
 
     Project coordination, overall development.
 

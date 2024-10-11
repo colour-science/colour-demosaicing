@@ -1,4 +1,3 @@
-# !/usr/bin/env python
 """
 Define the unit tests for the
 :mod:`colour_demosaicing.bayer.demosaicing.menon2007` module.
@@ -7,7 +6,6 @@ Define the unit tests for the
 from __future__ import annotations
 
 import os
-import unittest
 
 import numpy as np
 from colour import read_image
@@ -33,7 +31,7 @@ ROOT_RESOURCES_BAYER: str = os.path.join(
 )
 
 
-class TestDemosaicing_CFA_Bayer_Menon2007(unittest.TestCase):
+class TestDemosaicing_CFA_Bayer_Menon2007:
     """
     Define :func:`colour_demosaicing.bayer.demosaicing.menon2007.\
 demosaicing_CFA_Bayer_Menon2007` definition unit tests methods.
@@ -46,17 +44,13 @@ demosaicing_CFA_Bayer_Menon2007` definition.
         """
 
         for pattern in ("RGGB", "BGGR", "GRBG", "GBRG"):
-            CFA = os.path.join(
-                ROOT_RESOURCES_BAYER, f"Lighthouse_CFA_{pattern}.exr"
-            )
+            CFA = os.path.join(ROOT_RESOURCES_BAYER, f"Lighthouse_CFA_{pattern}.exr")
             RGB = os.path.join(
                 ROOT_RESOURCES_BAYER, f"Lighthouse_Menon2007_{pattern}.exr"
             )
 
             np.testing.assert_allclose(
-                demosaicing_CFA_Bayer_Menon2007(
-                    read_image(str(CFA))[..., 0], pattern
-                ),
+                demosaicing_CFA_Bayer_Menon2007(read_image(str(CFA))[..., 0], pattern),
                 read_image(str(RGB)),
                 atol=TOLERANCE_ABSOLUTE_TESTS,
             )
@@ -73,7 +67,3 @@ demosaicing_CFA_Bayer_Menon2007` definition.
                 read_image(str(RGB)),
                 atol=TOLERANCE_ABSOLUTE_TESTS,
             )
-
-
-if __name__ == "__main__":
-    unittest.main()

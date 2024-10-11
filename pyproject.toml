@@ -1,13 +1,16 @@
-[tool.poetry]
+[project]
 name = "colour-demosaicing"
-version = "0.2.5"
+version = "0.2.6"
 description = "CFA (Colour Filter Array) Demosaicing Algorithms for Python"
-license = "BSD-3-Clause"
-authors = [ "Colour Developers <colour-developers@colour-science.org>" ]
-maintainers = [ "Colour Developers <colour-developers@colour-science.org>" ]
-readme = 'README.rst'
-repository = "https://github.com/colour-science/colour-demosaicing"
-homepage = "https://www.colour-science.org/"
+readme = "README.rst"
+requires-python = ">=3.10,<3.14"
+authors = [
+    { name = "Colour Developers", email = "colour-developers@colour-science.org" },
+]
+maintainers = [
+    { name = "Colour Developers", email = "colour-developers@colour-science.org" }
+]
+license = { text = "BSD-3-Clause" }
 keywords = [
     "cfa",
     "bayer",
@@ -42,51 +45,65 @@ classifiers = [
     "Topic :: Scientific/Engineering",
     "Topic :: Software Development"
 ]
+dependencies = [
+    "colour-science>=0.4.4",
+    "imageio>=2,<3",
+    "numpy>=1.24,<3",
+    "scipy>=1.10,<2",
+    "typing-extensions>=4,<5",
+]
+
+[project.optional-dependencies]
+optional = [
+    "matplotlib>=3.7",
+]
+docs = [
+    "biblib-simple",
+    "pydata-sphinx-theme",
+    "restructuredtext-lint",
+    "sphinx",
+    "sphinxcontrib-bibtex",
+]
+
+[project.urls]
+Homepage = "https://www.colour-science.org"
+Documentation = "https://colour-demosaicing.readthedocs.org"
+Repository = "https://github.com/colour-science/colour-demosaicing"
+Issues = "https://github.com/colour-science/colour-demosaicing/issues"
+Changelog = "https://github.com/colour-science/colour-demosaicing/releases"
+
+[tool.uv]
+package = true
+dev-dependencies = [
+    "coverage",
+    "coveralls",
+    "hatch",
+    "invoke",
+    "jupyter",
+    "pre-commit",
+    "pyright",
+    "pytest",
+    "pytest-cov",
+    "pytest-xdist",
+    "toml",
+    "twine",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = [ "colour_demosaicing" ]
+
+[tool.hatch.build.targets.sdist]
 exclude = [
     "colour_demosaicing/resources/colour-demosaicing-examples-datasets/bayer/*",
     "colour_demosaicing/resources/colour-demosaicing-tests-datasets/colour_demosaicing/bayer/*"
 ]
 
-[tool.poetry.dependencies]
-python = ">= 3.9, < 3.13"
-colour-science = ">= 0.4.4"
-imageio = ">= 2, < 3"
-numpy = ">= 1.22, < 2"
-scipy = ">= 1.8, < 2"
-typing-extensions = ">= 4, < 5"
-
-[tool.poetry.group.optional.dependencies]
-matplotlib = ">= 3.5, != 3.5.0, != 3.5.1"
-
-[tool.poetry.group.dev.dependencies]
-coverage = "!= 6.3"
-coveralls = "*"
-invoke = "*"
-jupyter = "*"
-pre-commit = ">= 3.5"
-pyright = "*"
-pytest = "*"
-pytest-cov = "*"
-pytest-xdist = "*"
-toml = "*"
-twine = "*"
-
-[tool.poetry.group.docs.dependencies]
-biblib-simple = "*"
-pydata-sphinx-theme = "*"
-restructuredtext-lint = "*"
-sphinx = "*"
-sphinxcontrib-bibtex = "*"
-
-[tool.black]
-line-length = 79
-exclude = '''
-/(
-    \.git
-  | build
-  | dist
-)/
-'''
+[tool.codespell]
+skip = "BIBLIOGRAPHY.bib,CONTRIBUTORS.rst,*.ipynb"
 
 [tool.flynt]
 line_length=999
@@ -202,9 +219,9 @@ convention = "numpy"
 "colour_demosaicing/examples/*" = ["INP", "T201", "T203"]
 "docs/*" = ["INP"]
 "tasks.py" = ["INP"]
+"test_*" = ["S101"]
 "utilities/*" = ["EXE001", "INP"]
 "utilities/unicode_to_ascii.py" = ["RUF001"]
 
-[build-system]
-requires = [ "poetry_core>=1.0.0" ]
-build-backend = "poetry.core.masonry.api"
+[tool.ruff.format]
+docstring-code-format = true
