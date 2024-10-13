@@ -46,7 +46,7 @@ classifiers = [
     "Topic :: Software Development"
 ]
 dependencies = [
-    "colour-science>=0.4.4",
+    "colour-science>=0.4.5",
     "imageio>=2,<3",
     "numpy>=1.24,<3",
     "scipy>=1.10,<2",
