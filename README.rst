@@ -121,7 +121,8 @@ The *Colour Developers* can be reached via different means:
 - `Facebook <https://www.facebook.com/python.colour.science>`__
 - `Github Discussions <https://github.com/colour-science/colour-demosaicing/discussions>`__
 - `Gitter <https://gitter.im/colour-science/colour>`__
-- `Twitter <https://twitter.com/colour_science>`__
+- `X <https://x.com/colour_science>`__
+- `Bluesky <https://bsky.app/profile/colour-science.bsky.social>`__
 
 About
 -----
