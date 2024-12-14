@@ -349,9 +349,7 @@ def virtualise(ctx: Context, tests: bool = True):
         ctx.run(f"mv {PYPI_ARCHIVE_NAME}-{APPLICATION_VERSION} {unique_name}")
         ctx.run(f"rm -rf {unique_name}/{PYTHON_PACKAGE_NAME}/resources")
         ctx.run(
-            "ln -s ../../../{0}/resources {1}/{0}".format(
-                PYTHON_PACKAGE_NAME, unique_name
-            )
+            f"ln -s ../../../{PYTHON_PACKAGE_NAME}/resources {unique_name}/{PYTHON_PACKAGE_NAME}"  # noqa: E501
         )
 
         with ctx.cd(unique_name):

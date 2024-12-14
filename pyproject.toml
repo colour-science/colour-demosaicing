@@ -103,6 +103,7 @@ exclude = [
 ]
 
 [tool.codespell]
+ignore-words-list = "socio-economic"
 skip = "BIBLIOGRAPHY.bib,CONTRIBUTORS.rst,*.ipynb"
 
 [tool.flynt]
