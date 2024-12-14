@@ -9,6 +9,8 @@ Subpackages
 -   bayer: *Bayer* CFA mosaicing and demosaicing computations.
 """
 
+# isort: skip_file
+
 from __future__ import annotations
 
 import contextlib
