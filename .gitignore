@@ -1,21 +1,24 @@
+# Common Files
 *.egg-info
 *.pyc
 *.pyo
 .DS_Store
 .coverage*
-.fleet
-.idea
-.ipynb_checkpoints
+uv.lock
+
+# Common Directories
+.fleet/
+.idea/
+.ipynb_checkpoints/
 .python-version
-.sandbox
-.vs
-.vscode
+.vs/
+.vscode/
+.sandbox/
+build/
+dist/
+docs/_build/
+docs/generated/
+node_modules/
+references/
 
 __pycache__
-
-build
-colour_demosaicing.egg-info
-dist
-docs/_build
-docs/generated
-uv.lock
