@@ -15,8 +15,13 @@ References
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 import numpy as np
-from colour.hints import ArrayLike, Literal, NDArrayFloat
+
+if TYPE_CHECKING:
+    from colour.hints import ArrayLike, Literal, NDArrayFloat
+
 from colour.utilities import as_float_array, ones, tstack
 from scipy.ndimage.filters import convolve
 
@@ -162,13 +167,13 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
     del GR_GB, Rg_RB_Bg_BR, Rg_BR_Bg_RB, Rb_BB_Br_RR
 
     # Red rows.
-    R_r = np.transpose(np.any(R_m == 1, axis=1)[None]) * ones(R.shape)
+    R_r = np.transpose(np.any(R_m == 1, axis=1)[None]) * ones(R.shape)  # pyright: ignore
     # Red columns.
-    R_c = np.any(R_m == 1, axis=0)[None] * ones(R.shape)
+    R_c = np.any(R_m == 1, axis=0)[None] * ones(R.shape)  # pyright: ignore
     # Blue rows.
-    B_r = np.transpose(np.any(B_m == 1, axis=1)[None]) * ones(B.shape)
+    B_r = np.transpose(np.any(B_m == 1, axis=1)[None]) * ones(B.shape)  # pyright: ignore
     # Blue columns
-    B_c = np.any(B_m == 1, axis=0)[None] * ones(B.shape)
+    B_c = np.any(B_m == 1, axis=0)[None] * ones(B.shape)  # pyright: ignore
 
     del R_m, B_m
 

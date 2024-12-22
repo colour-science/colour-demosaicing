@@ -7,8 +7,13 @@ Bayer CFA Masks
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 import numpy as np
-from colour.hints import Literal, NDArray, Tuple
+
+if TYPE_CHECKING:
+    from colour.hints import Literal, NDArray, Tuple
+
 from colour.utilities import validate_method
 
 __author__ = "Colour Developers"
@@ -75,7 +80,7 @@ def masks_CFA_Bayer(
     ).upper()
 
     channels = {channel: np.zeros(shape, dtype="bool") for channel in "RGB"}
-    for channel, (y, x) in zip(pattern, [(0, 0), (0, 1), (1, 0), (1, 1)]):
+    for channel, (y, x) in zip(pattern, [(0, 0), (0, 1), (1, 0), (1, 1)], strict=False):
         channels[channel][y::2, x::2] = 1
 
     return tuple(channels.values())

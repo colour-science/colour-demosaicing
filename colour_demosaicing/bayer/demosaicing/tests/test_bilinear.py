@@ -37,7 +37,7 @@ class TestDemosaicing_CFA_Bayer_bilinear:
 demosaicing_CFA_Bayer_bilinear` definition unit tests methods.
     """
 
-    def test_demosaicing_CFA_Bayer_bilinear(self):
+    def test_demosaicing_CFA_Bayer_bilinear(self) -> None:
         """
         Test :func:`colour_demosaicing.bayer.demosaicing.bilinear.\
 demosaicing_CFA_Bayer_bilinear` definition.

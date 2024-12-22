@@ -7,7 +7,11 @@ Bayer CFA Mosaicing
 
 from __future__ import annotations
 
-from colour.hints import ArrayLike, Literal, NDArray
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from colour.hints import ArrayLike, Literal, NDArray
+
 from colour.utilities import as_float_array, tsplit
 
 from colour_demosaicing.bayer import masks_CFA_Bayer
@@ -60,6 +64,4 @@ def mosaicing_CFA_Bayer(
     R, G, B = tsplit(RGB)
     R_m, G_m, B_m = masks_CFA_Bayer(RGB.shape[0:2], pattern)
 
-    CFA = R * R_m + G * G_m + B * B_m
-
-    return CFA
+    return R * R_m + G * G_m + B * B_m
