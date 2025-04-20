@@ -14,12 +14,13 @@ References
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+import typing
 
 import numpy as np
+from colour.hints import NDArrayFloat, cast
 
-if TYPE_CHECKING:
-    from colour.hints import ArrayLike, Literal, NDArrayFloat
+if typing.TYPE_CHECKING:
+    from colour.hints import ArrayLike, Literal
 
 from colour.utilities import as_float_array, ones, tsplit, tstack
 from scipy.ndimage.filters import convolve, convolve1d
@@ -43,13 +44,13 @@ __all__ = [
 def _cnv_h(x: ArrayLike, y: ArrayLike) -> NDArrayFloat:
     """Perform horizontal convolution."""
 
-    return convolve1d(x, y, mode="mirror")
+    return cast(NDArrayFloat, convolve1d(x, y, mode="mirror"))
 
 
 def _cnv_v(x: ArrayLike, y: ArrayLike) -> NDArrayFloat:
     """Perform vertical convolution."""
 
-    return convolve1d(x, y, mode="mirror", axis=0)
+    return cast(NDArrayFloat, convolve1d(x, y, mode="mirror", axis=0))
 
 
 def demosaicing_CFA_Bayer_Menon2007(
@@ -158,8 +159,8 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
         ]
     )
 
-    d_H = convolve(D_H, k, mode="constant")
-    d_V = convolve(D_V, np.transpose(k), mode="constant")
+    d_H = cast(NDArrayFloat, convolve(D_H, k, mode="constant"))
+    d_V = cast(NDArrayFloat, convolve(D_V, np.transpose(k), mode="constant"))
 
     del D_H, D_V
 

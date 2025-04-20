@@ -7,11 +7,11 @@ Bayer CFA Masks
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+import typing
 
 import numpy as np
 
-if TYPE_CHECKING:
+if typing.TYPE_CHECKING:
     from colour.hints import Literal, NDArray, Tuple
 
 from colour.utilities import validate_method

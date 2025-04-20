@@ -16,9 +16,10 @@ from __future__ import annotations
 import typing
 
 import numpy as np
+from colour.hints import NDArrayFloat, cast
 
 if typing.TYPE_CHECKING:
-    from colour.hints import ArrayLike, Literal, NDArrayFloat
+    from colour.hints import ArrayLike, Literal
 
 from colour.utilities import as_float_array, tstack
 from scipy.ndimage.filters import convolve
@@ -132,9 +133,9 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
         / 4
     )
 
-    R = convolve(CFA * R_m, H_RB)
-    G = convolve(CFA * G_m, H_G)
-    B = convolve(CFA * B_m, H_RB)
+    R = cast(NDArrayFloat, convolve(CFA * R_m, H_RB))
+    G = cast(NDArrayFloat, convolve(CFA * G_m, H_G))
+    B = cast(NDArrayFloat, convolve(CFA * B_m, H_RB))
 
     del R_m, G_m, B_m, H_RB, H_G
 

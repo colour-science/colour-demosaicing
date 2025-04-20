@@ -7,9 +7,9 @@ Bayer CFA Mosaicing
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+import typing
 
-if TYPE_CHECKING:
+if typing.TYPE_CHECKING:
     from colour.hints import ArrayLike, Literal, NDArray
 
 from colour.utilities import as_float_array, tsplit
