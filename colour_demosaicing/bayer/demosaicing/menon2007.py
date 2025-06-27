@@ -14,8 +14,14 @@ References
 
 from __future__ import annotations
 
+import typing
+
 import numpy as np
-from colour.hints import ArrayLike, Literal, NDArrayFloat
+from colour.hints import NDArrayFloat, cast
+
+if typing.TYPE_CHECKING:
+    from colour.hints import ArrayLike, Literal
+
 from colour.utilities import as_float_array, ones, tsplit, tstack
 from scipy.ndimage.filters import convolve, convolve1d
 
@@ -38,20 +44,20 @@ __all__ = [
 def _cnv_h(x: ArrayLike, y: ArrayLike) -> NDArrayFloat:
     """Perform horizontal convolution."""
 
-    return convolve1d(x, y, mode="mirror")
+    return cast(NDArrayFloat, convolve1d(x, y, mode="mirror"))
 
 
 def _cnv_v(x: ArrayLike, y: ArrayLike) -> NDArrayFloat:
     """Perform vertical convolution."""
 
-    return convolve1d(x, y, mode="mirror", axis=0)
+    return cast(NDArrayFloat, convolve1d(x, y, mode="mirror", axis=0))
 
 
 def demosaicing_CFA_Bayer_Menon2007(
     CFA: ArrayLike,
     pattern: Literal["RGGB", "BGGR", "GRBG", "GBRG"] | str = "RGGB",
     refining_step: bool = True,
-):
+) -> NDArrayFloat:
     """
     Return the demosaiced *RGB* colourspace array from given *Bayer* CFA using
     DDFAPD - *Menon (2007)* demosaicing algorithm.
@@ -153,8 +159,8 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
         ]
     )
 
-    d_H = convolve(D_H, k, mode="constant")
-    d_V = convolve(D_V, np.transpose(k), mode="constant")
+    d_H = cast(NDArrayFloat, convolve(D_H, k, mode="constant"))
+    d_V = cast(NDArrayFloat, convolve(D_V, np.transpose(k), mode="constant"))
 
     del D_H, D_V
 
@@ -165,9 +171,9 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
     del d_H, d_V, G_H, G_V
 
     # Red rows.
-    R_r = np.transpose(np.any(R_m == 1, axis=1)[None]) * ones(R.shape)
+    R_r = np.transpose(np.any(R_m == 1, axis=1)[None]) * ones(R.shape)  # pyright: ignore
     # Blue rows.
-    B_r = np.transpose(np.any(B_m == 1, axis=1)[None]) * ones(B.shape)
+    B_r = np.transpose(np.any(B_m == 1, axis=1)[None]) * ones(B.shape)  # pyright: ignore
 
     k_b = as_float_array([0.5, 0, 0.5])
 
@@ -317,13 +323,13 @@ def refining_step_Menon2007(
 
     # Updating of the red and blue components in the green locations.
     # Red rows.
-    R_r = np.transpose(np.any(R_m == 1, axis=1)[None]) * ones(R.shape)
+    R_r = np.transpose(np.any(R_m == 1, axis=1)[None]) * ones(R.shape)  # pyright: ignore
     # Red columns.
-    R_c = np.any(R_m == 1, axis=0)[None] * ones(R.shape)
+    R_c = np.any(R_m == 1, axis=0)[None] * ones(R.shape)  # pyright: ignore
     # Blue rows.
-    B_r = np.transpose(np.any(B_m == 1, axis=1)[None]) * ones(B.shape)
+    B_r = np.transpose(np.any(B_m == 1, axis=1)[None]) * ones(B.shape)  # pyright: ignore
     # Blue columns.
-    B_c = np.any(B_m == 1, axis=0)[None] * ones(B.shape)
+    B_c = np.any(B_m == 1, axis=0)[None] * ones(B.shape)  # pyright: ignore
 
     R_G = R - G
     B_G = B - G

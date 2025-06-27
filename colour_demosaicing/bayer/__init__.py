@@ -1,3 +1,5 @@
+# isort: skip_file
+
 from .masks import masks_CFA_Bayer
 from .mosaicing import mosaicing_CFA_Bayer
 from .demosaicing import *  # noqa: F403

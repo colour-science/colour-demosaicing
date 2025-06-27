@@ -15,8 +15,14 @@ References
 
 from __future__ import annotations
 
+import typing
+
 import numpy as np
-from colour.hints import ArrayLike, Literal, NDArrayFloat
+from colour.hints import NDArrayFloat, cast
+
+if typing.TYPE_CHECKING:
+    from colour.hints import ArrayLike, Literal
+
 from colour.utilities import as_float_array, ones, tstack
 from scipy.ndimage.filters import convolve
 
@@ -153,22 +159,22 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
 
     del G_m
 
-    G = np.where(np.logical_or(R_m == 1, B_m == 1), convolve(CFA, GR_GB), G)
+    G = np.where(np.logical_or(R_m == 1, B_m == 1), convolve(CFA, GR_GB), G)  # pyright: ignore
 
-    RBg_RBBR = convolve(CFA, Rg_RB_Bg_BR)
-    RBg_BRRB = convolve(CFA, Rg_BR_Bg_RB)
-    RBgr_BBRR = convolve(CFA, Rb_BB_Br_RR)
+    RBg_RBBR = cast(NDArrayFloat, convolve(CFA, Rg_RB_Bg_BR))
+    RBg_BRRB = cast(NDArrayFloat, convolve(CFA, Rg_BR_Bg_RB))
+    RBgr_BBRR = cast(NDArrayFloat, convolve(CFA, Rb_BB_Br_RR))
 
     del GR_GB, Rg_RB_Bg_BR, Rg_BR_Bg_RB, Rb_BB_Br_RR
 
     # Red rows.
-    R_r = np.transpose(np.any(R_m == 1, axis=1)[None]) * ones(R.shape)
+    R_r = np.transpose(np.any(R_m == 1, axis=1)[None]) * ones(R.shape)  # pyright: ignore
     # Red columns.
-    R_c = np.any(R_m == 1, axis=0)[None] * ones(R.shape)
+    R_c = np.any(R_m == 1, axis=0)[None] * ones(R.shape)  # pyright: ignore
     # Blue rows.
-    B_r = np.transpose(np.any(B_m == 1, axis=1)[None]) * ones(B.shape)
+    B_r = np.transpose(np.any(B_m == 1, axis=1)[None]) * ones(B.shape)  # pyright: ignore
     # Blue columns
-    B_c = np.any(B_m == 1, axis=0)[None] * ones(B.shape)
+    B_c = np.any(B_m == 1, axis=0)[None] * ones(B.shape)  # pyright: ignore
 
     del R_m, B_m
 

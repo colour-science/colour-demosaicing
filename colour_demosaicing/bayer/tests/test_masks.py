@@ -35,7 +35,7 @@ class TestMasks_CFA_Bayer:
     unit tests methods.
     """
 
-    def test_masks_CFA_Bayer(self):
+    def test_masks_CFA_Bayer(self) -> None:
         """
         Test :func:`colour_demosaicing.bayer.masks.masks_CFA_Bayer`
         definition.

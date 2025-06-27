@@ -9,6 +9,8 @@ Subpackages
 -   bayer: *Bayer* CFA mosaicing and demosaicing computations.
 """
 
+# isort: skip_file
+
 from __future__ import annotations
 
 import contextlib
@@ -58,19 +60,19 @@ __application_name__ = "Colour - Demosaicing"
 __major_version__ = "0"
 __minor_version__ = "2"
 __change_version__ = "6"
-__version__ = ".".join((__major_version__, __minor_version__, __change_version__))
+__version__ = f"{__major_version__}.{__minor_version__}.{__change_version__}"
 
 try:
     _version: str = (
-        subprocess.check_output(
-            ["git", "describe"],  # noqa: S603, S607
+        subprocess.check_output(  # noqa: S603
+            ["git", "describe"],  # noqa: S607
             cwd=os.path.dirname(__file__),
             stderr=subprocess.STDOUT,
         )
         .strip()
         .decode("utf-8")
     )
-except Exception:
+except Exception:  # noqa: BLE001
     _version: str = __version__
 
 colour.utilities.ANCILLARY_COLOUR_SCIENCE_PACKAGES["colour-demosaicing"] = _version  # pyright: ignore

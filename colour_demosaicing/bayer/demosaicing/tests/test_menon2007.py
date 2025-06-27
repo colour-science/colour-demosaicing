@@ -37,7 +37,7 @@ class TestDemosaicing_CFA_Bayer_Menon2007:
 demosaicing_CFA_Bayer_Menon2007` definition unit tests methods.
     """
 
-    def test_demosaicing_CFA_Bayer_Menon2007(self):
+    def test_demosaicing_CFA_Bayer_Menon2007(self) -> None:
         """
         Test :func:`colour_demosaicing.bayer.demosaicing.menon2007.\
 demosaicing_CFA_Bayer_Menon2007` definition.
