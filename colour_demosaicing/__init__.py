@@ -9,8 +9,6 @@ Subpackages
 -   bayer: *Bayer* CFA mosaicing and demosaicing computations.
 """
 
-# isort: skip_file
-
 from __future__ import annotations
 
 import contextlib
@@ -19,6 +17,8 @@ import subprocess
 
 import colour
 import numpy as np
+
+# isort: split
 
 from .bayer import (
     demosaicing_CFA_Bayer_bilinear,
