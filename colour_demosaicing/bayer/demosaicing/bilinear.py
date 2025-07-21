@@ -133,9 +133,9 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
         / 4
     )
 
-    R = cast(NDArrayFloat, convolve(CFA * R_m, H_RB))
-    G = cast(NDArrayFloat, convolve(CFA * G_m, H_G))
-    B = cast(NDArrayFloat, convolve(CFA * B_m, H_RB))
+    R = cast("NDArrayFloat", convolve(CFA * R_m, H_RB))
+    G = cast("NDArrayFloat", convolve(CFA * G_m, H_G))
+    B = cast("NDArrayFloat", convolve(CFA * B_m, H_RB))
 
     del R_m, G_m, B_m, H_RB, H_G
 

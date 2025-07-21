@@ -44,13 +44,13 @@ __all__ = [
 def _cnv_h(x: ArrayLike, y: ArrayLike) -> NDArrayFloat:
     """Perform horizontal convolution."""
 
-    return cast(NDArrayFloat, convolve1d(x, y, mode="mirror"))
+    return cast("NDArrayFloat", convolve1d(x, y, mode="mirror"))
 
 
 def _cnv_v(x: ArrayLike, y: ArrayLike) -> NDArrayFloat:
     """Perform vertical convolution."""
 
-    return cast(NDArrayFloat, convolve1d(x, y, mode="mirror", axis=0))
+    return cast("NDArrayFloat", convolve1d(x, y, mode="mirror", axis=0))
 
 
 def demosaicing_CFA_Bayer_Menon2007(
@@ -159,8 +159,8 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
         ]
     )
 
-    d_H = cast(NDArrayFloat, convolve(D_H, k, mode="constant"))
-    d_V = cast(NDArrayFloat, convolve(D_V, np.transpose(k), mode="constant"))
+    d_H = cast("NDArrayFloat", convolve(D_H, k, mode="constant"))
+    d_V = cast("NDArrayFloat", convolve(D_V, np.transpose(k), mode="constant"))
 
     del D_H, D_V
 

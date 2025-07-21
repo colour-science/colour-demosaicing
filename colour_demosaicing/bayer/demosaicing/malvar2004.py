@@ -161,9 +161,9 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
 
     G = np.where(np.logical_or(R_m == 1, B_m == 1), convolve(CFA, GR_GB), G)  # pyright: ignore
 
-    RBg_RBBR = cast(NDArrayFloat, convolve(CFA, Rg_RB_Bg_BR))
-    RBg_BRRB = cast(NDArrayFloat, convolve(CFA, Rg_BR_Bg_RB))
-    RBgr_BBRR = cast(NDArrayFloat, convolve(CFA, Rb_BB_Br_RR))
+    RBg_RBBR = cast("NDArrayFloat", convolve(CFA, Rg_RB_Bg_BR))
+    RBg_BRRB = cast("NDArrayFloat", convolve(CFA, Rg_BR_Bg_RB))
+    RBgr_BBRR = cast("NDArrayFloat", convolve(CFA, Rb_BB_Br_RR))
 
     del GR_GB, Rg_RB_Bg_BR, Rg_BR_Bg_RB, Rb_BB_Br_RR
 

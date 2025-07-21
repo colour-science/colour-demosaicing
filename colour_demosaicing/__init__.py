@@ -64,7 +64,7 @@ __version__ = f"{__major_version__}.{__minor_version__}.{__change_version__}"
 
 try:
     _version: str = (
-        subprocess.check_output(  # noqa: S603
+        subprocess.check_output(
             ["git", "describe"],  # noqa: S607
             cwd=os.path.dirname(__file__),
             stderr=subprocess.STDOUT,
