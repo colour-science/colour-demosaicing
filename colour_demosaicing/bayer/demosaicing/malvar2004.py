@@ -168,13 +168,13 @@ examples_merge_from_raw_files_with_post_demosaicing.ipynb>`__.
     del GR_GB, Rg_RB_Bg_BR, Rg_BR_Bg_RB, Rb_BB_Br_RR
 
     # Red rows.
-    R_r = np.transpose(np.any(R_m == 1, axis=1)[None]) * ones(R.shape)  # pyright: ignore
+    R_r = np.transpose(np.any(R_m == 1, axis=1)[None]) * ones(R.shape)
     # Red columns.
-    R_c = np.any(R_m == 1, axis=0)[None] * ones(R.shape)  # pyright: ignore
+    R_c = np.any(R_m == 1, axis=0)[None] * ones(R.shape)
     # Blue rows.
-    B_r = np.transpose(np.any(B_m == 1, axis=1)[None]) * ones(B.shape)  # pyright: ignore
+    B_r = np.transpose(np.any(B_m == 1, axis=1)[None]) * ones(B.shape)
     # Blue columns
-    B_c = np.any(B_m == 1, axis=0)[None] * ones(B.shape)  # pyright: ignore
+    B_c = np.any(B_m == 1, axis=0)[None] * ones(B.shape)
 
     del R_m, B_m
 
