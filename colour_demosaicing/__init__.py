@@ -9,8 +9,6 @@ Subpackages
 -   bayer: *Bayer* CFA mosaicing and demosaicing computations.
 """
 
-# isort: skip_file
-
 from __future__ import annotations
 
 import contextlib
@@ -19,6 +17,8 @@ import subprocess
 
 import colour
 import numpy as np
+
+# isort: split
 
 from .bayer import (
     demosaicing_CFA_Bayer_bilinear,
@@ -64,7 +64,7 @@ __version__ = f"{__major_version__}.{__minor_version__}.{__change_version__}"
 
 try:
     _version: str = (
-        subprocess.check_output(  # noqa: S603
+        subprocess.check_output(
             ["git", "describe"],  # noqa: S607
             cwd=os.path.dirname(__file__),
             stderr=subprocess.STDOUT,
