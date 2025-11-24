@@ -49,7 +49,7 @@ dependencies = [
     "colour-science>=0.4.5",
     "imageio>=2,<3",
     "numpy>=2.0.0,<3",
-    "scipy>=1.12.0,<2",
+    "scipy>=1.13.0,<2",
     "typing-extensions>=4,<5",
 ]
 
