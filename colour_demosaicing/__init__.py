@@ -59,7 +59,7 @@ __application_name__ = "Colour - Demosaicing"
 
 __major_version__ = "0"
 __minor_version__ = "2"
-__change_version__ = "6"
+__change_version__ = "7"
 __version__ = f"{__major_version__}.{__minor_version__}.{__change_version__}"
 
 try:

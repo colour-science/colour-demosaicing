@@ -1,9 +1,9 @@
 [project]
 name = "colour-demosaicing"
-version = "0.2.6"
+version = "0.2.7"
 description = "CFA (Colour Filter Array) Demosaicing Algorithms for Python"
 readme = "README.rst"
-requires-python = ">=3.10,<3.14"
+requires-python = ">=3.11,<3.15"
 authors = [
     { name = "Colour Developers", email = "colour-developers@colour-science.org" },
 ]
@@ -55,7 +55,9 @@ dependencies = [
 
 [project.optional-dependencies]
 optional = [
+    "imageio>=2,<3",
     "matplotlib>=3.9",
+    "openimageio>=3,<4",
 ]
 docs = [
     "biblib-simple",
@@ -134,7 +136,7 @@ reportUnusedExpression = false
 addopts = "-n auto --dist=loadscope --durations=5"
 
 [tool.ruff]
-target-version = "py310"
+target-version = "py311"
 line-length = 88
 select = ["ALL"]
 ignore = [
