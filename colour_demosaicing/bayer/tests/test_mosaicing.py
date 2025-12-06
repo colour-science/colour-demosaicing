@@ -37,7 +37,7 @@ class TestMosaicing_CFA_Bayer:
     definition unit tests methods.
     """
 
-    def test_mosaicing_CFA_Bayer(self):
+    def test_mosaicing_CFA_Bayer(self) -> None:
         """
         Test :func:`colour_demosaicing.bayer.mosaicing.mosaicing_CFA_Bayer`
         definition.

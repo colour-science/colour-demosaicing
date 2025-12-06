@@ -37,7 +37,7 @@ class TestDemosaicing_CFA_Bayer_Malvar2004:
 demosaicing_CFA_Bayer_Malvar2004` definition unit tests methods.
     """
 
-    def test_demosaicing_CFA_Bayer_Malvar2004(self):
+    def test_demosaicing_CFA_Bayer_Malvar2004(self) -> None:
         """
         Test :func:`colour_demosaicing.bayer.demosaicing.malvar2004.\
 demosaicing_CFA_Bayer_Malvar2004` definition.
