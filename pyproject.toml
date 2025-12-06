@@ -55,7 +55,9 @@ dependencies = [
 
 [project.optional-dependencies]
 optional = [
+    "imageio>=2,<3",
     "matplotlib>=3.9",
+    "openimageio>=3,<4",
 ]
 docs = [
     "biblib-simple",
