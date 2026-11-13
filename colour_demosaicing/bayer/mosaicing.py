@@ -52,11 +52,11 @@ def mosaicing_CFA_Bayer(
     >>> import numpy as np
     >>> RGB = np.array([[[0, 1, 2], [0, 1, 2]], [[0, 1, 2], [0, 1, 2]]])
     >>> mosaicing_CFA_Bayer(RGB)
-    array([[ 0.,  1.],
-           [ 1.,  2.]])
+    array([[0., 1.],
+           [1., 2.]])
     >>> mosaicing_CFA_Bayer(RGB, pattern="BGGR")
-    array([[ 2.,  1.],
-           [ 1.,  0.]])
+    array([[2., 1.],
+           [1., 0.]])
     """
 
     RGB = as_float_array(RGB)

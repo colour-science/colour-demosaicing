@@ -54,23 +54,23 @@ def masks_CFA_Bayer(
     >>> pprint(masks_CFA_Bayer(shape))
     (array([[ True, False,  True],
            [False, False, False],
-           [ True, False,  True]], dtype=bool),
+           [ True, False,  True]]),
      array([[False,  True, False],
            [ True, False,  True],
-           [False,  True, False]], dtype=bool),
+           [False,  True, False]]),
      array([[False, False, False],
            [False,  True, False],
-           [False, False, False]], dtype=bool))
+           [False, False, False]]))
     >>> pprint(masks_CFA_Bayer(shape, "BGGR"))
     (array([[False, False, False],
            [False,  True, False],
-           [False, False, False]], dtype=bool),
+           [False, False, False]]),
      array([[False,  True, False],
            [ True, False,  True],
-           [False,  True, False]], dtype=bool),
+           [False,  True, False]]),
      array([[ True, False,  True],
            [False, False, False],
-           [ True, False,  True]], dtype=bool))
+           [ True, False,  True]]))
     """
 
     pattern = validate_method(
