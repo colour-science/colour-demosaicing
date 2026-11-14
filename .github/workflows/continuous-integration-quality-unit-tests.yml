@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         os: [macOS-latest, ubuntu-latest, windows-latest]
-        python-version: [3.11, 3.12, 3.13, 3.14]
+        python-version: [3.13, 3.14, 3.15]
       fail-fast: false
     runs-on: ${{ matrix.os }}
     steps:
@@ -55,7 +55,7 @@ jobs:
           uv run python -W ignore -m pytest --doctest-modules --ignore=$CI_PACKAGE/examples --cov=$CI_PACKAGE $CI_PACKAGE
         shell: bash
       - name: Upload Coverage to coveralls.io
-        if: matrix.os == 'macOS-latest' && matrix.python-version == '3.12'
+        if: matrix.os == 'macOS-latest' && matrix.python-version == '3.13'
         run: |
           if [ -z "$COVERALLS_REPO_TOKEN" ]; then echo \"COVERALLS_REPO_TOKEN\" secret is undefined!; else uv run coveralls; fi
         shell: bash
