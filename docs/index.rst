@@ -7,9 +7,7 @@ CFA (Colour Filter Array) demosaicing algorithms and related utilities.
 It is open source and freely available under the
 `BSD-3-Clause <https://opensource.org/licenses/BSD-3-Clause>`__ terms.
 
-..  image:: https://raw.githubusercontent.com/colour-science/colour-demosaicing/master/docs/_static/Demosaicing_001.png
-
-.. sectnum::
+..  image:: _static/Demosaicing_001.png
 
 Features
 --------

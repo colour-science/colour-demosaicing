@@ -28,6 +28,8 @@ extensions = [
     "sphinxcontrib.bibtex",
 ]
 
+intersphinx_timeout = 10
+
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3/", None),
     "colour-science": ("https://colour.readthedocs.io/en/stable/", None),

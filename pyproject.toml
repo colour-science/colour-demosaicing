@@ -81,6 +81,7 @@ colour-science = { git = "https://github.com/colour-science/colour.git", branch 
 
 [dependency-groups]
 dev = [
+    "biblib-simple",
     "coverage",
     "coveralls",
     "hatch",
